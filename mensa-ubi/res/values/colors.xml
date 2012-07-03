@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Copyright 2012 Frederik Hahne
+   
+   This file is part of Mensa UBI.
+ 
+   Mensa UBI is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+ 
+   Mensa UBI is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+ 
+   You should have received a copy of the GNU General Public License
+   along with Mensa UBI.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+    <color name="ubi_orange">#ea6a39</color>
+    <color name="ubi_grey">#7f7e83</color>
+    <color name="ubi_light_orange">#f39e7f</color>
+    <color name="ubi_light_grey">#d4d4d2</color>
+    <color name="text_color">#46494b</color>
+    <color name="text_color_light">#989898</color>
+</resources>
