@@ -24,6 +24,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.MenuItem;
 import com.viewpagerindicator.PageIndicator;
 
 import de.atomfrede.android.mensa.ubi.R;
@@ -43,6 +44,17 @@ public abstract class AbstractWeeklyMenuActivity extends SherlockFragmentActivit
 		setContentView(R.layout.weekly_meal);
 		weekdays = getResources().getStringArray(R.array.weekdays_short);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			super.onBackPressed();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
 	
 	/**

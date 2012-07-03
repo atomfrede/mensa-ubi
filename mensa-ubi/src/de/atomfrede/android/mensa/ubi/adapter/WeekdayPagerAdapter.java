@@ -40,6 +40,10 @@ public class WeekdayPagerAdapter extends FragmentPagerAdapter {
 		switch (location) {
 		case Constants.LOC_MENSA:
 			return getDataFragment(MealPlan.getInstance().getMensaMenu(), tab);
+		case Constants.LOC_WESTEND_RESTAURANT:
+			return getDataFragment(MealPlan.getInstance().getWestendRestauranMenu(), tab);
+		case Constants.LOC_KURT_SCHUHMACHER:
+			return getDataFragment(MealPlan.getInstance().getKurtSchuhmacherMenu(), tab);
 		default:
 			return null;
 		}
@@ -52,16 +56,19 @@ public class WeekdayPagerAdapter extends FragmentPagerAdapter {
 
 	@Override
 	public CharSequence getPageTitle(int position) {
-		System.out.println("Getting the Page Title");
 		String title = "";
 		switch (location) {
 		case Constants.LOC_MENSA:
 			title = MealPlan.getInstance().getMensaMenu().getDailyMenues().get(position).getShortendDate();
-			System.out.println("TITLE " + title);
+			return title;
+		case Constants.LOC_WESTEND_RESTAURANT:
+			title = MealPlan.getInstance().getWestendRestauranMenu().getDailyMenues().get(position).getShortendDate();
+			return title;
+		case Constants.LOC_KURT_SCHUHMACHER:
+			title = MealPlan.getInstance().getKurtSchuhmacherMenu().getDailyMenues().get(position).getShortendDate();
 			return title;
 		default:
 			title = weekdays[position];
-			System.out.println("TITLE " + title);
 			return title;
 		}
 	}

@@ -32,7 +32,7 @@ public class Parser {
 
 	public final static String TAG = "Parser";
 
-	public static WeeklyMenu parseMensa(boolean reload, String data, SharedPreferences settings) throws Exception {
+	public static WeeklyMenu parseMenu(boolean reload, String data, SharedPreferences settings, String url) throws Exception {
 		WeeklyMenu mensaMenu = new WeeklyMenu();
 		Document doc;
 		Log.d(TAG, "Reload? "+reload);
@@ -41,7 +41,7 @@ public class Parser {
 			doc = Jsoup.parse(data);
 		}else {
 			Log.d(TAG, "Loading from Internet");
-			doc = Jsoup.connect(Constants.mensaUrl).get();
+			doc = Jsoup.connect(url).get();
 			String mensaXml = doc.toString();
 			settings.edit().putString(Constants.MENSA_XML_KEY, mensaXml).commit();
 		}

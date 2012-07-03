@@ -21,6 +21,7 @@
     <string-array name="locations">
         <item>Mensa</item>
         <item>Westend Restaurant</item>
+        <item>FH Mensa: Kurt-Schumacher-Straße</item>
     </string-array>
     <string-array name="weekdays">
         <item>Monday</item>

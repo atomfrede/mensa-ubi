@@ -22,6 +22,7 @@ public class Constants {
 
 	public static final int LOC_MENSA = 0;
 	public static final int LOC_WESTEND_RESTAURANT = 1;
+	public static final int LOC_KURT_SCHUHMACHER = 2;
 
 	public static final int DAY_MONDAY = 0;
 	public static final int DAY_TUESDAY = 1;
@@ -31,9 +32,12 @@ public class Constants {
 
 	public static String mensaUrl = "http://www.studentenwerkbielefeld.de/index.php?id=61";
 	public static String westendRestaurantUrl = "http://www.studentenwerkbielefeld.de/index.php?id=60";
+	public static String fhKurtSchumacherUrl = "http://www.studentenwerkbielefeld.de/index.php?id=63";
 
 	public static final String LAST_UPDATE_KEY = "lastUpdate";
 	public static final String MENSA_XML_KEY = "mensaXml";
+	public static final String WESTEND_RESTAURANT_XML_KEY = "westendrestaurantXml";
+	public static final String KURT_SCHUMACHER_XML_KEY = "kurtSchumacherXml";
 
 	public static final String MENSA_PREFS = "mensaPrefs";
 }

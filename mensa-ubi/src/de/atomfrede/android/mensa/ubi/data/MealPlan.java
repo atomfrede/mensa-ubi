@@ -26,6 +26,8 @@ public class MealPlan {
 	}
 
 	private WeeklyMenu mensaMenu;
+	private WeeklyMenu westendRestauranMenu;
+	private WeeklyMenu kurtSchuhmacherMenu;
 
 	private MealPlan() {
 	}
@@ -36,6 +38,22 @@ public class MealPlan {
 
 	public void setMensaMenu(WeeklyMenu mensaMenu) {
 		this.mensaMenu = mensaMenu;
+	}
+
+	public WeeklyMenu getWestendRestauranMenu() {
+		return westendRestauranMenu;
+	}
+
+	public void setWestendRestauranMenu(WeeklyMenu westendRestauranMenu) {
+		this.westendRestauranMenu = westendRestauranMenu;
+	}
+
+	public WeeklyMenu getKurtSchuhmacherMenu() {
+		return kurtSchuhmacherMenu;
+	}
+
+	public void setKurtSchuhmacherMenu(WeeklyMenu kurtSchuhmacherMenu) {
+		this.kurtSchuhmacherMenu = kurtSchuhmacherMenu;
 	}
 
 }
