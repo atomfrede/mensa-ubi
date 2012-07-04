@@ -28,6 +28,12 @@ public class MealPlan {
 	private WeeklyMenu mensaMenu;
 	private WeeklyMenu westendRestauranMenu;
 	private WeeklyMenu kurtSchuhmacherMenu;
+	private WeeklyMenu wilhemBertelsmannMenu;
+	private WeeklyMenu mindenMenu;
+	private WeeklyMenu detmoldMenu;
+	private WeeklyMenu lemgoMenu;
+	private WeeklyMenu hoexterMenu;
+	private WeeklyMenu musicMenu;
 
 	private MealPlan() {
 	}
@@ -54,6 +60,54 @@ public class MealPlan {
 
 	public void setKurtSchuhmacherMenu(WeeklyMenu kurtSchuhmacherMenu) {
 		this.kurtSchuhmacherMenu = kurtSchuhmacherMenu;
+	}
+
+	public WeeklyMenu getWilhemBertelsmannMenu() {
+		return wilhemBertelsmannMenu;
+	}
+
+	public void setWilhemBertelsmannMenu(WeeklyMenu wilhemBertelsmannMenu) {
+		this.wilhemBertelsmannMenu = wilhemBertelsmannMenu;
+	}
+
+	public WeeklyMenu getMindenMenu() {
+		return mindenMenu;
+	}
+
+	public void setMindenMenu(WeeklyMenu mindenMenu) {
+		this.mindenMenu = mindenMenu;
+	}
+
+	public WeeklyMenu getDetmoldMenu() {
+		return detmoldMenu;
+	}
+
+	public void setDetmoldMenu(WeeklyMenu detmoldMenu) {
+		this.detmoldMenu = detmoldMenu;
+	}
+
+	public WeeklyMenu getLemgoMenu() {
+		return lemgoMenu;
+	}
+
+	public void setLemgoMenu(WeeklyMenu lemgoMenu) {
+		this.lemgoMenu = lemgoMenu;
+	}
+
+	public WeeklyMenu getHoexterMenu() {
+		return hoexterMenu;
+	}
+
+	public void setHoexterMenu(WeeklyMenu hoexterMenu) {
+		this.hoexterMenu = hoexterMenu;
+	}
+
+	public WeeklyMenu getMusicMenu() {
+		return musicMenu;
+	}
+
+	public void setMusicMenu(WeeklyMenu musicMenu) {
+		this.musicMenu = musicMenu;
 	}
 
 }
