@@ -35,12 +35,9 @@ public class Parser {
 	public static WeeklyMenu parseMenu(boolean reload, String data, SharedPreferences settings, String url) throws Exception {
 		WeeklyMenu mensaMenu = new WeeklyMenu();
 		Document doc;
-		Log.d(TAG, "Reload? "+reload);
 		if (data != null && !data.equals("") && !reload){
-			Log.d(TAG, "Parsing from String");
 			doc = Jsoup.parse(data);
 		}else {
-			Log.d(TAG, "Loading from Internet");
 			doc = Jsoup.connect(url).get();
 			String mensaXml = doc.toString();
 			settings.edit().putString(Constants.MENSA_XML_KEY, mensaXml).commit();
@@ -70,19 +67,30 @@ public class Parser {
 			String menuTitle = row.child(0).text();
 			menu.setTitle(menuTitle);
 
-			String menuText = row.child(1).child(0).text();
-			menu.setText(menuText);
+			Elements important = row.select("span.important");
+			if(!important.isEmpty()){
+				StringBuilder sb = new StringBuilder();
+				for(Element impo:important){
+					sb.append(impo.text()+"\n");
+				}
+				menu.setText(sb.toString());
+				menu.setPrice("");
+			}else {
+				String menuText = row.child(1).child(0).text();
+				menu.setText(menuText);
 
-			Elements priceElements = row.child(2).select("p");
-			StringBuilder sb = new StringBuilder();
-			int counter = 0;
-			for (Element priceElement : priceElements) {
-				counter++;
-				sb.append(priceElement.text());
-				if (counter != priceElements.size())
-					sb.append("\n");
+				Elements priceElements = row.child(2).select("p");
+				StringBuilder sb = new StringBuilder();
+				int counter = 0;
+				for (Element priceElement : priceElements) {
+					counter++;
+					sb.append(priceElement.text());
+					if (counter != priceElements.size())
+						sb.append("\n");
+				}
+				menu.setPrice(sb.toString());
 			}
-			menu.setPrice(sb.toString());
+			
 			dailyMenu.addMenu(menu);
 		}
 	}
