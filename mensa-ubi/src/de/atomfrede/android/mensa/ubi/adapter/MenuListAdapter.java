@@ -50,8 +50,10 @@ public class MenuListAdapter extends ArrayAdapter<Menu> {
 		Menu currentMenu = values.get(position);
 		titleTxt.setText(currentMenu.getTitle());
 		mealTxt.setText(currentMenu.getText());
+		
 		priceTxt.setText(currentMenu.getPrice());
-
+		if(currentMenu.getPrice() == null || currentMenu.getPrice().equals(""))
+			priceTxt.setVisibility(View.GONE);
 		return rowView;
 	}
 }
