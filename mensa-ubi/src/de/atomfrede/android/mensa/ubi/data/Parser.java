@@ -67,11 +67,18 @@ public class Parser {
 			String menuTitle = row.child(0).text();
 			menu.setTitle(menuTitle);
 
-			Elements important = row.select("span.important");
-			if(!important.isEmpty()){
+			Elements importantElements = row.select("span.important");
+			int impCounter = 0;
+			if(!importantElements.isEmpty()){
 				StringBuilder sb = new StringBuilder();
-				for(Element impo:important){
-					sb.append(impo.text()+"\n");
+				for(Element important:importantElements){
+					if(impCounter == 0)
+						sb.append(important.text()+"\n\n");
+					else if(impCounter == 1)
+						sb.append(important.text()+" ");
+					else 
+						sb.append(important.text());
+					impCounter++;
 				}
 				menu.setText(sb.toString());
 				menu.setPrice("");
