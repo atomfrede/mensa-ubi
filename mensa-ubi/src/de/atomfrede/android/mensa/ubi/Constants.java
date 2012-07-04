@@ -23,6 +23,12 @@ public class Constants {
 	public static final int LOC_MENSA = 0;
 	public static final int LOC_WESTEND_RESTAURANT = 1;
 	public static final int LOC_KURT_SCHUHMACHER = 2;
+	public static final int LOC_WILHELM_BERTELSMANN = 3;
+	public static final int LOC_MINDEN = 4;
+	public static final int LOC_DETMOLD = 5;
+	public static final int LOC_LEMGO = 6;
+	public static final int LOC_HOEXTER = 7;
+	public static final int LOC_MUSIC = 8;
 
 	public static final int DAY_MONDAY = 0;
 	public static final int DAY_TUESDAY = 1;
@@ -30,14 +36,30 @@ public class Constants {
 	public static final int DAY_THURSDAY = 3;
 	public static final int DAY_FRIDAY = 4;
 
-	public static String mensaUrl = "http://www.studentenwerkbielefeld.de/index.php?id=61";
-	public static String westendRestaurantUrl = "http://www.studentenwerkbielefeld.de/index.php?id=60";
-	public static String fhKurtSchumacherUrl = "http://www.studentenwerkbielefeld.de/index.php?id=63";
+	public static final String mensaUrl = "http://www.studentenwerkbielefeld.de/index.php?id=61";
+	public static final String westendRestaurantUrl = "http://www.studentenwerkbielefeld.de/index.php?id=60";
+	public static final String fhKurtSchumacherUrl = "http://www.studentenwerkbielefeld.de/index.php?id=63";
+	public static final String wilhelmBerterlsmannUrl = "http://www.studentenwerkbielefeld.de/index.php?id=65";
+	public static final String mindenUrl = "http://www.studentenwerkbielefeld.de/index.php?id=68";
+	public static final String detmoldUrl = "http://www.studentenwerkbielefeld.de/index.php?id=69";
+	public static final String lemgoUrl = "http://www.studentenwerkbielefeld.de/index.php?id=70&L=0";
+	public static final String hoexterUrl = "http://www.studentenwerkbielefeld.de/index.php?id=71&L=0";
+	public static final String musicUrl = "http://www.studentenwerkbielefeld.de/index.php?id=72&L=0";
+	
+	
 
 	public static final String LAST_UPDATE_KEY = "lastUpdate";
 	public static final String MENSA_XML_KEY = "mensaXml";
 	public static final String WESTEND_RESTAURANT_XML_KEY = "westendrestaurantXml";
 	public static final String KURT_SCHUMACHER_XML_KEY = "kurtSchumacherXml";
+	public static final String WILHELM_BERTELSMANN_XML_KEY = "wilhelmBertelsmannXml";
+	
+	public static final String MINDEN_XML_KEY = "mindenXml";
+	public static final String DETMOLD_XML_KEY = "detmoldeXml";
+	public static final String LEMGO_XML_KEY = "lemgoXml";
+	public static final String HOEXTER_XML_KEY = "hoexterXml";
+	
+	public static final String MUSIC_XML_KEY = "musciXml";
 
 	public static final String MENSA_PREFS = "mensaPrefs";
 }
