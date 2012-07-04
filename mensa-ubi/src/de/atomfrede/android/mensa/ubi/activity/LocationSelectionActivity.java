@@ -35,6 +35,11 @@ import com.actionbarsherlock.view.MenuItem;
 import de.atomfrede.android.mensa.ubi.Constants;
 import de.atomfrede.android.mensa.ubi.R;
 import de.atomfrede.android.mensa.ubi.activity.meals.weekly.*;
+import de.atomfrede.android.mensa.ubi.activity.meals.weekly.fh.*;
+import de.atomfrede.android.mensa.ubi.activity.meals.weekly.hs.music.MusicActivity;
+import de.atomfrede.android.mensa.ubi.activity.meals.weekly.hs.owl.*;
+import de.atomfrede.android.mensa.ubi.activity.meals.weekly.ubi.MensaActivity;
+import de.atomfrede.android.mensa.ubi.activity.meals.weekly.ubi.WestendRestaurantActivity;
 import de.atomfrede.android.mensa.ubi.data.*;
 import de.atomfrede.android.mensa.ubi.util.Util;
 
@@ -79,6 +84,27 @@ public class LocationSelectionActivity extends SherlockListActivity {
 			Intent kurtSchumacherIntent = new Intent(this, KurtSchumacherActivity.class);
 			startActivity(kurtSchumacherIntent);
 		}
+		if(position == 3){
+			Intent bertelsmannIntent = new Intent(this, WilhelmBertelsmannActivity.class);
+			startActivity(bertelsmannIntent);
+		}
+
+		if(position == 4){
+			Intent detmoldIntent = new Intent(this, DetmoldActivity.class);
+			startActivity(detmoldIntent);
+		}
+		if(position == 5){
+			Intent lemgoIntent = new Intent(this, LemgoActivity.class);
+			startActivity(lemgoIntent);
+		}
+		if(position == 6){
+			Intent hoexterIntent = new Intent(this, HoexterActivity.class);
+			startActivity(hoexterIntent);
+		}
+		if(position == 7){
+			Intent musicIntent = new Intent(this, MusicActivity.class);
+			startActivity(musicIntent);
+		}
 	}
 
 	@Override
@@ -112,8 +138,10 @@ public class LocationSelectionActivity extends SherlockListActivity {
 
 	public void downloadData(boolean reload) {
 		Log.d(TAG, "Downloading data, will reload: " + reload);
-		LoadAndParseXhtml task = new LoadAndParseXhtml();
-		task.execute(reload);
+		if (MealPlan.getInstance().getMensaMenu() == null) {
+			LoadAndParseXhtml task = new LoadAndParseXhtml();
+			task.execute(reload);
+		}
 	}
 
 	private class LoadAndParseXhtml extends AsyncTask<Boolean, Integer, MealPlan> {
@@ -134,16 +162,48 @@ public class LocationSelectionActivity extends SherlockListActivity {
 			return Parser.parseMenu(reload, kurtSchumacherXml, settings, Constants.fhKurtSchumacherUrl);
 		}
 
+		private WeeklyMenu loadWilhelmBerterlsmannMeal(boolean reload) throws Exception {
+			String kurtSchumacherXml = settings.getString(Constants.WILHELM_BERTELSMANN_XML_KEY, null);
+			return Parser.parseMenu(reload, kurtSchumacherXml, settings, Constants.wilhelmBerterlsmannUrl);
+		}
+
+		@Deprecated
+		private WeeklyMenu loadMindenMeal(boolean reload) throws Exception {
+			String kurtSchumacherXml = settings.getString(Constants.MINDEN_XML_KEY, null);
+			return Parser.parseMenu(reload, kurtSchumacherXml, settings, Constants.mindenUrl);
+		}
+
+		private WeeklyMenu loadDetmoldMeal(boolean reload) throws Exception {
+			String kurtSchumacherXml = settings.getString(Constants.DETMOLD_XML_KEY, null);
+			return Parser.parseMenu(reload, kurtSchumacherXml, settings, Constants.detmoldUrl);
+		}
+
+		private WeeklyMenu loadLemgoMeal(boolean reload) throws Exception {
+			String kurtSchumacherXml = settings.getString(Constants.LEMGO_XML_KEY, null);
+			return Parser.parseMenu(reload, kurtSchumacherXml, settings, Constants.lemgoUrl);
+		}
+
+		private WeeklyMenu loadHoexterMeal(boolean reload) throws Exception {
+			String kurtSchumacherXml = settings.getString(Constants.HOEXTER_XML_KEY, null);
+			return Parser.parseMenu(reload, kurtSchumacherXml, settings, Constants.hoexterUrl);
+		}
+
+		private WeeklyMenu loadMusicMeal(boolean reload) throws Exception {
+			String kurtSchumacherXml = settings.getString(Constants.MUSIC_XML_KEY, null);
+			return Parser.parseMenu(reload, kurtSchumacherXml, settings, Constants.musicUrl);
+		}
+
 		@Override
 		protected void onPreExecute() {
-//			dialog = ProgressDialog.show(LocationSelectionActivity.this, getResources().getText(R.string.loading_title),
-//					getResources().getText(R.string.loading_text), false);
+			// dialog = ProgressDialog.show(LocationSelectionActivity.this,
+			// getResources().getText(R.string.loading_title),
+			// getResources().getText(R.string.loading_text), false);
 			dialog = new ProgressDialog(LocationSelectionActivity.this);
 			dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 			dialog.setTitle(getResources().getText(R.string.loading_title));
 			dialog.setMessage(getResources().getText(R.string.loading_text));
 			dialog.setCancelable(false);
-			
+
 			dialog.show();
 		}
 
@@ -157,11 +217,31 @@ public class LocationSelectionActivity extends SherlockListActivity {
 				MealPlan mealPlan = MealPlan.getInstance();
 				boolean reload = params[0];
 				mealPlan.setMensaMenu(loadMensaMeal(reload));
-				publishProgress(33);
+				publishProgress(12);
+
 				mealPlan.setWestendRestauranMenu(loadWestendRestaurantMeal(reload));
-				publishProgress(33 * 2);
+				publishProgress(12 * 2);
+
 				mealPlan.setKurtSchuhmacherMenu(loadKurtSchumacherMeal(reload));
-				publishProgress(100);
+				publishProgress(12*3);
+
+				mealPlan.setWilhemBertelsmannMenu(loadWilhelmBerterlsmannMeal(reload));
+				publishProgress(12 * 4);
+
+//				mealPlan.setMindenMenu(loadMindenMeal(reload));
+//				publishProgress(11 * 5);
+
+				mealPlan.setDetmoldMenu(loadDetmoldMeal(reload));
+				publishProgress(12 * 6);
+
+				mealPlan.setLemgoMenu(loadLemgoMeal(reload));
+				publishProgress(12 * 7);
+
+				mealPlan.setHoexterMenu(loadHoexterMeal(reload));
+				publishProgress(12 * 8);
+
+				mealPlan.setMusicMenu(loadMusicMeal(reload));
+				publishProgress(12 * 9);
 				return mealPlan;
 			} catch (Exception e) {
 				Log.e(TAG, "Could not load Data from remote. ", e);

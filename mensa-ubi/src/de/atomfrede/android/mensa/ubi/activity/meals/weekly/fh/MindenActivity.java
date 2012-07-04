@@ -1,4 +1,4 @@
-package de.atomfrede.android.mensa.ubi.activity.meals.weekly;
+package de.atomfrede.android.mensa.ubi.activity.meals.weekly.fh;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -8,17 +8,19 @@ import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
 
 import de.atomfrede.android.mensa.ubi.Constants;
 import de.atomfrede.android.mensa.ubi.R;
+import de.atomfrede.android.mensa.ubi.activity.meals.weekly.AbstractWeeklyMenuActivity;
 import de.atomfrede.android.mensa.ubi.adapter.WeekdayPagerAdapter;
 
-public class KurtSchumacherActivity extends AbstractWeeklyMenuActivity {
+
+public class MindenActivity extends AbstractWeeklyMenuActivity {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		getSupportActionBar().setTitle(getResources().getString(R.string.kurt_schuhmacher_title));
+		getSupportActionBar().setTitle(getResources().getString(R.string.minden_title));
 
 		mPager = (ViewPager) findViewById(R.id.pager);
-		mAdapter = new WeekdayPagerAdapter(getSupportFragmentManager(), weekdays, Constants.LOC_KURT_SCHUHMACHER);
+		mAdapter = new WeekdayPagerAdapter(getSupportFragmentManager(), weekdays, Constants.LOC_MINDEN);
 		mPager.setAdapter(mAdapter);
 
 		TitlePageIndicator indicator = (TitlePageIndicator) findViewById(R.id.indicator);
@@ -28,4 +30,5 @@ public class KurtSchumacherActivity extends AbstractWeeklyMenuActivity {
 
 		selectInitialDay();
 	}
+
 }

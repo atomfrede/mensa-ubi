@@ -16,7 +16,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with Mensa UBI.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.atomfrede.android.mensa.ubi.activity.meals.weekly;
+package de.atomfrede.android.mensa.ubi.activity.meals.weekly.ubi;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -26,6 +26,7 @@ import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
 
 import de.atomfrede.android.mensa.ubi.Constants;
 import de.atomfrede.android.mensa.ubi.R;
+import de.atomfrede.android.mensa.ubi.activity.meals.weekly.AbstractWeeklyMenuActivity;
 import de.atomfrede.android.mensa.ubi.adapter.WeekdayPagerAdapter;
 
 public class MensaActivity extends AbstractWeeklyMenuActivity {
