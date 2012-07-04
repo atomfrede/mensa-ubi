@@ -21,6 +21,12 @@
     <string name="mensa_title">Mensa</string>
     <string name="westend_title">Westend Restaurant</string>
     <string name="kurt_schuhmacher_title">Kurt-Schuhmacher-Straße</string>
+    <string name="wilhelm_bertelsmann_title">Wilhem-Bertelsmann-Straße</string>
+    <string name="minden_title">Minden</string>
+    <string name="detmold_title">Detmold</string>
+    <string name="lemgo_title">Lemgo</string>
+    <string name="hoexter_title">Höxter</string>
+    <string name="music_title">HS für Musik</string>
     <string name="loading_title">Loading...</string>
     <string name="loading_text">Fetching and preparing data from server. This may take some time.</string>
     <string name="menu_refresh">Reload</string>
