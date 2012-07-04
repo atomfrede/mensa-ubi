@@ -44,6 +44,18 @@ public class WeekdayPagerAdapter extends FragmentPagerAdapter {
 			return getDataFragment(MealPlan.getInstance().getWestendRestauranMenu(), tab);
 		case Constants.LOC_KURT_SCHUHMACHER:
 			return getDataFragment(MealPlan.getInstance().getKurtSchuhmacherMenu(), tab);
+		case Constants.LOC_WILHELM_BERTELSMANN:
+			return getDataFragment(MealPlan.getInstance().getWilhemBertelsmannMenu(), tab);
+		case Constants.LOC_MINDEN:
+			return getDataFragment(MealPlan.getInstance().getMindenMenu(), tab);
+		case Constants.LOC_DETMOLD:
+			return getDataFragment(MealPlan.getInstance().getDetmoldMenu(), tab);
+		case Constants.LOC_LEMGO:
+			return getDataFragment(MealPlan.getInstance().getLemgoMenu(), tab);
+		case Constants.LOC_HOEXTER:
+			return getDataFragment(MealPlan.getInstance().getHoexterMenu(), tab);
+		case Constants.LOC_MUSIC:
+			return getDataFragment(MealPlan.getInstance().getMusicMenu(), tab);
 		default:
 			return null;
 		}
@@ -56,20 +68,27 @@ public class WeekdayPagerAdapter extends FragmentPagerAdapter {
 
 	@Override
 	public CharSequence getPageTitle(int position) {
-		String title = "";
 		switch (location) {
 		case Constants.LOC_MENSA:
-			title = MealPlan.getInstance().getMensaMenu().getDailyMenues().get(position).getShortendDate();
-			return title;
+			return MealPlan.getInstance().getMensaMenu().getDailyMenues().get(position).getShortendDate();
 		case Constants.LOC_WESTEND_RESTAURANT:
-			title = MealPlan.getInstance().getWestendRestauranMenu().getDailyMenues().get(position).getShortendDate();
-			return title;
+			return MealPlan.getInstance().getWestendRestauranMenu().getDailyMenues().get(position).getShortendDate();
 		case Constants.LOC_KURT_SCHUHMACHER:
-			title = MealPlan.getInstance().getKurtSchuhmacherMenu().getDailyMenues().get(position).getShortendDate();
-			return title;
+			return MealPlan.getInstance().getKurtSchuhmacherMenu().getDailyMenues().get(position).getShortendDate();
+		case Constants.LOC_WILHELM_BERTELSMANN:
+			return MealPlan.getInstance().getWilhemBertelsmannMenu().getDailyMenues().get(position).getShortendDate();
+		case Constants.LOC_DETMOLD:
+			return MealPlan.getInstance().getDetmoldMenu().getDailyMenues().get(position).getShortendDate();
+		case Constants.LOC_HOEXTER:
+			return MealPlan.getInstance().getHoexterMenu().getDailyMenues().get(position).getShortendDate();
+		case Constants.LOC_LEMGO:
+			return MealPlan.getInstance().getLemgoMenu().getDailyMenues().get(position).getShortendDate();
+		case Constants.LOC_MINDEN:
+			return MealPlan.getInstance().getMindenMenu().getDailyMenues().get(position).getShortendDate();
+		case Constants.LOC_MUSIC:
+			return MealPlan.getInstance().getMusicMenu().getDailyMenues().get(position).getShortendDate();
 		default:
-			title = weekdays[position];
-			return title;
+			return weekdays[position];
 		}
 	}
 
@@ -84,6 +103,14 @@ public class WeekdayPagerAdapter extends FragmentPagerAdapter {
 		case 3:
 			return DailyMenuListFragment.newInstance(weeklyMenu.getDailyMenues().get(tab));
 		case 4:
+			return DailyMenuListFragment.newInstance(weeklyMenu.getDailyMenues().get(tab));
+		case 5:
+			return DailyMenuListFragment.newInstance(weeklyMenu.getDailyMenues().get(tab));
+		case 6:
+			return DailyMenuListFragment.newInstance(weeklyMenu.getDailyMenues().get(tab));
+		case 7:
+			return DailyMenuListFragment.newInstance(weeklyMenu.getDailyMenues().get(tab));
+		case 8:
 			return DailyMenuListFragment.newInstance(weeklyMenu.getDailyMenues().get(tab));
 		default:
 			return DailyMenuListFragment.newInstance(weeklyMenu.getDailyMenues().get(0));
