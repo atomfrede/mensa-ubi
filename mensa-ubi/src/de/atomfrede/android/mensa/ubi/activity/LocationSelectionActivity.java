@@ -138,7 +138,7 @@ public class LocationSelectionActivity extends SherlockListActivity {
 
 	public void downloadData(boolean reload) {
 		Log.d(TAG, "Downloading data, will reload: " + reload);
-		if (MealPlan.getInstance().getMensaMenu() == null) {
+		if (MealPlan.getInstance().getMensaMenu() == null || reload) {
 			LoadAndParseXhtml task = new LoadAndParseXhtml();
 			task.execute(reload);
 		}
