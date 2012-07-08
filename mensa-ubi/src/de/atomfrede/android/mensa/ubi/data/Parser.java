@@ -32,15 +32,15 @@ public class Parser {
 
 	public final static String TAG = "Parser";
 
-	public static WeeklyMenu parseMenu(boolean reload, String data, SharedPreferences settings, String url) throws Exception {
+	public static WeeklyMenu parseMenu(boolean reload, String data, SharedPreferences settings, String url, String xmlKey) throws Exception {
 		WeeklyMenu mensaMenu = new WeeklyMenu();
 		Document doc;
 		if (data != null && !data.equals("") && !reload){
 			doc = Jsoup.parse(data);
 		}else {
 			doc = Jsoup.connect(url).get();
-			String mensaXml = doc.toString();
-			settings.edit().putString(Constants.MENSA_XML_KEY, mensaXml).commit();
+			String xmlData = doc.toString();
+			settings.edit().putString(xmlKey, xmlData).commit();
 		}
 
 		Elements dailyBlocks = doc.select("div.day-block");

@@ -149,48 +149,48 @@ public class LocationSelectionActivity extends SherlockListActivity {
 		private WeeklyMenu loadMensaMeal(boolean reload) throws Exception {
 			String mensaXhtml = settings.getString(Constants.MENSA_XML_KEY, null);
 			Log.d(TAG, "MensaXML from settings: " + mensaXhtml);
-			return Parser.parseMenu(reload, mensaXhtml, settings, Constants.mensaUrl);
+			return Parser.parseMenu(reload, mensaXhtml, settings, Constants.mensaUrl, Constants.MENSA_XML_KEY);
 		}
 
 		private WeeklyMenu loadWestendRestaurantMeal(boolean reload) throws Exception {
 			String westendXml = settings.getString(Constants.WESTEND_RESTAURANT_XML_KEY, null);
-			return Parser.parseMenu(reload, westendXml, settings, Constants.westendRestaurantUrl);
+			return Parser.parseMenu(reload, westendXml, settings, Constants.westendRestaurantUrl, Constants.WESTEND_RESTAURANT_XML_KEY);
 		}
 
 		private WeeklyMenu loadKurtSchumacherMeal(boolean reload) throws Exception {
 			String kurtSchumacherXml = settings.getString(Constants.KURT_SCHUMACHER_XML_KEY, null);
-			return Parser.parseMenu(reload, kurtSchumacherXml, settings, Constants.fhKurtSchumacherUrl);
+			return Parser.parseMenu(reload, kurtSchumacherXml, settings, Constants.fhKurtSchumacherUrl, Constants.KURT_SCHUMACHER_XML_KEY);
 		}
 
 		private WeeklyMenu loadWilhelmBerterlsmannMeal(boolean reload) throws Exception {
-			String kurtSchumacherXml = settings.getString(Constants.WILHELM_BERTELSMANN_XML_KEY, null);
-			return Parser.parseMenu(reload, kurtSchumacherXml, settings, Constants.wilhelmBerterlsmannUrl);
+			String bertelsmannXml = settings.getString(Constants.WILHELM_BERTELSMANN_XML_KEY, null);
+			return Parser.parseMenu(reload, bertelsmannXml, settings, Constants.wilhelmBerterlsmannUrl, Constants.WILHELM_BERTELSMANN_XML_KEY);
 		}
 
 		@Deprecated
 		private WeeklyMenu loadMindenMeal(boolean reload) throws Exception {
-			String kurtSchumacherXml = settings.getString(Constants.MINDEN_XML_KEY, null);
-			return Parser.parseMenu(reload, kurtSchumacherXml, settings, Constants.mindenUrl);
+			String mindenXml = settings.getString(Constants.MINDEN_XML_KEY, null);
+			return Parser.parseMenu(reload, mindenXml, settings, Constants.mindenUrl, Constants.MINDEN_XML_KEY);
 		}
 
 		private WeeklyMenu loadDetmoldMeal(boolean reload) throws Exception {
-			String kurtSchumacherXml = settings.getString(Constants.DETMOLD_XML_KEY, null);
-			return Parser.parseMenu(reload, kurtSchumacherXml, settings, Constants.detmoldUrl);
+			String detmoldXml = settings.getString(Constants.DETMOLD_XML_KEY, null);
+			return Parser.parseMenu(reload, detmoldXml, settings, Constants.detmoldUrl, Constants.DETMOLD_XML_KEY);
 		}
 
 		private WeeklyMenu loadLemgoMeal(boolean reload) throws Exception {
-			String kurtSchumacherXml = settings.getString(Constants.LEMGO_XML_KEY, null);
-			return Parser.parseMenu(reload, kurtSchumacherXml, settings, Constants.lemgoUrl);
+			String lemgoXml = settings.getString(Constants.LEMGO_XML_KEY, null);
+			return Parser.parseMenu(reload, lemgoXml, settings, Constants.lemgoUrl, Constants.LEMGO_XML_KEY);
 		}
 
 		private WeeklyMenu loadHoexterMeal(boolean reload) throws Exception {
-			String kurtSchumacherXml = settings.getString(Constants.HOEXTER_XML_KEY, null);
-			return Parser.parseMenu(reload, kurtSchumacherXml, settings, Constants.hoexterUrl);
+			String hoexterXml = settings.getString(Constants.HOEXTER_XML_KEY, null);
+			return Parser.parseMenu(reload, hoexterXml, settings, Constants.hoexterUrl, Constants.HOEXTER_XML_KEY);
 		}
 
 		private WeeklyMenu loadMusicMeal(boolean reload) throws Exception {
-			String kurtSchumacherXml = settings.getString(Constants.MUSIC_XML_KEY, null);
-			return Parser.parseMenu(reload, kurtSchumacherXml, settings, Constants.musicUrl);
+			String musicXml = settings.getString(Constants.MUSIC_XML_KEY, null);
+			return Parser.parseMenu(reload, musicXml, settings, Constants.musicUrl, Constants.MUSIC_XML_KEY);
 		}
 
 		@Override
