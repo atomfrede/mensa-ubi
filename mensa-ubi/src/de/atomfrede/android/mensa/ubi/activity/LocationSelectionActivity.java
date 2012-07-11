@@ -217,31 +217,28 @@ public class LocationSelectionActivity extends SherlockListActivity {
 				MealPlan mealPlan = MealPlan.getInstance();
 				boolean reload = params[0];
 				mealPlan.setMensaMenu(loadMensaMeal(reload));
-				publishProgress(12);
+				publishProgress(50);
 
 				mealPlan.setWestendRestauranMenu(loadWestendRestaurantMeal(reload));
-				publishProgress(12 * 2);
+				publishProgress(100);
 
-				mealPlan.setKurtSchuhmacherMenu(loadKurtSchumacherMeal(reload));
-				publishProgress(12*3);
-
-				mealPlan.setWilhemBertelsmannMenu(loadWilhelmBerterlsmannMeal(reload));
-				publishProgress(12 * 4);
-
-//				mealPlan.setMindenMenu(loadMindenMeal(reload));
-//				publishProgress(11 * 5);
-
-				mealPlan.setDetmoldMenu(loadDetmoldMeal(reload));
-				publishProgress(12 * 6);
-
-				mealPlan.setLemgoMenu(loadLemgoMeal(reload));
-				publishProgress(12 * 7);
-
-				mealPlan.setHoexterMenu(loadHoexterMeal(reload));
-				publishProgress(12 * 8);
-
-				mealPlan.setMusicMenu(loadMusicMeal(reload));
-				publishProgress(12 * 9);
+//				mealPlan.setKurtSchuhmacherMenu(loadKurtSchumacherMeal(reload));
+//				publishProgress(12*3);
+//
+//				mealPlan.setWilhemBertelsmannMenu(loadWilhelmBerterlsmannMeal(reload));
+//				publishProgress(12 * 4);
+//
+//				mealPlan.setDetmoldMenu(loadDetmoldMeal(reload));
+//				publishProgress(12 * 6);
+//
+//				mealPlan.setLemgoMenu(loadLemgoMeal(reload));
+//				publishProgress(12 * 7);
+//
+//				mealPlan.setHoexterMenu(loadHoexterMeal(reload));
+//				publishProgress(12 * 8);
+//
+//				mealPlan.setMusicMenu(loadMusicMeal(reload));
+//				publishProgress(12 * 9);
 				return mealPlan;
 			} catch (Exception e) {
 				Log.e(TAG, "Could not load Data from remote. ", e);
