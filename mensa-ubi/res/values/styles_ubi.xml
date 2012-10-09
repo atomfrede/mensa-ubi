@@ -17,7 +17,7 @@
      limitations under the License.
 -->
 <resources>
-    <style name="Theme.ubi" parent="@style/Theme.Sherlock">
+    <style name="Theme.ubi" parent="@style/Theme.Sherlock.Light.DarkActionBar">
         <item name="actionBarItemBackground">@drawable/selectable_background_ubi</item>
         <item name="popupMenuStyle">@style/ubi_PopupMenu</item>
         <item name="dropDownListViewStyle">@style/ubi_DropDownListView</item>

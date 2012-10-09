@@ -30,4 +30,17 @@
     <string name="loading_title">Loading...</string>
     <string name="loading_text">Fetching and preparing data from server. This may take some time.</string>
     <string name="menu_refresh">Reload</string>
+    <string name="about_version_info">Version 1.8-SNAPSHOT</string>
+    <string name="about_content_description">Mensa UPB Logo</string>
+    <string name="about_homepage">atomfrede.github.com/mensa-ubi</string>
+    <string name="about_copyright">Copyright Frederik Hahne 2012</string>
+    <string name="about_gpl">Released under GPLv3</string>
+    <string name="about_homepage_title">Homepage</string>
+    <string name="about_using">Open Source Contributions</string>
+    <string name="about_abs">ActionBarSherlock</string>
+    <string name="about_viewpager">ViewPagerIndicator</string>
+    <string name="about_jake">developed by Jake Wharton</string>
+    <string name="menu_about">About</string>
+    <string name="about_feedback">Feedback</string>
+    <string name="feedback_provide_by">Send with...</string>
 </resources>
