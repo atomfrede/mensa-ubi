@@ -21,6 +21,12 @@
     <string-array name="locations">
         <item>Mensa</item>
         <item>Westend Restaurant</item>
+        <item>FH Bielefeld: Kurt-Schumacher-Straße</item>
+        <item>FH Bielefeld: Wilhelm-Bertelsmann-Straße</item>
+        <item>HS OWL: Detmold</item>
+        <item>HS OWL: Lemgo</item>
+        <item>HS OWL: Höxter</item>
+        <item>HS für Musik</item>
     </string-array>
     <string-array name="weekdays">
         <item>Monday</item>
