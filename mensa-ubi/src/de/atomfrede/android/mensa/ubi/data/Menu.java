@@ -18,8 +18,15 @@
  */
 package de.atomfrede.android.mensa.ubi.data;
 
-public class Menu {
+import java.io.Serializable;
 
+public class Menu implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1764361413988190400L;
+	
 	private String title;
 	private String text;
 	private String date;
