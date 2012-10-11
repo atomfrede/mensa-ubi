@@ -20,6 +20,7 @@ package de.atomfrede.android.mensa.ubi.adapter;
 
 import android.support.v4.app.*;
 import de.atomfrede.android.mensa.ubi.Constants;
+import de.atomfrede.android.mensa.ubi.activity.LocationSelectionActivity;
 import de.atomfrede.android.mensa.ubi.data.MealPlan;
 import de.atomfrede.android.mensa.ubi.data.WeeklyMenu;
 import de.atomfrede.android.mensa.ubi.fragment.DailyMenuListFragment;
@@ -68,6 +69,10 @@ public class WeekdayPagerAdapter extends FragmentPagerAdapter {
 
 	@Override
 	public CharSequence getPageTitle(int position) {
+		//This is just a temporary work around to avoid crashes.
+		if(MealPlan.getInstance().getMensaMenu() == null){
+			return weekdays[position];
+		}
 		switch (location) {
 		case Constants.LOC_MENSA:
 			return MealPlan.getInstance().getMensaMenu().getDailyMenues().get(position).getShortendDate();
