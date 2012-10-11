@@ -28,6 +28,8 @@ import de.atomfrede.android.mensa.ubi.Constants;
 import de.atomfrede.android.mensa.ubi.R;
 import de.atomfrede.android.mensa.ubi.activity.meals.weekly.AbstractWeeklyMenuActivity;
 import de.atomfrede.android.mensa.ubi.adapter.WeekdayPagerAdapter;
+import de.atomfrede.android.mensa.ubi.data.MealPlan;
+import de.atomfrede.android.mensa.ubi.data.Parser;
 
 public class WilhelmBertelsmannActivity extends AbstractWeeklyMenuActivity {
 
@@ -46,5 +48,26 @@ public class WilhelmBertelsmannActivity extends AbstractWeeklyMenuActivity {
 		mIndicator = indicator;
 
 		selectInitialDay();
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		if (MealPlan.getInstance().getWilhemBertelsmannMenu() == null) {
+			// The application was resumed and before remove from memory so we
+			// need to restore the menu plans
+			reloadData();
+		}
+	}
+
+	@Override
+	protected void reloadData() {
+		try {
+			MealPlan.getInstance().setWilhemBertelsmannMenu(
+					Parser.parseMenu(false, settings.getString(Constants.WILHELM_BERTELSMANN_XML_KEY, null), settings, Constants.wilhelmBerterlsmannUrl,
+							Constants.WILHELM_BERTELSMANN_XML_KEY));
+		} catch (Exception e) {
+
+		}
 	}
 }
