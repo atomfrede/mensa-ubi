@@ -70,9 +70,9 @@ public class WeekdayPagerAdapter extends FragmentPagerAdapter {
 	@Override
 	public CharSequence getPageTitle(int position) {
 		//This is just a temporary work around to avoid crashes.
-		if(MealPlan.getInstance().getMensaMenu() == null){
-			return weekdays[position];
-		}
+//		if(MealPlan.getInstance().getMensaMenu() == null){
+//			return weekdays[position];
+//		}
 		switch (location) {
 		case Constants.LOC_MENSA:
 			return MealPlan.getInstance().getMensaMenu().getDailyMenues().get(position).getShortendDate();
