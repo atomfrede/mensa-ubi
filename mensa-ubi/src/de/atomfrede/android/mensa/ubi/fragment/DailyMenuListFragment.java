@@ -46,6 +46,7 @@ public class DailyMenuListFragment extends SherlockListFragment {
 		MenuListAdapter menuListAdapter = new MenuListAdapter(this.getActivity(), menu.getMenues());
 		setListAdapter(menuListAdapter);
 		setRetainInstance(true);
+		
 	}
 
 	@Override

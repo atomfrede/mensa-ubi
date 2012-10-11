@@ -24,4 +24,5 @@
     <color name="ubi_light_grey">#d4d4d2</color>
     <color name="text_color">#46494b</color>
     <color name="text_color_light">#989898</color>
+    <color name="ubi_white">#FFFFFF</color>
 </resources>
