@@ -18,11 +18,18 @@
  */
 package de.atomfrede.android.mensa.ubi.data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WeeklyMenu {
+public class WeeklyMenu implements Serializable{
 
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7637061137245469950L;
+	
 	private String weekOfYear;
 	private List<DailyMenu> dailyMenues;
 

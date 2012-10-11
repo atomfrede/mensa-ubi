@@ -18,7 +18,16 @@
  */
 package de.atomfrede.android.mensa.ubi.data;
 
-public class MealPlan {
+import java.io.Serializable;
+
+public class MealPlan implements Serializable{
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8294145476387020583L;
+	
 	private static final MealPlan instance = new MealPlan();
 
 	public static MealPlan getInstance() {
