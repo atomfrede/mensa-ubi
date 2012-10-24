@@ -53,6 +53,8 @@ public class LocationSelectionActivity extends SherlockListActivity {
 	String[] locations;
 	SharedPreferences settings;
 	ProgressDialog dialog;
+	
+	com.actionbarsherlock.view.Menu optionsMenu;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -66,10 +68,12 @@ public class LocationSelectionActivity extends SherlockListActivity {
 
 		settings = getSharedPreferences(Constants.MENSA_PREFS, LocationSelectionActivity.MODE_PRIVATE);
 
-		if (refreshAlways)
+		if (refreshAlways){
 			downloadData(true);
-		else
+		}
+		else{
 			downloadData(refreshRequired());
+		}
 	}
 
 	@Override
@@ -113,6 +117,7 @@ public class LocationSelectionActivity extends SherlockListActivity {
 	public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu) {
 		MenuInflater inflater = getSupportMenuInflater();
 		inflater.inflate(R.menu.main, menu);
+		optionsMenu = menu;
 		return true;
 	}
 
@@ -129,6 +134,21 @@ public class LocationSelectionActivity extends SherlockListActivity {
 			return super.onOptionsItemSelected(item);
 		}
 	}
+	
+	public void setRefreshActionButtonState(boolean refreshing) {
+        if (optionsMenu == null) {
+            return;
+        }
+
+        final MenuItem refreshItem = optionsMenu.findItem(R.id.menu_refresh);
+        if (refreshItem != null) {
+            if (refreshing) {
+                refreshItem.setActionView(R.layout.actionbar_indeterminate_progress);
+            } else {
+                refreshItem.setActionView(null);
+            }
+        }
+    }
 	
 	protected void showAboutDialog() {
 		Dialog dialog = new Dialog(this, R.style.Theme_Sherlock_Light_Dialog);
@@ -180,6 +200,7 @@ public class LocationSelectionActivity extends SherlockListActivity {
 	public void downloadData(boolean reload) {
 		Log.d(TAG, "Downloading data, will reload: " + reload);
 		if (MealPlan.getInstance().getMensaMenu() == null || reload) {
+			setRefreshActionButtonState(true);
 			LoadAndParseXhtml task = new LoadAndParseXhtml();
 			task.execute(reload);
 		}
@@ -295,6 +316,7 @@ public class LocationSelectionActivity extends SherlockListActivity {
 			settings.edit().putInt(Constants.LAST_UPDATE_KEY, Util.getWeekOfYear()).commit();
 			if (dialog.isShowing())
 				dialog.dismiss();
+			setRefreshActionButtonState(false);
 		}
 	}
 
