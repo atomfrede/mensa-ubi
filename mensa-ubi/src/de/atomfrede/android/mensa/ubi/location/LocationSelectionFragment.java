@@ -16,28 +16,23 @@
  *  You should have received a copy of the GNU General Public License
  *  along with Mensa UBI.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.atomfrede.android.mensa.ubi.activity;
+package de.atomfrede.android.mensa.ubi.location;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.*;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-import com.actionbarsherlock.app.SherlockListActivity;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.app.SherlockFragment;
+import com.googlecode.androidannotations.annotations.*;
 
 import de.atomfrede.android.mensa.ubi.Constants;
 import de.atomfrede.android.mensa.ubi.R;
-import de.atomfrede.android.mensa.ubi.activity.meals.weekly.*;
-import de.atomfrede.android.mensa.ubi.activity.meals.weekly.fh.*;
+import de.atomfrede.android.mensa.ubi.activity.meals.weekly.fh.KurtSchumacherActivity;
+import de.atomfrede.android.mensa.ubi.activity.meals.weekly.fh.WilhelmBertelsmannActivity;
 import de.atomfrede.android.mensa.ubi.activity.meals.weekly.hs.music.MusicActivity;
 import de.atomfrede.android.mensa.ubi.activity.meals.weekly.hs.owl.*;
 import de.atomfrede.android.mensa.ubi.activity.meals.weekly.ubi.MensaActivity;
@@ -45,26 +40,26 @@ import de.atomfrede.android.mensa.ubi.activity.meals.weekly.ubi.WestendRestauran
 import de.atomfrede.android.mensa.ubi.data.*;
 import de.atomfrede.android.mensa.ubi.util.Util;
 
-public class LocationSelectionActivity extends SherlockListActivity {
+@EFragment(R.layout.fragment_location_selection)
+public class LocationSelectionFragment extends SherlockFragment {
 
-	public static String TAG = "LocationSelectionActivity";
+	public static final String TAG = "LocationSelectionFragment";
 
-	private static final boolean refreshAlways = false;
-	String[] locations;
-	SharedPreferences settings;
-	ProgressDialog dialog;
+	public boolean isDualPane = false;
+	public boolean refreshAlways = false;
+	public String[] locations;
+	public SharedPreferences settings;
+	public ArrayAdapter<String> mAdapter;
+	public ProgressDialog dialog;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.location_selection);
+	@ViewById(R.id.location_list)
+	public ListView mlocationList;
 
+	@AfterInject
+	public void afterInject() {
 		locations = getResources().getStringArray(R.array.locations);
-
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, locations);
-		setListAdapter(adapter);
-
-		settings = getSharedPreferences(Constants.MENSA_PREFS, LocationSelectionActivity.MODE_PRIVATE);
+		mAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, locations);
+		settings = getActivity().getSharedPreferences(Constants.MENSA_PREFS, LocationSelectionActivity.MODE_PRIVATE);
 
 		if (refreshAlways)
 			downloadData(true);
@@ -72,101 +67,49 @@ public class LocationSelectionActivity extends SherlockListActivity {
 			downloadData(refreshRequired());
 	}
 
-	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
+	@AfterViews
+	public void afterViews() {
+		mlocationList.setAdapter(mAdapter);
+	}
+
+	@ItemClick(R.id.location_list)
+	public void onListItemClicked(int position) {
 		if (position == 0) {
-			Intent mensaIntent = new Intent(this, MensaActivity.class);
+			Intent mensaIntent = new Intent(this.getActivity(), MensaActivity.class);
 			startActivity(mensaIntent);
 		}
 		if (position == 1) {
-			Intent westendIntent = new Intent(this, WestendRestaurantActivity.class);
+			Intent westendIntent = new Intent(this.getActivity(), WestendRestaurantActivity.class);
 			startActivity(westendIntent);
 		}
 		if (position == 2) {
-			Intent kurtSchumacherIntent = new Intent(this, KurtSchumacherActivity.class);
+			Intent kurtSchumacherIntent = new Intent(this.getActivity(), KurtSchumacherActivity.class);
 			startActivity(kurtSchumacherIntent);
 		}
-		if(position == 3){
-			Intent bertelsmannIntent = new Intent(this, WilhelmBertelsmannActivity.class);
+		if (position == 3) {
+			Intent bertelsmannIntent = new Intent(this.getActivity(), WilhelmBertelsmannActivity.class);
 			startActivity(bertelsmannIntent);
 		}
 
-		if(position == 4){
-			Intent detmoldIntent = new Intent(this, DetmoldActivity.class);
+		if (position == 4) {
+			Intent detmoldIntent = new Intent(this.getActivity(), DetmoldActivity.class);
 			startActivity(detmoldIntent);
 		}
-		if(position == 5){
-			Intent lemgoIntent = new Intent(this, LemgoActivity.class);
+		if (position == 5) {
+			Intent lemgoIntent = new Intent(this.getActivity(), LemgoActivity.class);
 			startActivity(lemgoIntent);
 		}
-		if(position == 6){
-			Intent hoexterIntent = new Intent(this, HoexterActivity.class);
+		if (position == 6) {
+			Intent hoexterIntent = new Intent(this.getActivity(), HoexterActivity.class);
 			startActivity(hoexterIntent);
 		}
-		if(position == 7){
-			Intent musicIntent = new Intent(this, MusicActivity.class);
+		if (position == 7) {
+			Intent musicIntent = new Intent(this.getActivity(), MusicActivity.class);
 			startActivity(musicIntent);
 		}
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu) {
-		MenuInflater inflater = getSupportMenuInflater();
-		inflater.inflate(R.menu.main, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.menu_about:
-			showAboutDialog();
-			return true;
-		case R.id.menu_refresh:
-			downloadData(true);
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}
-	}
-	
-	protected void showAboutDialog() {
-		Dialog dialog = new Dialog(this, R.style.Theme_Sherlock_Light_Dialog);
-		
-		dialog.setContentView(R.layout.about_dialog);
-		dialog.setTitle(getResources().getString(R.string.menu_about) + " " + getResources().getString(R.string.app_name));
-		dialog.setCancelable(true);
-
-		Button feedbackButton = (Button) dialog.findViewById(R.id.feedbackButton);
-		feedbackButton.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				sendFeedbackMail();
-			}
-		});
-
-		String app_ver = "";
-		try {
-			app_ver = this.getPackageManager().getPackageInfo(this.getPackageName(), 0).versionName;
-		} catch (NameNotFoundException e) {
-			Log.v(TAG, e.getMessage());
-		}
-
-		TextView versionName = (TextView) dialog.findViewById(R.id.textView1);
-		versionName.setText("Version " + app_ver);
-		dialog.show();
-	}
-
-	protected void sendFeedbackMail() {
-		Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
-		emailIntent.setType("plain/text");
-		emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { "atomfrede@gmail.com" });
-
-		startActivity(Intent.createChooser(emailIntent, getResources().getString(R.string.feedback_provide_by)));
-	}
-
-	private boolean refreshRequired() {
+	public boolean refreshRequired() {
 		if (!settings.contains(Constants.LAST_UPDATE_KEY))
 			return true;
 
@@ -239,8 +182,9 @@ public class LocationSelectionActivity extends SherlockListActivity {
 			// dialog = ProgressDialog.show(LocationSelectionActivity.this,
 			// getResources().getText(R.string.loading_title),
 			// getResources().getText(R.string.loading_text), false);
-			// Dialog dialog = new Dialog(this, R.style.Theme_Sherlock_Light_Dialog);
-			dialog = new ProgressDialog(LocationSelectionActivity.this);
+			// Dialog dialog = new Dialog(this,
+			// R.style.Theme_Sherlock_Light_Dialog);
+			dialog = new ProgressDialog(LocationSelectionFragment.this.getActivity());
 			dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 			dialog.setTitle(getResources().getText(R.string.loading_title));
 			dialog.setMessage(getResources().getText(R.string.loading_text));
@@ -265,13 +209,13 @@ public class LocationSelectionActivity extends SherlockListActivity {
 				publishProgress(12 * 2);
 
 				mealPlan.setKurtSchuhmacherMenu(loadKurtSchumacherMeal(reload));
-				publishProgress(12*3);
+				publishProgress(12 * 3);
 
 				mealPlan.setWilhemBertelsmannMenu(loadWilhelmBerterlsmannMeal(reload));
 				publishProgress(12 * 4);
 
-//				mealPlan.setMindenMenu(loadMindenMeal(reload));
-//				publishProgress(11 * 5);
+				// mealPlan.setMindenMenu(loadMindenMeal(reload));
+				// publishProgress(11 * 5);
 
 				mealPlan.setDetmoldMenu(loadDetmoldMeal(reload));
 				publishProgress(12 * 6);
@@ -297,5 +241,4 @@ public class LocationSelectionActivity extends SherlockListActivity {
 				dialog.dismiss();
 		}
 	}
-
 }

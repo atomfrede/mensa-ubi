@@ -20,10 +20,10 @@ package de.atomfrede.android.mensa.ubi.adapter;
 
 import android.support.v4.app.*;
 import de.atomfrede.android.mensa.ubi.Constants;
-import de.atomfrede.android.mensa.ubi.activity.LocationSelectionActivity;
 import de.atomfrede.android.mensa.ubi.data.MealPlan;
 import de.atomfrede.android.mensa.ubi.data.WeeklyMenu;
 import de.atomfrede.android.mensa.ubi.fragment.DailyMenuListFragment;
+import de.atomfrede.android.mensa.ubi.location.LocationSelectionActivity;
 
 public class WeekdayPagerAdapter extends FragmentPagerAdapter {
 
