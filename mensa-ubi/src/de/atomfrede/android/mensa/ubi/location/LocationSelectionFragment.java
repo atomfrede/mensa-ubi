@@ -18,15 +18,18 @@
  */
 package de.atomfrede.android.mensa.ubi.location;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.view.View;
+import android.widget.*;
 
 import com.actionbarsherlock.app.SherlockFragment;
+import com.actionbarsherlock.view.MenuItem;
 import com.googlecode.androidannotations.annotations.*;
 
 import de.atomfrede.android.mensa.ubi.Constants;
@@ -52,6 +55,8 @@ public class LocationSelectionFragment extends SherlockFragment {
 	public ArrayAdapter<String> mAdapter;
 	public ProgressDialog dialog;
 
+	com.actionbarsherlock.view.Menu optionsMenu;
+
 	@ViewById(R.id.location_list)
 	public ListView mlocationList;
 
@@ -61,10 +66,12 @@ public class LocationSelectionFragment extends SherlockFragment {
 		mAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, locations);
 		settings = getActivity().getSharedPreferences(Constants.MENSA_PREFS, LocationSelectionActivity.MODE_PRIVATE);
 
-		if (refreshAlways)
+		if (refreshAlways){
 			downloadData(true);
-		else
+		}
+		else{
 			downloadData(refreshRequired());
+		}
 	}
 
 	@AfterViews
@@ -109,7 +116,48 @@ public class LocationSelectionFragment extends SherlockFragment {
 		}
 	}
 
-	public boolean refreshRequired() {
+
+//	@Override
+//	public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu) {
+//		MenuInflater inflater = getSupportMenuInflater();
+//		inflater.inflate(R.menu.main, menu);
+//		optionsMenu = menu;
+//		return true;
+//	}
+
+//	@Override
+//	public boolean onOptionsItemSelected(MenuItem item) {
+//		switch (item.getItemId()) {
+//		case R.id.menu_about:
+//			showAboutDialog();
+//			return true;
+//		case R.id.menu_refresh:
+//			downloadData(true);
+//			return true;
+//		default:
+//			return super.onOptionsItemSelected(item);
+//		}
+//	}
+//	
+	public void setRefreshActionButtonState(boolean refreshing) {
+        if (optionsMenu == null) {
+            return;
+        }
+
+        final MenuItem refreshItem = optionsMenu.findItem(R.id.menu_refresh);
+        if (refreshItem != null) {
+            if (refreshing) {
+                refreshItem.setActionView(R.layout.actionbar_indeterminate_progress);
+            } else {
+                refreshItem.setActionView(null);
+            }
+        }
+    }
+	
+
+	
+
+	private boolean refreshRequired() {
 		if (!settings.contains(Constants.LAST_UPDATE_KEY))
 			return true;
 
@@ -123,6 +171,7 @@ public class LocationSelectionFragment extends SherlockFragment {
 	public void downloadData(boolean reload) {
 		Log.d(TAG, "Downloading data, will reload: " + reload);
 		if (MealPlan.getInstance().getMensaMenu() == null || reload) {
+			setRefreshActionButtonState(true);
 			LoadAndParseXhtml task = new LoadAndParseXhtml();
 			task.execute(reload);
 		}
@@ -239,6 +288,7 @@ public class LocationSelectionFragment extends SherlockFragment {
 			settings.edit().putInt(Constants.LAST_UPDATE_KEY, Util.getWeekOfYear()).commit();
 			if (dialog.isShowing())
 				dialog.dismiss();
+			setRefreshActionButtonState(false);
 		}
 	}
 }
