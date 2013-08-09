@@ -43,7 +43,7 @@ public class LocationSelectionActivity extends SherlockFragmentActivity {
 	
 	@OptionsItem(R.id.menu_about)
 	public void showAboutDialog() {
-		Dialog dialog = new Dialog(this, R.style.Theme_Sherlock_Light_Dialog);
+		Dialog dialog = new Dialog(this, R.style.Theme_Sherlock_Light);
 
 		dialog.setContentView(R.layout.about_dialog);
 		dialog.setTitle(getResources().getString(R.string.menu_about) + " " + getResources().getString(R.string.app_name));

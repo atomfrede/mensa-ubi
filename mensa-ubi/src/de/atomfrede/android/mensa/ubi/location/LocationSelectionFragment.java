@@ -49,7 +49,7 @@ public class LocationSelectionFragment extends SherlockFragment {
 	public static final String TAG = "LocationSelectionFragment";
 
 	public boolean isDualPane = false;
-	public boolean refreshAlways = false;
+	public boolean refreshAlways = true;
 	public String[] locations;
 	public SharedPreferences settings;
 	public ArrayAdapter<String> mAdapter;
@@ -66,12 +66,12 @@ public class LocationSelectionFragment extends SherlockFragment {
 		mAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, locations);
 		settings = getActivity().getSharedPreferences(Constants.MENSA_PREFS, LocationSelectionActivity.MODE_PRIVATE);
 
-		if (refreshAlways){
-			downloadData(true);
-		}
-		else{
-			downloadData(refreshRequired());
-		}
+//		if (refreshAlways){
+//			downloadData(true);
+//		}
+//		else{
+//			downloadData(refreshRequired());
+//		}
 	}
 
 	@AfterViews
@@ -116,29 +116,7 @@ public class LocationSelectionFragment extends SherlockFragment {
 		}
 	}
 
-
-//	@Override
-//	public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu) {
-//		MenuInflater inflater = getSupportMenuInflater();
-//		inflater.inflate(R.menu.main, menu);
-//		optionsMenu = menu;
-//		return true;
-//	}
-
-//	@Override
-//	public boolean onOptionsItemSelected(MenuItem item) {
-//		switch (item.getItemId()) {
-//		case R.id.menu_about:
-//			showAboutDialog();
-//			return true;
-//		case R.id.menu_refresh:
-//			downloadData(true);
-//			return true;
-//		default:
-//			return super.onOptionsItemSelected(item);
-//		}
-//	}
-//	
+	
 	public void setRefreshActionButtonState(boolean refreshing) {
         if (optionsMenu == null) {
             return;

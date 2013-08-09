@@ -86,7 +86,7 @@ public abstract class AbstractWeeklyMenuActivity extends SherlockFragmentActivit
 	}
 	
 	protected void showAboutDialog() {
-		Dialog dialog = new Dialog(this, R.style.Theme_Sherlock_Light_Dialog);
+		Dialog dialog = new Dialog(this, R.style.Theme_Sherlock_Light);
 		
 		dialog.setContentView(R.layout.about_dialog);
 		dialog.setTitle(getResources().getString(R.string.menu_about) + " " + getResources().getString(R.string.app_name));

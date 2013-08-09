@@ -21,6 +21,7 @@ package de.atomfrede.android.mensa.ubi.activity.meals.weekly.ubi;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 
+import com.googlecode.androidannotations.annotations.EActivity;
 import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
 
@@ -62,7 +63,7 @@ public class MensaActivity extends AbstractWeeklyMenuActivity {
 	@Override
 	protected void reloadData(){
 		try{
-			MealPlan.getInstance().setMensaMenu(Parser.parseMenu(false, settings.getString(Constants.MENSA_XML_KEY, null), settings, Constants.mensaUrl, Constants.MENSA_XML_KEY));
+			MealPlan.getInstance().setMensaMenu(Parser.parseMenu(true, settings.getString(Constants.MENSA_XML_KEY, null), settings, Constants.mensaUrl, Constants.MENSA_XML_KEY));
 		}catch(Exception e){
 			
 		}
