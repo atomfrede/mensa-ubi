@@ -21,6 +21,8 @@ package de.atomfrede.android.mensa.ubi.location;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
+
+import android.os.Build;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -43,7 +45,7 @@ public class LocationSelectionActivity extends SherlockFragmentActivity {
 	
 	@OptionsItem(R.id.menu_about)
 	public void showAboutDialog() {
-		Dialog dialog = new Dialog(this, R.style.Theme_Sherlock_Light);
+		Dialog dialog = new Dialog(this, getTheme(true));
 
 		dialog.setContentView(R.layout.about_dialog);
 		dialog.setTitle(getResources().getString(R.string.menu_about) + " " + getResources().getString(R.string.app_name));
@@ -70,6 +72,18 @@ public class LocationSelectionActivity extends SherlockFragmentActivity {
 		dialog.show();
 	}
 
+	private int getTheme(boolean light) {
+	    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH){
+	        return light ? android.R.style.Theme_DeviceDefault_Light_Dialog : android.R.style.Theme_DeviceDefault_Dialog;
+	    }
+	    else if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
+	        return light ? android.R.style.Theme_Holo_Light_Dialog : android.R.style.Theme_Holo_Dialog;
+	    }
+	    else{
+	        return android.R.style.Theme_Dialog;
+	    }
+	}
+	
 	public void sendFeedbackMail() {
 		Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
 		emailIntent.setType("plain/text");
