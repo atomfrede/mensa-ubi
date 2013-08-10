@@ -18,8 +18,8 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.atomfrede.android.mensa.ubi"
-    android:versionCode="9"
-    android:versionName="1.3-SNAPSHOT" >
+    android:versionCode="10"
+    android:versionName="1.4-SNAPSHOT" >
     <uses-sdk
         android:minSdkVersion="9"
         android:targetSdkVersion="18" />
@@ -43,8 +43,6 @@
         <activity android:name=".activity.meals.weekly.hs.owl.LemgoActivity" >
         </activity>
         <activity android:name=".activity.meals.weekly.ubi.MensaActivity" >
-        </activity>
-        <activity android:name=".activity.meals.weekly.fh.MindenActivity" >
         </activity>
         <activity android:name=".activity.meals.weekly.hs.music.MusicActivity" >
         </activity>
