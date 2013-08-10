@@ -68,6 +68,7 @@ public class WeeklyMealFragment extends SherlockFragment {
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState){
+		super.onActivityCreated(savedInstanceState);
 		settings = getActivity().getSharedPreferences(Constants.MENSA_PREFS, LocationSelectionActivity.MODE_PRIVATE);
 	}
 	
