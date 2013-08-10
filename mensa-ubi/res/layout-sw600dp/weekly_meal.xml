@@ -22,13 +22,11 @@
     xmlns:app1="http://schemas.android.com/apk/res/de.atomfrede.android.mensa"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/ubi_light_grey"
     android:orientation="vertical" >
     <com.viewpagerindicator.TitlePageIndicator
         android:id="@+id/indicator"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/ubi_light_grey"
         android:padding="10dip"
         android:textColor="@color/text_color_light"
         android:textSize="20sp"

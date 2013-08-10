@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-     File created by the Android Action Bar Style Generator
+<!-- File created by the Android Action Bar Style Generator
 
+     Copyright (C) 2011 The Android Open Source Project
      Copyright (C) 2012 readyState Software Ltd
 
      Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,60 +16,65 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
+
 <resources>
-    <style name="Theme.ubi" parent="@style/Theme.Sherlock.Light.DarkActionBar">
+
+    <style name="Theme.Ubi" parent="@style/Theme.Sherlock.Light">
         <item name="actionBarItemBackground">@drawable/selectable_background_ubi</item>
-        <item name="popupMenuStyle">@style/ubi_PopupMenu</item>
-        <item name="dropDownListViewStyle">@style/ubi_DropDownListView</item>
-        <item name="actionBarTabStyle">@style/ubi_ActionBarTabStyle</item>
-        <item name="actionDropDownStyle">@style/ubi_DropDownNav</item>
-        <item name="actionBarStyle">@style/ubi_solid_ActionBar</item>
-        <item name="android:selectableItemBackground">@drawable/selectable_background_ubi</item>
-        <item name="android:popupMenuStyle">@style/ubi_PopupMenu</item>
-        <item name="android:dropDownListViewStyle">@style/ubi_DropDownListView</item>
-        <item name="android:actionBarTabStyle">@style/ubi_ActionBarTabStyle</item>
-        <item name="android:actionDropDownStyle">@style/ubi_DropDownNav</item>
-        <item name="android:actionBarStyle">@style/ubi_solid_ActionBar</item>
-        <item name="android:panelBackground">@drawable/menu_hardkey_panel_ubi</item>
-        <item name="android:textColor">@color/text_color</item>
+        <item name="popupMenuStyle">@style/PopupMenu.Ubi</item>
+        <item name="dropDownListViewStyle">@style/DropDownListView.Ubi</item>
+        <item name="actionBarTabStyle">@style/ActionBarTabStyle.Ubi</item>
+        <item name="actionDropDownStyle">@style/DropDownNav.Ubi</item>
+        <item name="actionBarStyle">@style/ActionBar.Solid.Ubi</item>
+        <item name="actionModeBackground">@drawable/cab_background_top_ubi</item>
+        <item name="actionModeSplitBackground">@drawable/cab_background_bottom_ubi</item>
+        <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Ubi</item>
+
+        
     </style>
-    <style name="ubi_solid_ActionBar" parent="@style/Widget.Sherlock.ActionBar.Solid">
+
+    <style name="ActionBar.Solid.Ubi" parent="@style/Widget.Sherlock.Light.ActionBar.Solid">
         <item name="background">@drawable/ab_solid_ubi</item>
         <item name="backgroundStacked">@drawable/ab_stacked_solid_ubi</item>
         <item name="backgroundSplit">@drawable/ab_bottom_solid_ubi</item>
-        <item name="progressBarStyle">@style/ubi_ProgressBar</item>
-        <item name="android:background">@drawable/ab_solid_ubi</item>
-        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_ubi</item>
-        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_ubi</item>
-        <item name="android:progressBarStyle">@style/ubi_ProgressBar</item>
+        <item name="progressBarStyle">@style/ProgressBar.Ubi</item>
     </style>
-    <style name="ubi_transparent_ActionBar" parent="@style/Widget.Sherlock.ActionBar">
+
+    <style name="ActionBar.Transparent.Ubi" parent="@style/Widget.Sherlock.Light.ActionBar">
         <item name="background">@drawable/ab_transparent_ubi</item>
-        <item name="progressBarStyle">@style/ubi_ProgressBar</item>
-        <item name="android:background">@drawable/ab_transparent_ubi</item>
-        <item name="android:progressBarStyle">@style/ubi_ProgressBar</item>
+        <item name="progressBarStyle">@style/ProgressBar.Ubi</item>
     </style>
-    <style name="ubi_PopupMenu" parent="@android:style/Widget.Holo.ListPopupWindow">
-        <item name="android:popupBackground">@drawable/menu_dropdown_panel_ubi</item>
+	
+    <style name="PopupMenu.Ubi" parent="@style/Widget.Sherlock.Light.ListPopupWindow">	
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_ubi</item>	
     </style>
-    <style name="ubi_DropDownListView" parent="@style/Widget.Sherlock.ListView.DropDown">
+	
+    <style name="DropDownListView.Ubi" parent="@style/Widget.Sherlock.Light.ListView.DropDown">
         <item name="android:listSelector">@drawable/selectable_background_ubi</item>
     </style>
-    <style name="ubi_ActionBarTabStyle" parent="@style/Widget.Sherlock.ActionBar.TabView">
-        <item name="background">@drawable/tab_indicator_ab_ubi</item>
+
+    <style name="ActionBarTabStyle.Ubi" parent="@style/Widget.Sherlock.Light.ActionBar.TabView">
         <item name="android:background">@drawable/tab_indicator_ab_ubi</item>
     </style>
-    <style name="ubi_DropDownNav" parent="@style/Widget.Sherlock.Spinner.DropDown.ActionBar">
-        <item name="background">@drawable/spinner_background_ab_ubi</item>
+	
+    <style name="DropDownNav.Ubi" parent="@style/Widget.Sherlock.Light.Spinner.DropDown.ActionBar">
         <item name="android:background">@drawable/spinner_background_ab_ubi</item>
         <item name="android:popupBackground">@drawable/menu_dropdown_panel_ubi</item>
         <item name="android:dropDownSelector">@drawable/selectable_background_ubi</item>
-        <item name="android:textColor">@color/text_color</item>
     </style>
-    <style name="ubi_ProgressBar" parent="@style/Widget.Sherlock.ProgressBar.Horizontal">
+    
+    <style name="ProgressBar.Ubi" parent="@style/Widget.Sherlock.Light.ProgressBar.Horizontal">
         <item name="android:progressDrawable">@drawable/progress_horizontal_ubi</item>
     </style>
-    <style name="ubi_listItem" parent="@android:style/Widget.ListView">
-        <item name="android:textColor">@color/text_color</item>
+    
+    <style name="ActionButton.CloseMode.Ubi" parent="@style/Widget.Sherlock.Light.ActionButton.CloseMode">
+        <item name="android:background">@drawable/btn_cab_done_ubi</item>
     </style>
+    
+    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
+    <style name="Theme.Ubi.Widget" parent="@style/Theme.Sherlock">
+        <item name="popupMenuStyle">@style/PopupMenu.Ubi</item>
+        <item name="dropDownListViewStyle">@style/DropDownListView.Ubi</item>
+    </style>
+
 </resources>
