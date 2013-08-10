@@ -18,8 +18,30 @@
    along with Mensa UBI.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
+    <string-array name="locations">
+        <item>Mensa</item>
+        <item>Westend Restaurant</item>
+        <item>FH Bielefeld: Kurt-Schumacher-Straße</item>
+        <item>FH Bielefeld: Wilhelm-Bertelsmann-Straße</item>
+        <item>HS OWL: Detmold</item>
+        <item>HS OWL: Lemgo</item>
+        <item>HS OWL: Höxter</item>
+        <item>HS für Musik</item>
+    </string-array>
     <string-array name="mensa_dropdown">
         <item>Mensa</item>
         <item>Mensa (+1)</item>
+    </string-array>
+    <string-array name="westend_dropdown">
+        <item>Westend Restaurant</item>
+        <item>Westend Restaurant (+1)</item>
+    </string-array>
+    <string-array name="detmold_dropdown">
+        <item>Detmold</item>
+        <item>Detmold (+1)</item>
+    </string-array>
+    <string-array name="lemgo_dropdown">
+        <item>Lemgo</item>
+        <item>Lemgo (+1)</item>
     </string-array>
 </resources>

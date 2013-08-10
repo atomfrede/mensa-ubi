@@ -119,8 +119,26 @@ public class WeeklyMealFragment extends SherlockFragment {
 			}
 			break;
 		}
+		case Constants.LOC_WESTEND_RESTAURANT_NEXT_WEEK:{
+			if(MealPlan.getInstance().getWestendMenuNext() == null){
+				//The application was resumed and before remove from memory so we need to restore the menu plans
+				loadData();
+			}else{
+				onDataLoaded();
+			}
+			break;
+		}
 		case Constants.LOC_DETMOLD:{
 			if(MealPlan.getInstance().getDetmoldMenu() == null){
+				//The application was resumed and before remove from memory so we need to restore the menu plans
+				loadData();
+			}else{
+				onDataLoaded();
+			}
+			break;
+		}
+		case Constants.LOC_DETMOLD_NEXT_WEEK:{
+			if(MealPlan.getInstance().getDetmoldMenuNext() == null){
 				//The application was resumed and before remove from memory so we need to restore the menu plans
 				loadData();
 			}else{
@@ -137,8 +155,26 @@ public class WeeklyMealFragment extends SherlockFragment {
 			}
 			break;
 		}
+		case Constants.LOC_HOEXTER_NEXT_WEEK:{
+			if(MealPlan.getInstance().getHoexterMenuNext() == null){
+				//The application was resumed and before remove from memory so we need to restore the menu plans
+				loadData();
+			}else{
+				onDataLoaded();
+			}
+			break;
+		}
 		case Constants.LOC_KURT_SCHUHMACHER:{
 			if(MealPlan.getInstance().getKurtSchuhmacherMenu() == null){
+				//The application was resumed and before remove from memory so we need to restore the menu plans
+				loadData();
+			}else{
+				onDataLoaded();
+			}
+			break;
+		}
+		case Constants.LOC_KURT_SCHUHMACHER_NEXT_WEEK:{
+			if(MealPlan.getInstance().getKurtSchuhmacherMenuNext() == null){
 				//The application was resumed and before remove from memory so we need to restore the menu plans
 				loadData();
 			}else{
@@ -155,6 +191,15 @@ public class WeeklyMealFragment extends SherlockFragment {
 			}
 			break;
 		}
+		case Constants.LOC_LEMGO_NEXT_WEEK:{
+			if(MealPlan.getInstance().getLemgoMenuNext() == null){
+				//The application was resumed and before remove from memory so we need to restore the menu plans
+				loadData();
+			}else{
+				onDataLoaded();
+			}
+			break;
+		}
 		case Constants.LOC_MUSIC:{
 			if(MealPlan.getInstance().getMusicMenu() == null){
 				//The application was resumed and before remove from memory so we need to restore the menu plans
@@ -164,8 +209,26 @@ public class WeeklyMealFragment extends SherlockFragment {
 			}
 			break;
 		}
+		case Constants.LOC_MUSIC_NEXT_WEEK:{
+			if(MealPlan.getInstance().getMusicMenuNext() == null){
+				//The application was resumed and before remove from memory so we need to restore the menu plans
+				loadData();
+			}else{
+				onDataLoaded();
+			}
+			break;
+		}
 		case Constants.LOC_WILHELM_BERTELSMANN:{
 			if(MealPlan.getInstance().getWilhemBertelsmannMenu() == null){
+				//The application was resumed and before remove from memory so we need to restore the menu plans
+				loadData();
+			}else{
+				onDataLoaded();
+			}
+			break;
+		}
+		case Constants.LOC_WILHELM_BERTELSMANN_NEXT_WEEK:{
+			if(MealPlan.getInstance().getWilhemBertelsmannMenuNext() == null){
 				//The application was resumed and before remove from memory so we need to restore the menu plans
 				loadData();
 			}else{
@@ -228,7 +291,22 @@ public class WeeklyMealFragment extends SherlockFragment {
 			return MealPlan.getInstance().getWilhemBertelsmannMenu().getDailyMenues().size() != 0;
 		}case Constants.LOC_MENSA_NEXT_WEEK:{
 			return MealPlan.getInstance().getMensaMenuNext().getDailyMenues().size() != 0;
+		}case Constants.LOC_WESTEND_RESTAURANT_NEXT_WEEK:{
+			return MealPlan.getInstance().getMensaMenuNext().getDailyMenues().size() != 0;
+		}case Constants.LOC_HOEXTER_NEXT_WEEK:{
+			return MealPlan.getInstance().getHoexterMenuNext().getDailyMenues().size() != 0;
+		}case Constants.LOC_KURT_SCHUHMACHER_NEXT_WEEK:{
+			return MealPlan.getInstance().getKurtSchuhmacherMenuNext().getDailyMenues().size() != 0;
+		}case Constants.LOC_LEMGO_NEXT_WEEK:{
+			return MealPlan.getInstance().getLemgoMenuNext().getDailyMenues().size() != 0;
+		}case Constants.LOC_MUSIC_NEXT_WEEK:{
+			return MealPlan.getInstance().getMusicMenuNext().getDailyMenues().size() != 0;
+		}case Constants.LOC_WILHELM_BERTELSMANN_NEXT_WEEK:{
+			return MealPlan.getInstance().getWilhemBertelsmannMenuNext().getDailyMenues().size() != 0;
+		}case Constants.LOC_DETMOLD_NEXT_WEEK:{
+			return MealPlan.getInstance().getDetmoldMenuNext().getDailyMenues().size() != 0;
 		}
+		
 		default:
 			return false;
 		}
@@ -260,6 +338,11 @@ public class WeeklyMealFragment extends SherlockFragment {
 				MealPlan.getInstance().setWestendRestauranMenu(Parser.parseMenu(updateRequired, settings.getString(xmlKey, null), settings, url, xmlKey));
 				settings.edit().putInt(Constants.WESTEND_LAST_UDPATE, Util.getWeekOfYear()).commit();
 				break;
+			}case Constants.LOC_WESTEND_RESTAURANT_NEXT_WEEK:{
+				boolean updateRequired = updateRequired(Constants.WESTEND_NEXT_LAST_UPDATE);
+				MealPlan.getInstance().setWestendMenuNext(Parser.parseMenu(updateRequired, settings.getString(xmlKey, null), settings, url, xmlKey));
+				settings.edit().putInt(Constants.WESTEND_NEXT_LAST_UPDATE, Util.getWeekOfYear()).commit();
+				break;
 			}case Constants.LOC_DETMOLD:{
 				boolean updateRequired = updateRequired(Constants.DETMOLD_LAST_UPDATE);
 				MealPlan.getInstance().setDetmoldMenu(Parser.parseMenu(updateRequired, settings.getString(xmlKey, null), settings, url, xmlKey));
@@ -289,6 +372,36 @@ public class WeeklyMealFragment extends SherlockFragment {
 				boolean updateRequired = updateRequired(Constants.BERTELSMANN_LAST_UPDATE);
 				MealPlan.getInstance().setWilhemBertelsmannMenu(Parser.parseMenu(updateRequired, settings.getString(xmlKey, null), settings, url, xmlKey));
 				settings.edit().putInt(Constants.BERTELSMANN_LAST_UPDATE, Util.getWeekOfYear()).commit();
+				break;
+			}case Constants.LOC_DETMOLD_NEXT_WEEK:{
+				boolean updateRequired = updateRequired(Constants.DETMOLD_NEXT_LAST_UPDATE);
+				MealPlan.getInstance().setDetmoldMenuNext(Parser.parseMenu(updateRequired, settings.getString(xmlKey, null), settings, url, xmlKey));
+				settings.edit().putInt(Constants.DETMOLD_NEXT_LAST_UPDATE, Util.getWeekOfYear()).commit();
+				break;
+			}case Constants.LOC_HOEXTER_NEXT_WEEK:{
+				boolean updateRequired = updateRequired(Constants.HOEXTER_NEXT_LAST_UDAPTE);
+				MealPlan.getInstance().setHoexterMenuNext(Parser.parseMenu(updateRequired, settings.getString(xmlKey, null), settings, url, xmlKey));
+				settings.edit().putInt(Constants.HOEXTER_NEXT_LAST_UDAPTE, Util.getWeekOfYear()).commit();
+				break;
+			}case Constants.LOC_KURT_SCHUHMACHER_NEXT_WEEK:{
+				boolean updateRequired = updateRequired(Constants.KURT_SCHUMACHER_NEXT_LAST_UPDATE);
+				MealPlan.getInstance().setKurtSchuhmacherMenuNext(Parser.parseMenu(updateRequired, settings.getString(xmlKey, null), settings, url, xmlKey));
+				settings.edit().putInt(Constants.KURT_SCHUMACHER_NEXT_LAST_UPDATE, Util.getWeekOfYear()).commit();
+				break;
+			}case Constants.LOC_LEMGO_NEXT_WEEK:{
+				boolean updateRequired = updateRequired(Constants.LEMGO_NEXT_LAST_UPDATE);
+				MealPlan.getInstance().setLemgoMenuNext(Parser.parseMenu(updateRequired, settings.getString(xmlKey, null), settings, url, xmlKey));
+				settings.edit().putInt(Constants.LEMGO_NEXT_LAST_UPDATE, Util.getWeekOfYear()).commit();
+				break;
+			}case Constants.LOC_MUSIC_NEXT_WEEK:{
+				boolean updateRequired = updateRequired(Constants.MUSIK_NEXT_LAST_UPDATE);
+				MealPlan.getInstance().setMusicMenuNext(Parser.parseMenu(updateRequired, settings.getString(xmlKey, null), settings, url, xmlKey));
+				settings.edit().putInt(Constants.MUSIK_NEXT_LAST_UPDATE, Util.getWeekOfYear()).commit();
+				break;
+			}case Constants.LOC_WILHELM_BERTELSMANN_NEXT_WEEK:{
+				boolean updateRequired = updateRequired(Constants.BERTELSMANN_NEXT_LAST_UPDATE);
+				MealPlan.getInstance().setWilhemBertelsmannMenuNext(Parser.parseMenu(updateRequired, settings.getString(xmlKey, null), settings, url, xmlKey));
+				settings.edit().putInt(Constants.BERTELSMANN_NEXT_LAST_UPDATE, Util.getWeekOfYear()).commit();
 				break;
 			}
 			

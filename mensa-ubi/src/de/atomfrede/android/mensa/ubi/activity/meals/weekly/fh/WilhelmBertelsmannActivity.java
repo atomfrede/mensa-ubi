@@ -21,19 +21,17 @@ package de.atomfrede.android.mensa.ubi.activity.meals.weekly.fh;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
 
-import com.viewpagerindicator.TitlePageIndicator;
-import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
+import com.googlecode.androidannotations.annotations.EActivity;
 
 import de.atomfrede.android.mensa.ubi.Constants;
 import de.atomfrede.android.mensa.ubi.R;
 import de.atomfrede.android.mensa.ubi.activity.meals.weekly.AbstractWeeklyMenuActivity;
-import de.atomfrede.android.mensa.ubi.adapter.WeekdayPagerAdapter;
 import de.atomfrede.android.mensa.ubi.data.MealPlan;
 import de.atomfrede.android.mensa.ubi.data.Parser;
 import de.atomfrede.android.mensa.ubi.meal.WeeklyMealFragment;
 
+@EActivity
 public class WilhelmBertelsmannActivity extends AbstractWeeklyMenuActivity {
 
 	public void onCreate(Bundle savedInstanceState) {

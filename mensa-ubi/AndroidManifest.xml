@@ -34,21 +34,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.meals.weekly.hs.owl.DetmoldActivity" >
+        <activity android:name=".activity.meals.weekly.hs.owl.DetmoldActivity_" >
         </activity>
-        <activity android:name=".activity.meals.weekly.hs.owl.HoexterActivity" >
+        <activity android:name=".activity.meals.weekly.hs.owl.HoexterActivity_" >
         </activity>
-        <activity android:name=".activity.meals.weekly.fh.KurtSchumacherActivity" >
+        <activity android:name=".activity.meals.weekly.fh.KurtSchumacherActivity_" >
         </activity>
-        <activity android:name=".activity.meals.weekly.hs.owl.LemgoActivity" >
+        <activity android:name=".activity.meals.weekly.hs.owl.LemgoActivity_" >
         </activity>
-        <activity android:name=".activity.meals.weekly.ubi.MensaActivity" >
+        <activity android:name=".activity.meals.weekly.ubi.MensaActivity_" >
         </activity>
-        <activity android:name=".activity.meals.weekly.hs.music.MusicActivity" >
+        <activity android:name=".activity.meals.weekly.hs.music.MusicActivity_" >
         </activity>
-        <activity android:name=".activity.meals.weekly.ubi.WestendRestaurantActivity" >
+        <activity android:name=".activity.meals.weekly.ubi.WestendRestaurantActivity_" >
         </activity>
-        <activity android:name=".activity.meals.weekly.fh.WilhelmBertelsmannActivity" >
+        <activity android:name=".activity.meals.weekly.fh.WilhelmBertelsmannActivity_" >
         </activity>
     </application>
 </manifest>

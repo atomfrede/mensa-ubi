@@ -21,11 +21,12 @@ package de.atomfrede.android.mensa.ubi.activity.meals.weekly.ubi;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
 
 import com.actionbarsherlock.app.ActionBar;
-import com.googlecode.androidannotations.annotations.EActivity;
+import com.googlecode.androidannotations.annotations.*;
 
 import de.atomfrede.android.mensa.ubi.Constants;
 import de.atomfrede.android.mensa.ubi.R;
@@ -34,12 +35,14 @@ import de.atomfrede.android.mensa.ubi.data.MealPlan;
 import de.atomfrede.android.mensa.ubi.data.Parser;
 import de.atomfrede.android.mensa.ubi.meal.WeeklyMealFragment;
 
+@EActivity
 public class MensaActivity extends AbstractWeeklyMenuActivity {
 
 	
 	SpinnerAdapter mSpinnerAdapter;
 	
-	int currentPosition = 0;
+	@InstanceState
+	int currentPosition;
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -54,15 +57,15 @@ public class MensaActivity extends AbstractWeeklyMenuActivity {
 			
 			@Override
 			public boolean onNavigationItemSelected(int itemPosition, long itemId) {
-				exchangeFragment(itemPosition);
+				exchangeFragment(itemPosition, false);
 				return true;
 			}
 		});
-		
+		getSupportActionBar().setSelectedNavigationItem(currentPosition);		
 	}
 	
-	private void exchangeFragment(int position){
-		if(currentPosition != position){
+	private void exchangeFragment(int position, boolean initial){
+		if(currentPosition != position || initial){
 			FragmentManager fm = getSupportFragmentManager();
 			FragmentTransaction fmt = fm.beginTransaction();
 			switch (position) {
@@ -86,12 +89,7 @@ public class MensaActivity extends AbstractWeeklyMenuActivity {
 	@Override
 	public void onResume(){
 		super.onResume();
-		FragmentManager fm = getSupportFragmentManager();
-		FragmentTransaction fmt = fm.beginTransaction();
-		
-		fmt.replace(R.id.fragment_container, WeeklyMealFragment.newInstance(Constants.MENSA_XML_KEY, Constants.mensaUrl, Constants.LOC_MENSA));
-		fmt.commit();
-		
+		exchangeFragment(currentPosition, true);
 	}
 	
 	@Override

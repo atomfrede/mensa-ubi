@@ -18,6 +18,8 @@
  */
 package de.atomfrede.android.mensa.ubi.activity.meals.weekly.hs.music;
 
+import com.googlecode.androidannotations.annotations.EActivity;
+
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -28,6 +30,7 @@ import de.atomfrede.android.mensa.ubi.data.MealPlan;
 import de.atomfrede.android.mensa.ubi.data.Parser;
 import de.atomfrede.android.mensa.ubi.meal.WeeklyMealFragment;
 
+@EActivity
 public class MusicActivity extends AbstractWeeklyMenuActivity {
 
 	public void onCreate(Bundle savedInstanceState) {
