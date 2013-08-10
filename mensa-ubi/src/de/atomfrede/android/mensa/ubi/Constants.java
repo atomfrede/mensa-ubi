@@ -29,6 +29,16 @@ public class Constants {
 	public static final int LOC_LEMGO = 6;
 	public static final int LOC_HOEXTER = 7;
 	public static final int LOC_MUSIC = 8;
+	
+	public static final int LOC_MENSA_NEXT_WEEK = 10;
+	public static final int LOC_WESTEND_RESTAURANT_NEXT_WEEK = 11;
+	public static final int LOC_KURT_SCHUHMACHER_NEXT_WEEK = 12;
+	public static final int LOC_WILHELM_BERTELSMANN_NEXT_WEEK = 13;
+	public static final int LOC_MINDEN_NEXT_WEEK = 14;
+	public static final int LOC_DETMOLD_NEXT_WEEK = 15;
+	public static final int LOC_LEMGO_NEXT_WEEK = 16;
+	public static final int LOC_HOEXTER_NEXT_WEEK = 17;
+	public static final int LOC_MUSIC_NEXT_WEEK = 18;
 
 	public static final int DAY_MONDAY = 0;
 	public static final int DAY_TUESDAY = 1;
@@ -68,19 +78,12 @@ public class Constants {
 	public static final String MENSA_PREFS = "mensaPrefs";
 	
 	public static final String MENSA_LAST_UPDATE = "mensaLastUpdate";
-	
 	public static final String WESTEND_LAST_UDPATE = "westendLastUpdate";
-	
 	public static final String KURT_SCHUHMACHER_LAST_UPDATE = "kurtSchuhmacherLastUpdate";
-	
 	public static final String BERTELSMANN_LAST_UPDATE = "bertelsmannLastUpdate";
-	
 	public static final String DETMOLD_LAST_UPDATE = "detmoldLastUpdate";
-	
 	public static final String LEMGO_LAST_UPDATE = "lemgoLastUpdate";
-	
 	public static final String HOEXTER_LAST_UPDATE = "hoexterLastUpdate";
-	
 	public static final String MUSIK_LAST_UPDATE = "musikLastUpdate";
 	
 }
