@@ -24,22 +24,43 @@
     android:layout_height="fill_parent"
     android:background="@color/ubi_light_grey"
     android:orientation="vertical" >
-    
+
+    <RelativeLayout
+        android:id="@+id/important_info"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="@string/important_info"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/ubi_orange"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
     <ProgressBar
         android:id="@+id/refresh_progress_bar"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center" />
-    
+
     <com.viewpagerindicator.TitlePageIndicator
         android:id="@+id/day_indicator"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:background="@color/ubi_light_grey"
         android:padding="10dip"
         android:textColor="@color/text_color_light"
+        android:visibility="gone"
         app:footerColor="@color/ubi_orange"
         app:footerIndicatorHeight="8dp"
         app:footerLineHeight="3dp"
@@ -48,8 +69,9 @@
 
     <android.support.v4.view.ViewPager
         android:id="@+id/meal_pager"
-        android:visibility="gone"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:visibility="gone" />
+
 </LinearLayout>

@@ -22,4 +22,5 @@
     <string name="loading_title">Lade Daten...</string>
     <string name="loading_text">Bereite Daten auf. Dies kann eine kurze Zeit dauern.</string>
     <string name="menu_refresh">Neuladen</string>
+    <string name="important_info">Achtung: Diese Einrichtung macht Sommerpause!</string>
 </resources>
