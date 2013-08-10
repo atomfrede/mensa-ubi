@@ -43,6 +43,8 @@ public class MealPlan implements Serializable{
 	private WeeklyMenu lemgoMenu;
 	private WeeklyMenu hoexterMenu;
 	private WeeklyMenu musicMenu;
+	
+	private WeeklyMenu mensaMenuNext;
 
 	private MealPlan() {
 	}
@@ -119,4 +121,11 @@ public class MealPlan implements Serializable{
 		this.musicMenu = musicMenu;
 	}
 
+	public WeeklyMenu getMensaMenuNext() {
+		return mensaMenuNext;
+	}
+
+	public void setMensaMenuNext(WeeklyMenu mensaMenuNext) {
+		this.mensaMenuNext = mensaMenuNext;
+	}
 }

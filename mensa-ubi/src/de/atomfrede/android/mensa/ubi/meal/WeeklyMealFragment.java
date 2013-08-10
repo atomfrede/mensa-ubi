@@ -101,6 +101,15 @@ public class WeeklyMealFragment extends SherlockFragment {
 			}
 			break;
 		}
+		case Constants.LOC_MENSA_NEXT_WEEK:{
+			if(MealPlan.getInstance().getMensaMenuNext() == null){
+				//The application was resumed and before remove from memory so we need to restore the menu plans
+				loadData();
+			}else{
+				onDataLoaded();
+			}
+			break;
+		}
 		case Constants.LOC_WESTEND_RESTAURANT:{
 			if(MealPlan.getInstance().getWestendRestauranMenu() == null){
 				//The application was resumed and before remove from memory so we need to restore the menu plans
@@ -187,6 +196,10 @@ public class WeeklyMealFragment extends SherlockFragment {
 			Log.d(TAG, "Progress gone");
 			selectInitialDay();
 			mPager.setVisibility(View.VISIBLE);
+			mPager.setSaveEnabled(false);
+			mPager.invalidate();
+			mAdapter.notifyDataSetChanged();
+			
 			mIndicator.setVisibility(View.VISIBLE);
 		}else{
 			loadingProgressbar.setVisibility(View.GONE);
@@ -213,6 +226,8 @@ public class WeeklyMealFragment extends SherlockFragment {
 			return MealPlan.getInstance().getWestendRestauranMenu().getDailyMenues().size() != 0;
 		}case Constants.LOC_WILHELM_BERTELSMANN:{
 			return MealPlan.getInstance().getWilhemBertelsmannMenu().getDailyMenues().size() != 0;
+		}case Constants.LOC_MENSA_NEXT_WEEK:{
+			return MealPlan.getInstance().getMensaMenuNext().getDailyMenues().size() != 0;
 		}
 		default:
 			return false;
@@ -222,6 +237,8 @@ public class WeeklyMealFragment extends SherlockFragment {
 	@Background
 	public void loadData(){
 		Log.d(TAG, "loadData...");
+		Log.d(TAG, "URL "+url);
+		Log.d(TAG, "XML Key "+xmlKey);
 		try{
 			switch (locationKey) {
 			case Constants.LOC_MENSA:{
@@ -230,6 +247,13 @@ public class WeeklyMealFragment extends SherlockFragment {
 				MealPlan.getInstance().setMensaMenu(Parser.parseMenu(updateRequired, settings.getString(xmlKey, null), settings, url, xmlKey));
 				Log.d(TAG, "Loading done...");
 				settings.edit().putInt(Constants.MENSA_LAST_UPDATE, Util.getWeekOfYear()).commit();
+				break;
+			}case Constants.LOC_MENSA_NEXT_WEEK:{
+				boolean updateRequired = updateRequired(Constants.MENSA_NEXT_LAST_UPDATE);
+				Log.d(TAG, "Update Required (Next Week) = "+updateRequired);
+				MealPlan.getInstance().setMensaMenuNext(Parser.parseMenu(updateRequired, settings.getString(xmlKey, null), settings, url, xmlKey));
+				Log.d(TAG, "Loading done... (Next Week)");
+				settings.edit().putInt(Constants.MENSA_NEXT_LAST_UPDATE, Util.getWeekOfYear()).commit();
 				break;
 			}case Constants.LOC_WESTEND_RESTAURANT:{
 				boolean updateRequired = updateRequired(Constants.WESTEND_LAST_UDPATE);

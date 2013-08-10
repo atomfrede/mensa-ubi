@@ -64,6 +64,8 @@ public class Constants {
 	public static final String LAST_UPDATE_KEY = "lastUpdate";
 	
 	public static final String MENSA_XML_KEY = "mensaXml";
+	public static final String MENSA_NEXT_XML_KEY = "mensaNextXml";
+	
 	public static final String WESTEND_RESTAURANT_XML_KEY = "westendrestaurantXml";
 	public static final String KURT_SCHUMACHER_XML_KEY = "kurtSchumacherXml";
 	public static final String WILHELM_BERTELSMANN_XML_KEY = "wilhelmBertelsmannXml";
@@ -78,6 +80,8 @@ public class Constants {
 	public static final String MENSA_PREFS = "mensaPrefs";
 	
 	public static final String MENSA_LAST_UPDATE = "mensaLastUpdate";
+	public static final String MENSA_NEXT_LAST_UPDATE = "mensaNextLastUpdate";
+	
 	public static final String WESTEND_LAST_UDPATE = "westendLastUpdate";
 	public static final String KURT_SCHUHMACHER_LAST_UPDATE = "kurtSchuhmacherLastUpdate";
 	public static final String BERTELSMANN_LAST_UPDATE = "bertelsmannLastUpdate";

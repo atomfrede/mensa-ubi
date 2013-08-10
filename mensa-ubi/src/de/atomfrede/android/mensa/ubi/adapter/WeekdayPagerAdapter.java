@@ -23,9 +23,8 @@ import de.atomfrede.android.mensa.ubi.Constants;
 import de.atomfrede.android.mensa.ubi.data.MealPlan;
 import de.atomfrede.android.mensa.ubi.data.WeeklyMenu;
 import de.atomfrede.android.mensa.ubi.fragment.DailyMenuListFragment;
-import de.atomfrede.android.mensa.ubi.location.LocationSelectionActivity;
 
-public class WeekdayPagerAdapter extends FragmentPagerAdapter {
+public class WeekdayPagerAdapter extends FragmentStatePagerAdapter {
 
 	private String[] weekdays;
 	private int location;
@@ -35,12 +34,18 @@ public class WeekdayPagerAdapter extends FragmentPagerAdapter {
 		this.weekdays = weekdays;
 		this.location = location;
 	}
-
+	@Override
+	public int getItemPosition(Object object) {
+		  return POSITION_NONE;
+	}
+	
 	@Override
 	public Fragment getItem(int tab) {
 		switch (location) {
 		case Constants.LOC_MENSA:
 			return getDataFragment(MealPlan.getInstance().getMensaMenu(), tab);
+		case Constants.LOC_MENSA_NEXT_WEEK:
+			return getDataFragment(MealPlan.getInstance().getMensaMenuNext(), tab);
 		case Constants.LOC_WESTEND_RESTAURANT:
 			return getDataFragment(MealPlan.getInstance().getWestendRestauranMenu(), tab);
 		case Constants.LOC_KURT_SCHUHMACHER:
@@ -76,6 +81,8 @@ public class WeekdayPagerAdapter extends FragmentPagerAdapter {
 		switch (location) {
 		case Constants.LOC_MENSA:
 			return MealPlan.getInstance().getMensaMenu().getDailyMenues().get(position).getShortendDate();
+		case Constants.LOC_MENSA_NEXT_WEEK:
+			return MealPlan.getInstance().getMensaMenuNext().getDailyMenues().get(position).getShortendDate();
 		case Constants.LOC_WESTEND_RESTAURANT:
 			return MealPlan.getInstance().getWestendRestauranMenu().getDailyMenues().get(position).getShortendDate();
 		case Constants.LOC_KURT_SCHUHMACHER:

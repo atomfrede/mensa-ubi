@@ -18,30 +18,6 @@
    along with Mensa UBI.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
-    <string-array name="locations">
-        <item>Mensa</item>
-        <item>Westend Restaurant</item>
-        <item>FH Bielefeld: Kurt-Schumacher-Straße</item>
-        <item>FH Bielefeld: Wilhelm-Bertelsmann-Straße</item>
-        <item>HS OWL: Detmold</item>
-        <item>HS OWL: Lemgo</item>
-        <item>HS OWL: Höxter</item>
-        <item>HS für Musik</item>
-    </string-array>
-    <string-array name="weekdays">
-        <item>Monday</item>
-        <item>Tuesday</item>
-        <item>Wednesday</item>
-        <item>Thursday</item>
-        <item>Friday</item>
-    </string-array>
-    <string-array name="weekdays_short">
-        <item>Mon</item>
-        <item>Tue</item>
-        <item>Wed</item>
-        <item>Thu</item>
-        <item>Fri</item>
-    </string-array>
     <string-array name="mensa_dropdown">
         <item>Mensa</item>
         <item>Mensa (+1)</item>
