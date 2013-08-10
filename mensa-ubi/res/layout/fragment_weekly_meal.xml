@@ -22,7 +22,6 @@
     xmlns:app1="http://schemas.android.com/apk/res/de.atomfrede.android.mensa"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/ubi_light_grey"
     android:orientation="vertical" >
 
     <RelativeLayout
@@ -57,15 +56,15 @@
         android:id="@+id/day_indicator"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/ubi_light_grey"
+        android:background="@color/vpi_background"
         android:padding="10dip"
-        android:textColor="@color/text_color_light"
+        android:textColor="@color/text_color"
         android:visibility="gone"
         app:footerColor="@color/ubi_orange"
         app:footerIndicatorHeight="8dp"
         app:footerLineHeight="3dp"
         app:selectedBold="true"
-        app:selectedColor="@color/text_color" />
+        app:selectedColor="@color/vpi_text_active" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/meal_pager"

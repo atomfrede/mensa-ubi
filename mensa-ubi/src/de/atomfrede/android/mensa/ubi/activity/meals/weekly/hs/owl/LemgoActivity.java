@@ -18,9 +18,15 @@
  */
 package de.atomfrede.android.mensa.ubi.activity.meals.weekly.hs.owl;
 
+import com.actionbarsherlock.app.ActionBar;
+import com.googlecode.androidannotations.annotations.EActivity;
+import com.googlecode.androidannotations.annotations.InstanceState;
+
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.widget.ArrayAdapter;
+import android.widget.SpinnerAdapter;
 import de.atomfrede.android.mensa.ubi.Constants;
 import de.atomfrede.android.mensa.ubi.R;
 import de.atomfrede.android.mensa.ubi.activity.meals.weekly.AbstractWeeklyMenuActivity;
@@ -28,23 +34,60 @@ import de.atomfrede.android.mensa.ubi.data.MealPlan;
 import de.atomfrede.android.mensa.ubi.data.Parser;
 import de.atomfrede.android.mensa.ubi.meal.WeeklyMealFragment;
 
+@EActivity
 public class LemgoActivity extends AbstractWeeklyMenuActivity {
 
+	SpinnerAdapter mSpinnerAdapter;
+	
+	@InstanceState
+	int currentPosition;
+	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		getSupportActionBar().setTitle(getResources().getString(R.string.lemgo_title));
-
+		getSupportActionBar().setTitle("");
+		
+		getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+		
+		mSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.lemgo_dropdown,
+		          android.R.layout.simple_spinner_dropdown_item);
+		
+		getSupportActionBar().setListNavigationCallbacks(mSpinnerAdapter, new ActionBar.OnNavigationListener() {
+			
+			@Override
+			public boolean onNavigationItemSelected(int itemPosition, long itemId) {
+				exchangeFragment(itemPosition, false);
+				return true;
+			}
+		});
+		getSupportActionBar().setSelectedNavigationItem(currentPosition);
 	}
 	
 	@Override
 	public void onResume() {
 		super.onResume();
-		FragmentManager fm = getSupportFragmentManager();
-		FragmentTransaction fmt = fm.beginTransaction();
-		
-		fmt.add(R.id.fragment_container, WeeklyMealFragment.newInstance(Constants.LEMGO_XML_KEY, Constants.lemgoUrl, Constants.LOC_LEMGO));
-		fmt.commit();
+		exchangeFragment(currentPosition, true);
+	}
+	
+	private void exchangeFragment(int position, boolean initial){
+		if(currentPosition != position || initial){
+			FragmentManager fm = getSupportFragmentManager();
+			FragmentTransaction fmt = fm.beginTransaction();
+			switch (position) {
+			case 0:
+				//Normal, current week
+				fmt.replace(R.id.fragment_container, WeeklyMealFragment.newInstance(Constants.LEMGO_XML_KEY, Constants.lemgoUrl, Constants.LOC_LEMGO));
+				fmt.commit();
+				break;
+			case 1:
+				//Next week, week+1
+				fmt.replace(R.id.fragment_container, WeeklyMealFragment.newInstance(Constants.LEMGO_NEXT_XML_KEY, Constants.lemgoUrlNextWeek, Constants.LOC_LEMGO_NEXT_WEEK));
+				fmt.commit();
+				break;
+			default:
+				break;
+			}
+		}
+		currentPosition = position;
 	}
 
 	@Override

@@ -38,11 +38,19 @@ public class MealPlan implements Serializable{
 	private WeeklyMenu westendRestauranMenu;
 	private WeeklyMenu kurtSchuhmacherMenu;
 	private WeeklyMenu wilhemBertelsmannMenu;
-	private WeeklyMenu mindenMenu;
 	private WeeklyMenu detmoldMenu;
 	private WeeklyMenu lemgoMenu;
 	private WeeklyMenu hoexterMenu;
 	private WeeklyMenu musicMenu;
+	
+	private WeeklyMenu mensaMenuNext;
+	private WeeklyMenu westendMenuNext;
+	private WeeklyMenu detmoldMenuNext;
+	private WeeklyMenu lemgoMenuNext;
+	private WeeklyMenu kurtSchuhmacherMenuNext;
+	private WeeklyMenu wilhemBertelsmannMenuNext;
+	private WeeklyMenu hoexterMenuNext;
+	private WeeklyMenu musicMenuNext;
 
 	private MealPlan() {
 	}
@@ -79,14 +87,6 @@ public class MealPlan implements Serializable{
 		this.wilhemBertelsmannMenu = wilhemBertelsmannMenu;
 	}
 
-	public WeeklyMenu getMindenMenu() {
-		return mindenMenu;
-	}
-
-	public void setMindenMenu(WeeklyMenu mindenMenu) {
-		this.mindenMenu = mindenMenu;
-	}
-
 	public WeeklyMenu getDetmoldMenu() {
 		return detmoldMenu;
 	}
@@ -119,4 +119,69 @@ public class MealPlan implements Serializable{
 		this.musicMenu = musicMenu;
 	}
 
+	public WeeklyMenu getMensaMenuNext() {
+		return mensaMenuNext;
+	}
+
+	public void setMensaMenuNext(WeeklyMenu mensaMenuNext) {
+		this.mensaMenuNext = mensaMenuNext;
+	}
+
+	public WeeklyMenu getWestendMenuNext() {
+		return westendMenuNext;
+	}
+
+	public void setWestendMenuNext(WeeklyMenu westendMenuNext) {
+		this.westendMenuNext = westendMenuNext;
+	}
+
+	public WeeklyMenu getDetmoldMenuNext() {
+		return detmoldMenuNext;
+	}
+
+	public void setDetmoldMenuNext(WeeklyMenu detmoldMenuNext) {
+		this.detmoldMenuNext = detmoldMenuNext;
+	}
+
+	public WeeklyMenu getLemgoMenuNext() {
+		return lemgoMenuNext;
+	}
+
+	public void setLemgoMenuNext(WeeklyMenu lemgoMenuNext) {
+		this.lemgoMenuNext = lemgoMenuNext;
+	}
+
+	public WeeklyMenu getKurtSchuhmacherMenuNext() {
+		return kurtSchuhmacherMenuNext;
+	}
+
+	public void setKurtSchuhmacherMenuNext(WeeklyMenu kurtSchuhmacherMenuNext) {
+		this.kurtSchuhmacherMenuNext = kurtSchuhmacherMenuNext;
+	}
+
+	public WeeklyMenu getWilhemBertelsmannMenuNext() {
+		return wilhemBertelsmannMenuNext;
+	}
+
+	public void setWilhemBertelsmannMenuNext(WeeklyMenu wilhemBertelsmannMenuNext) {
+		this.wilhemBertelsmannMenuNext = wilhemBertelsmannMenuNext;
+	}
+
+	public WeeklyMenu getHoexterMenuNext() {
+		return hoexterMenuNext;
+	}
+
+	public void setHoexterMenuNext(WeeklyMenu hoexterMenuNext) {
+		this.hoexterMenuNext = hoexterMenuNext;
+	}
+
+	public WeeklyMenu getMusicMenuNext() {
+		return musicMenuNext;
+	}
+
+	public void setMusicMenuNext(WeeklyMenu musicMenuNext) {
+		this.musicMenuNext = musicMenuNext;
+	}
+	
+	
 }

@@ -21,43 +21,79 @@ package de.atomfrede.android.mensa.ubi.activity.meals.weekly.ubi;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
+import android.widget.ArrayAdapter;
+import android.widget.SpinnerAdapter;
 
-import com.viewpagerindicator.TitlePageIndicator;
-import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
+import com.actionbarsherlock.app.ActionBar;
+import com.googlecode.androidannotations.annotations.EActivity;
+import com.googlecode.androidannotations.annotations.InstanceState;
 
 import de.atomfrede.android.mensa.ubi.Constants;
 import de.atomfrede.android.mensa.ubi.R;
 import de.atomfrede.android.mensa.ubi.activity.meals.weekly.AbstractWeeklyMenuActivity;
-import de.atomfrede.android.mensa.ubi.adapter.WeekdayPagerAdapter;
 import de.atomfrede.android.mensa.ubi.data.MealPlan;
 import de.atomfrede.android.mensa.ubi.data.Parser;
 import de.atomfrede.android.mensa.ubi.meal.WeeklyMealFragment;
 
+@EActivity
 public class WestendRestaurantActivity extends AbstractWeeklyMenuActivity {
 
+	SpinnerAdapter mSpinnerAdapter;
+	
+	@InstanceState
+	int currentPosition;
+	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		getSupportActionBar().setTitle(getResources().getString(R.string.westend_title));
+		getSupportActionBar().setTitle("");
+		
+		getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+		
+		mSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.westend_dropdown,
+		          android.R.layout.simple_spinner_dropdown_item);
+		
+		getSupportActionBar().setListNavigationCallbacks(mSpinnerAdapter, new ActionBar.OnNavigationListener() {
+			
+			@Override
+			public boolean onNavigationItemSelected(int itemPosition, long itemId) {
+				exchangeFragment(itemPosition, false);
+				return true;
+			}
+		});
+		
+		getSupportActionBar().setSelectedNavigationItem(currentPosition);	
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
-		
-		FragmentManager fm = getSupportFragmentManager();
-		FragmentTransaction fmt = fm.beginTransaction();
-		
-		fmt.add(R.id.fragment_container, WeeklyMealFragment.newInstance(Constants.WESTEND_RESTAURANT_XML_KEY, Constants.westendRestaurantUrl, Constants.LOC_WESTEND_RESTAURANT));
-		fmt.commit();
-//		if (MealPlan.getInstance().getWestendRestauranMenu() == null) {
-//			// The application was resumed and before remove from memory so we
-//			// need to restore the menu plans
-//			reloadData();
-//		}
+		exchangeFragment(currentPosition, true);
 	}
 
+
+	private void exchangeFragment(int position, boolean initial){
+		if(currentPosition != position || initial){
+			FragmentManager fm = getSupportFragmentManager();
+			FragmentTransaction fmt = fm.beginTransaction();
+			switch (position) {
+			case 0:
+				//Normal, current week
+				fmt.replace(R.id.fragment_container, WeeklyMealFragment.newInstance(Constants.WESTEND_RESTAURANT_XML_KEY, Constants.westendRestaurantUrl, Constants.LOC_WESTEND_RESTAURANT));
+				fmt.commit();
+				break;
+			case 1:
+				//Next week, week+1
+				fmt.replace(R.id.fragment_container, WeeklyMealFragment.newInstance(Constants.WESTEND_RESTAURANT_NEXT_XML_KEY, Constants.westendRestaurantUrlNextWeek, Constants.LOC_WESTEND_RESTAURANT_NEXT_WEEK));
+				fmt.commit();
+				break;
+			default:
+				break;
+			}
+		}
+		currentPosition = position;
+	}
+	
 	@Override
 	protected void reloadData() {
 		try {

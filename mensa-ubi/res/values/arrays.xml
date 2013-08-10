@@ -28,18 +28,19 @@
         <item>HS OWL: Höxter</item>
         <item>HS für Musik</item>
     </string-array>
-    <string-array name="weekdays">
-        <item>Monday</item>
-        <item>Tuesday</item>
-        <item>Wednesday</item>
-        <item>Thursday</item>
-        <item>Friday</item>
-    </string-array>
     <string-array name="weekdays_short">
         <item>Mon</item>
         <item>Tue</item>
         <item>Wed</item>
         <item>Thu</item>
         <item>Fri</item>
+    </string-array>
+    <string-array name="mensa_dropdown">
+        <item>Mensa</item>
+        <item>Mensa (+1)</item>
+    </string-array>
+    <string-array name="westend_dropdown">
+        <item>Westend Restaurant</item>
+        <item>Westend Restaurant (+1)</item>
     </string-array>
 </resources>

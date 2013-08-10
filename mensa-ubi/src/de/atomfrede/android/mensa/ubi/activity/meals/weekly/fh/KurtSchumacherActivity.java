@@ -23,6 +23,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 
+import com.googlecode.androidannotations.annotations.EActivity;
 import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
 
@@ -34,6 +35,7 @@ import de.atomfrede.android.mensa.ubi.data.MealPlan;
 import de.atomfrede.android.mensa.ubi.data.Parser;
 import de.atomfrede.android.mensa.ubi.meal.WeeklyMealFragment;
 
+@EActivity
 public class KurtSchumacherActivity extends AbstractWeeklyMenuActivity {
 
 	public void onCreate(Bundle savedInstanceState) {
