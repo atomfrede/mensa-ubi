@@ -68,27 +68,19 @@ public class Constants {
 	public static final String MENSA_PREFS = "mensaPrefs";
 	
 	public static final String MENSA_LAST_UPDATE = "mensaLastUpdate";
-	public static final int MENSA_KEY = 1;
 	
 	public static final String WESTEND_LAST_UDPATE = "westendLastUpdate";
-	public static final int WESTEND_KEY = 2;
 	
 	public static final String KURT_SCHUHMACHER_LAST_UPDATE = "kurtSchuhmacherLastUpdate";
-	public static final int KURT_SCHUHMACHER_KEY = 3;
 	
 	public static final String BERTELSMANN_LAST_UPDATE = "bertelsmannLastUpdate";
-	public static final int BERTELSMANN_KEY = 4;
 	
 	public static final String DETMOLD_LAST_UPDATE = "detmoldLastUpdate";
-	public static final int DETMOLD_KEY = 5;
 	
 	public static final String LEMGO_LAST_UPDATE = "lemgoLastUpdate";
-	public static final int LEMGO_KEY = 6;
 	
 	public static final String HOEXTER_LAST_UPDATE = "hoexterLastUpdate";
-	public static final int HOEXTER_KEY = 7;
 	
 	public static final String MUSIK_LAST_UPDATE = "musikLastUpdate";
-	public static int MUSIK_KEY = 8;
 	
 }

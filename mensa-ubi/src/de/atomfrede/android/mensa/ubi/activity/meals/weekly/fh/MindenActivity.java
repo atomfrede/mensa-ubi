@@ -32,6 +32,7 @@ import de.atomfrede.android.mensa.ubi.data.MealPlan;
 import de.atomfrede.android.mensa.ubi.data.Parser;
 
 
+@Deprecated
 public class MindenActivity extends AbstractWeeklyMenuActivity {
 
 	public void onCreate(Bundle savedInstanceState) {

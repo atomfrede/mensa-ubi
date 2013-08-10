@@ -19,6 +19,8 @@
 package de.atomfrede.android.mensa.ubi.activity.meals.weekly.fh;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 
 import com.viewpagerindicator.TitlePageIndicator;
@@ -30,6 +32,7 @@ import de.atomfrede.android.mensa.ubi.activity.meals.weekly.AbstractWeeklyMenuAc
 import de.atomfrede.android.mensa.ubi.adapter.WeekdayPagerAdapter;
 import de.atomfrede.android.mensa.ubi.data.MealPlan;
 import de.atomfrede.android.mensa.ubi.data.Parser;
+import de.atomfrede.android.mensa.ubi.meal.WeeklyMealFragment;
 
 public class KurtSchumacherActivity extends AbstractWeeklyMenuActivity {
 
@@ -38,26 +41,16 @@ public class KurtSchumacherActivity extends AbstractWeeklyMenuActivity {
 
 		getSupportActionBar().setTitle(getResources().getString(R.string.kurt_schuhmacher_title));
 
-		mPager = (ViewPager) findViewById(R.id.pager);
-		mAdapter = new WeekdayPagerAdapter(getSupportFragmentManager(), weekdays, Constants.LOC_KURT_SCHUHMACHER);
-		mPager.setAdapter(mAdapter);
-
-		TitlePageIndicator indicator = (TitlePageIndicator) findViewById(R.id.indicator);
-		indicator.setViewPager(mPager);
-		indicator.setFooterIndicatorStyle(IndicatorStyle.Triangle);
-		mIndicator = indicator;
-
-		selectInitialDay();
 	}
 	
 	@Override
 	public void onResume() {
 		super.onResume();
-		if (MealPlan.getInstance().getKurtSchuhmacherMenu() == null) {
-			// The application was resumed and before remove from memory so we
-			// need to restore the menu plans
-			reloadData();
-		}
+		FragmentManager fm = getSupportFragmentManager();
+		FragmentTransaction fmt = fm.beginTransaction();
+		
+		fmt.add(R.id.fragment_container, WeeklyMealFragment.newInstance(Constants.KURT_SCHUMACHER_XML_KEY, Constants.fhKurtSchumacherUrl, Constants.LOC_KURT_SCHUHMACHER));
+		fmt.commit();
 	}
 
 	@Override

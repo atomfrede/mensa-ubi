@@ -57,7 +57,7 @@ public abstract class AbstractWeeklyMenuActivity extends SherlockFragmentActivit
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		settings = getSharedPreferences(Constants.MENSA_PREFS, LocationSelectionActivity.MODE_PRIVATE);
-		setContentView(R.layout.weekly_meal);
+		setContentView(R.layout.activity_weekly_meal);
 		weekdays = getResources().getStringArray(R.array.weekdays_short);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 	}
