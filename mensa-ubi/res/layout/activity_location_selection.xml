@@ -9,7 +9,7 @@
    the Free Software Foundation, either version 3 of the License, or
    (at your option) any later version.
  
-   Mensa UBI is distributed in the hope that it will be useful,
+   Mensa UPB is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
@@ -17,12 +17,16 @@
    You should have received a copy of the GNU General Public License
    along with Mensa UBI.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<resources>
-    <color name="ubi_orange">#ea6a39</color>
-    <color name="ubi_grey">#7f7e83</color>
-    <color name="ubi_light_orange">#f39e7f</color>
-    <color name="ubi_light_grey">#d4d4d2</color>
-    <color name="text_color">#46494b</color>
-    <color name="text_color_light">#989898</color>
-    <color name="ubi_white">#FFFFFF</color>
-</resources>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/ubi_light_grey"
+    android:orientation="vertical" >
+    <fragment
+        android:id="@+id/locationSelectionFragment"
+        android:name="de.atomfrede.android.mensa.ubi.location.LocationSelectionFragment_"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout="@layout/fragment_location_selection" />
+</RelativeLayout>

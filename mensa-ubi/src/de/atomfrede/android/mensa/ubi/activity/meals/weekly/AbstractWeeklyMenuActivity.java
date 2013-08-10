@@ -22,6 +22,7 @@ import java.util.Calendar;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -36,8 +37,10 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.viewpagerindicator.PageIndicator;
 
+import de.atomfrede.android.mensa.ubi.Constants;
 import de.atomfrede.android.mensa.ubi.R;
 import de.atomfrede.android.mensa.ubi.adapter.WeekdayPagerAdapter;
+import de.atomfrede.android.mensa.ubi.location.LocationSelectionActivity;
 
 public abstract class AbstractWeeklyMenuActivity extends SherlockFragmentActivity {
 
@@ -47,13 +50,19 @@ public abstract class AbstractWeeklyMenuActivity extends SherlockFragmentActivit
 	protected ViewPager mPager;
 	protected PageIndicator mIndicator;
 	
+	protected SharedPreferences settings;
+	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.weekly_meal);
+		settings = getSharedPreferences(Constants.MENSA_PREFS, LocationSelectionActivity.MODE_PRIVATE);
+		setContentView(R.layout.activity_weekly_meal);
 		weekdays = getResources().getStringArray(R.array.weekdays_short);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 	}
+	
+	protected abstract void reloadData();
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -77,7 +86,7 @@ public abstract class AbstractWeeklyMenuActivity extends SherlockFragmentActivit
 	}
 	
 	protected void showAboutDialog() {
-		Dialog dialog = new Dialog(this, R.style.Theme_Sherlock_Light_Dialog);
+		Dialog dialog = new Dialog(this, R.style.Theme_Sherlock_Light);
 		
 		dialog.setContentView(R.layout.about_dialog);
 		dialog.setTitle(getResources().getString(R.string.menu_about) + " " + getResources().getString(R.string.app_name));

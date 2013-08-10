@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
    Copyright 2012 Frederik Hahne
    
@@ -8,7 +9,7 @@
    the Free Software Foundation, either version 3 of the License, or
    (at your option) any later version.
  
-   Mensa UBI is distributed in the hope that it will be useful,
+   Mensa UPB is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
@@ -16,11 +17,16 @@
    You should have received a copy of the GNU General Public License
    along with Mensa UBI.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<resources>
-    <string name="app_name">Mensa UBI</string>
-    <string name="mensa_title">Mensa</string>
-    <string name="loading_title">Lade Daten...</string>
-    <string name="loading_text">Bereite Daten auf. Dies kann eine kurze Zeit dauern.</string>
-    <string name="menu_refresh">Neuladen</string>
-    <string name="important_info">Achtung: Diese Einrichtung macht Sommerpause!</string>
-</resources>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/ubi_light_grey"
+    android:orientation="vertical" >
+    <ListView
+        android:id="@+id/location_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ubi_light_grey"
+        android:cacheColorHint="@color/ubi_light_grey" >
+    </ListView>
+</LinearLayout>

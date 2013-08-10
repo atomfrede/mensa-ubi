@@ -46,9 +46,13 @@ public class Constants {
 	public static final String hoexterUrl = "http://www.studentenwerkbielefeld.de/index.php?id=71&L=0";
 	public static final String musicUrl = "http://www.studentenwerkbielefeld.de/index.php?id=72&L=0";
 	
+	public static final String mensaUrlNextWeek = "http://www.studentenwerkbielefeld.de/index.php?id=61&tx_studentenwerk_pi1[week]=1";
+	
 	
 
+	@Deprecated
 	public static final String LAST_UPDATE_KEY = "lastUpdate";
+	
 	public static final String MENSA_XML_KEY = "mensaXml";
 	public static final String WESTEND_RESTAURANT_XML_KEY = "westendrestaurantXml";
 	public static final String KURT_SCHUMACHER_XML_KEY = "kurtSchumacherXml";
@@ -62,4 +66,21 @@ public class Constants {
 	public static final String MUSIC_XML_KEY = "musciXml";
 
 	public static final String MENSA_PREFS = "mensaPrefs";
+	
+	public static final String MENSA_LAST_UPDATE = "mensaLastUpdate";
+	
+	public static final String WESTEND_LAST_UDPATE = "westendLastUpdate";
+	
+	public static final String KURT_SCHUHMACHER_LAST_UPDATE = "kurtSchuhmacherLastUpdate";
+	
+	public static final String BERTELSMANN_LAST_UPDATE = "bertelsmannLastUpdate";
+	
+	public static final String DETMOLD_LAST_UPDATE = "detmoldLastUpdate";
+	
+	public static final String LEMGO_LAST_UPDATE = "lemgoLastUpdate";
+	
+	public static final String HOEXTER_LAST_UPDATE = "hoexterLastUpdate";
+	
+	public static final String MUSIK_LAST_UPDATE = "musikLastUpdate";
+	
 }

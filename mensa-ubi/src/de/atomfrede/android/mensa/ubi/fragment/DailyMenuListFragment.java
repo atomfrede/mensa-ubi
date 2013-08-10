@@ -20,10 +20,12 @@ package de.atomfrede.android.mensa.ubi.fragment;
 
 import android.os.Bundle;
 
+import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockListFragment;
 
 import de.atomfrede.android.mensa.ubi.adapter.MenuListAdapter;
 import de.atomfrede.android.mensa.ubi.data.DailyMenu;
+
 
 public class DailyMenuListFragment extends SherlockListFragment {
 
@@ -46,6 +48,7 @@ public class DailyMenuListFragment extends SherlockListFragment {
 		MenuListAdapter menuListAdapter = new MenuListAdapter(this.getActivity(), menu.getMenues());
 		setListAdapter(menuListAdapter);
 		setRetainInstance(true);
+		
 	}
 
 	@Override

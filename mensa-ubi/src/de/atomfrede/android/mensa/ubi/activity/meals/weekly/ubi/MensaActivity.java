@@ -19,6 +19,8 @@
 package de.atomfrede.android.mensa.ubi.activity.meals.weekly.ubi;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 
 import com.viewpagerindicator.TitlePageIndicator;
@@ -28,6 +30,9 @@ import de.atomfrede.android.mensa.ubi.Constants;
 import de.atomfrede.android.mensa.ubi.R;
 import de.atomfrede.android.mensa.ubi.activity.meals.weekly.AbstractWeeklyMenuActivity;
 import de.atomfrede.android.mensa.ubi.adapter.WeekdayPagerAdapter;
+import de.atomfrede.android.mensa.ubi.data.MealPlan;
+import de.atomfrede.android.mensa.ubi.data.Parser;
+import de.atomfrede.android.mensa.ubi.meal.WeeklyMealFragment;
 
 public class MensaActivity extends AbstractWeeklyMenuActivity {
 
@@ -36,15 +41,26 @@ public class MensaActivity extends AbstractWeeklyMenuActivity {
 
 		getSupportActionBar().setTitle(getResources().getString(R.string.mensa_title));
 
-		mPager = (ViewPager) findViewById(R.id.pager);
-		mAdapter = new WeekdayPagerAdapter(getSupportFragmentManager(), weekdays, Constants.LOC_MENSA);
-		mPager.setAdapter(mAdapter);
-
-		TitlePageIndicator indicator = (TitlePageIndicator) findViewById(R.id.indicator);
-		indicator.setViewPager(mPager);
-		indicator.setFooterIndicatorStyle(IndicatorStyle.Triangle);
-		mIndicator = indicator;
-
-		selectInitialDay();
 	}
+	
+	@Override
+	public void onResume(){
+		super.onResume();
+		FragmentManager fm = getSupportFragmentManager();
+		FragmentTransaction fmt = fm.beginTransaction();
+		
+		fmt.add(R.id.fragment_container, WeeklyMealFragment.newInstance(Constants.MENSA_XML_KEY, Constants.mensaUrl, Constants.LOC_MENSA));
+		fmt.commit();
+		
+	}
+	
+	@Override
+	protected void reloadData(){
+		try{
+			MealPlan.getInstance().setMensaMenu(Parser.parseMenu(true, settings.getString(Constants.MENSA_XML_KEY, null), settings, Constants.mensaUrl, Constants.MENSA_XML_KEY));
+		}catch(Exception e){
+			
+		}
+	}
+
 }
