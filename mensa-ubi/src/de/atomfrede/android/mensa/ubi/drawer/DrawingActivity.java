@@ -3,8 +3,7 @@ package de.atomfrede.android.mensa.ubi.drawer;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.simonvt.menudrawer.MenuDrawer;
-import net.simonvt.menudrawer.Position;
+import net.simonvt.menudrawer.*;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -66,8 +65,9 @@ public class DrawingActivity extends SherlockFragmentActivity implements MenuAda
 		super.onResume();
 		afterInject();
 	}
+	
 	void afterInject() {
-		mMenuDrawer = MenuDrawer.attach(this, MenuDrawer.Type.BEHIND, getDrawerPosition(), getDragMode());
+		mMenuDrawer = DraggableDrawer.attach(this, MenuDrawer.Type.BEHIND, getDrawerPosition(), getDragMode());
 		
 //		mMenuDrawer.setTouchMode(MenuDrawer.TOUCH_MODE_FULLSCREEN);
 		
@@ -126,7 +126,9 @@ public class DrawingActivity extends SherlockFragmentActivity implements MenuAda
 				// Do nothing
 			}
 		});
-
+		
+		//Peek The Drawer for new Users...
+		//mMenuDrawer.peekDrawer();
 	}
 
 	protected void onMenuItemClicked(int position, Item item) {
