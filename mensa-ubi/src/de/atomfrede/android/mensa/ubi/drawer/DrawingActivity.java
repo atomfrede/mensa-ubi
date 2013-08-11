@@ -88,6 +88,9 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 				if (newState == MenuDrawer.STATE_CLOSED) {
 					commitTransactions();
 				}
+				if(!drawerAtLeastUsedOnce){
+					drawerUsed();
+				}
 			}
 
 			@Override
@@ -104,12 +107,9 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 		
 	}
 	
-	void maybePeekDrawer(){
-		//Peek The Drawer for new Users...
-				//mMenuDrawer.peekDrawer();
-	}
 	
-	void setupDrawer(){
+	
+	protected void setupDrawer(){
 		mMenuDrawer = DraggableDrawer.attach(this, MenuDrawer.Type.BEHIND, getDrawerPosition(), getDragMode());
 		
 		//		mMenuDrawer.setTouchMode(MenuDrawer.TOUCH_MODE_FULLSCREEN);
@@ -151,14 +151,6 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 		currentLocation = item.id;
 		mOldActivePosition = position;
 		mMenuDrawer.closeMenu();
-	}
-
-	protected int getDragMode() {
-		return MenuDrawer.MENU_DRAG_CONTENT;
-	}
-
-	protected Position getDrawerPosition() {
-		return Position.LEFT;
 	}
 
 	protected FragmentTransaction ensureTransaction() {

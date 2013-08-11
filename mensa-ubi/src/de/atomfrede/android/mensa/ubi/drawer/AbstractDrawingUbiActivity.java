@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.simonvt.menudrawer.MenuDrawer;
+import net.simonvt.menudrawer.Position;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.text.method.LinkMovementMethod;
@@ -18,13 +20,17 @@ import android.widget.TextView;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
 
+import de.atomfrede.android.mensa.ubi.Constants;
 import de.atomfrede.android.mensa.ubi.R;
+import de.atomfrede.android.mensa.ubi.location.LocationSelectionActivity;
 
 public abstract class AbstractDrawingUbiActivity extends SherlockFragmentActivity{
 
 	protected static final String TAG = "DrawingActivity";
 	
 	protected MenuDrawer mMenuDrawer;
+	protected boolean drawerAtLeastUsedOnce = false;
+	protected SharedPreferences settings;
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -35,6 +41,29 @@ public abstract class AbstractDrawingUbiActivity extends SherlockFragmentActivit
 		}
 
 		return super.onOptionsItemSelected(item);
+	}
+	
+	protected int getDragMode() {
+		return MenuDrawer.MENU_DRAG_CONTENT;
+	}
+
+	protected Position getDrawerPosition() {
+		return Position.LEFT;
+	}
+	
+	protected void drawerUsed() {
+		drawerAtLeastUsedOnce = true;
+		settings.edit().putBoolean(Constants.drawerAtLeastUsedOnce, true).commit();
+	}
+	
+	protected void maybePeekDrawer(){
+		//Peek The Drawer for new Users...
+				//mMenuDrawer.peekDrawer();
+		settings = getSharedPreferences(Constants.MENSA_PREFS, LocationSelectionActivity.MODE_PRIVATE);
+		drawerAtLeastUsedOnce = settings.getBoolean(Constants.drawerAtLeastUsedOnce, false);
+		if(!drawerAtLeastUsedOnce){
+			mMenuDrawer.peekDrawer();
+		}
 	}
 	
 	protected List<MenuDrawerItem> setupListEntries(){
@@ -50,6 +79,7 @@ public abstract class AbstractDrawingUbiActivity extends SherlockFragmentActivit
 		
 		return items;
 	}
+	
 	public void showAboutDialog() {
 		Dialog dialog = new Dialog(this, getTheme(true));
 
