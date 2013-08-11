@@ -18,13 +18,13 @@ public class MenuAdapter extends BaseAdapter {
 
 	private Context mContext;
 
-	private List<Object> mItems;
+	private List<MenuDrawerItem> mItems;
 
 	private MenuListener mListener;
 
 	private int mActivePosition = -1;
 
-	public MenuAdapter(Context context, List<Object> items) {
+	public MenuAdapter(Context context, List<MenuDrawerItem> items) {
 		mContext = context;
 		mItems = items;
 	}
@@ -49,7 +49,7 @@ public class MenuAdapter extends BaseAdapter {
 
 	@Override
 	public long getItemId(int position) {
-		return position;
+		return mItems.get(position).id;
 	}
 
 	@Override
@@ -93,7 +93,7 @@ public class MenuAdapter extends BaseAdapter {
 			tv.setText(((Item) item).mTitle);
 //			tv.setCompoundDrawablesWithIntrinsicBounds(((Item) item).mIconRes, 0, 0, 0);
 		}
-
+		
 		v.setTag(R.id.mdActiveViewPosition, position);
 		
 		Log.d("MenuAdapter", "Position = "+position +" AND mActivePosition= "+mActivePosition);
