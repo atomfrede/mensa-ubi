@@ -29,8 +29,7 @@
         <item name="android:actionModeBackground">@drawable/cab_background_top_ubi</item>
         <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_ubi</item>
         <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Ubi</item>
-        
-        
+        <item name="menuDrawerStyle">@style/MenuDrawerStyle</item>
     </style>
 
     <style name="ActionBar.Solid.Ubi" parent="@style/Widget.Sherlock.Light.ActionBar.Solid">

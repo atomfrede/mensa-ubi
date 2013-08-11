@@ -22,8 +22,9 @@ import java.util.Calendar;
 
 public class Util {
 
-	public  static int getWeekOfYear() {
+	public static int getWeekOfYear() {
 		Calendar now = Calendar.getInstance();
 		return now.get(Calendar.WEEK_OF_YEAR);
 	}
+	
 }
