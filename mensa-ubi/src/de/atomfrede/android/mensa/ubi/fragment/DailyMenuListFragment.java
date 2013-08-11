@@ -44,13 +44,16 @@ public class DailyMenuListFragment extends SherlockListFragment {
 		if (savedInstanceState != null && menu == null) {
 			menu = (DailyMenu) savedInstanceState.getSerializable("menu");
 		}
-
+	}
+	
+	@Override
+	public void onResume(){
+		super.onResume();
 		MenuListAdapter menuListAdapter = new MenuListAdapter(this.getActivity(), menu.getMenues());
 		setListAdapter(menuListAdapter);
-		setRetainInstance(true);
-		
+//		setRetainInstance(true);
 	}
-
+	
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
