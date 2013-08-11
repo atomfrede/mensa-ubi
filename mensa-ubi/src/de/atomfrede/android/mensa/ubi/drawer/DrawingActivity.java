@@ -70,11 +70,11 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 		if (mCurrentFragmentTag == null || (mCurrentFragmentTag != null && "".equals(mCurrentFragmentTag.trim()))) {
 			// No fragment yet used, attach a new one
 			mCurrentFragmentTag = ((Item) mAdapter.getItem(1)).mTitle;
-			attachFragment(mMenuDrawer.getContentContainer().getId(), getFragment(mCurrentFragmentTag, 0, true), mCurrentFragmentTag);
+			attachFragment(mMenuDrawer.getContentContainer().getId(), getFragment(mCurrentFragmentTag+"_0", 0, true), mCurrentFragmentTag);
 			commitTransactions();
 		}else{
 			mCurrentFragmentTag = ((Item) mAdapter.getItem(mActivePosition)).mTitle;
-			attachFragment(mMenuDrawer.getContentContainer().getId(), getFragment("", currentLocation, true), mCurrentFragmentTag);
+			attachFragment(mMenuDrawer.getContentContainer().getId(), getFragment(mCurrentFragmentTag, currentLocation, true), mCurrentFragmentTag);
 			commitTransactions();
 		}
 
@@ -144,7 +144,7 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 		if (position != mOldActivePosition) {
 			if (mCurrentFragmentTag != null)
 				detachFragment(getFragment(mCurrentFragmentTag, item.id, false));
-			attachFragment(mMenuDrawer.getContentContainer().getId(), getFragment(item.mTitle, item.id, false), item.mTitle);
+			attachFragment(mMenuDrawer.getContentContainer().getId(), getFragment(item.mTitle+"_"+item.id, item.id, false), item.mTitle);
 			mCurrentFragmentTag = item.mTitle;
 			
 		}
@@ -165,15 +165,36 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 	private Fragment getFragment(String tag, int location, boolean force) {
 		Fragment f = mFragmentManager.findFragmentByTag(tag);
 		
-		Log.d("MenuApdater", "Fragment found for tag f "+f);
+		Log.d("MenuApdater", "Fragment found for tag f "+f+" and requested location "+location);
 		if (f == null || force) {
-			if(location == Constants.LOC_MENSA){
+			switch (location) {
+			case Constants.LOC_MENSA:
 				f = WeeklyMealFragment_.newInstance(Constants.MENSA_XML_KEY, Constants.mensaUrl, location);
-			}
-			if(location == Constants.LOC_WESTEND_RESTAURANT){
+				break;
+			case Constants.LOC_WESTEND_RESTAURANT:
 				f = WeeklyMealFragment_.newInstance(Constants.WESTEND_RESTAURANT_XML_KEY, Constants.westendRestaurantUrl, location);
+				break;
+			case Constants.LOC_DETMOLD:
+				f = WeeklyMealFragment_.newInstance(Constants.DETMOLD_XML_KEY, Constants.detmoldUrl, location);
+				break;
+			case Constants.LOC_HOEXTER:
+				f = WeeklyMealFragment_.newInstance(Constants.HOEXTER_XML_KEY, Constants.hoexterUrl, location);
+				break;
+			case Constants.LOC_KURT_SCHUHMACHER:
+				f = WeeklyMealFragment_.newInstance(Constants.KURT_SCHUMACHER_XML_KEY, Constants.fhKurtSchumacherUrl, location);
+				break;
+			case Constants.LOC_LEMGO:
+				f = WeeklyMealFragment_.newInstance(Constants.LEMGO_XML_KEY, Constants.lemgoUrl, location);
+				break;
+			case Constants.LOC_WILHELM_BERTELSMANN:
+				f = WeeklyMealFragment_.newInstance(Constants.WILHELM_BERTELSMANN_XML_KEY, Constants.wilhelmBerterlsmannUrl, location);
+				break;
+			case Constants.LOC_MUSIC:
+				f = WeeklyMealFragment_.newInstance(Constants.MUSIC_XML_KEY, Constants.musicUrl, location);
+				break;
+			default:
+				break;
 			}
-			
 		}
 		return f;
 	}

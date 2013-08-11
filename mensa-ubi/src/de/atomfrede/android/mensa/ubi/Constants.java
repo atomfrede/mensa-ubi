@@ -24,19 +24,19 @@ public class Constants {
 	public static final int LOC_WESTEND_RESTAURANT = 1;
 	public static final int LOC_KURT_SCHUHMACHER = 2;
 	public static final int LOC_WILHELM_BERTELSMANN = 3;
-	public static final int LOC_DETMOLD = 5;
-	public static final int LOC_LEMGO = 6;
-	public static final int LOC_HOEXTER = 7;
-	public static final int LOC_MUSIC = 8;
+	public static final int LOC_DETMOLD = 4;
+	public static final int LOC_LEMGO = 5;
+	public static final int LOC_HOEXTER = 6;
+	public static final int LOC_MUSIC = 7;
 	
 	public static final int LOC_MENSA_NEXT_WEEK = 10;
 	public static final int LOC_WESTEND_RESTAURANT_NEXT_WEEK = 11;
 	public static final int LOC_KURT_SCHUHMACHER_NEXT_WEEK = 12;
 	public static final int LOC_WILHELM_BERTELSMANN_NEXT_WEEK = 13;
-	public static final int LOC_DETMOLD_NEXT_WEEK = 15;
-	public static final int LOC_LEMGO_NEXT_WEEK = 16;
-	public static final int LOC_HOEXTER_NEXT_WEEK = 17;
-	public static final int LOC_MUSIC_NEXT_WEEK = 18;
+	public static final int LOC_DETMOLD_NEXT_WEEK = 14;
+	public static final int LOC_LEMGO_NEXT_WEEK = 15;
+	public static final int LOC_HOEXTER_NEXT_WEEK = 16;
+	public static final int LOC_MUSIC_NEXT_WEEK = 17;
 
 	public static final int DAY_MONDAY = 0;
 	public static final int DAY_TUESDAY = 1;
@@ -77,7 +77,7 @@ public class Constants {
 	public static final String KURT_SCHUMACHER_NEXT_XML_KEY = "kurtSchumacherNextXml";
 	
 	public static final String WILHELM_BERTELSMANN_XML_KEY = "wilhelmBertelsmannXml";
-	public static final String WILHEML_BERTELSMANN_XML_KEY = "wilhelmBertelsmannNextXml";
+	public static final String WILHELM_BERTELSMANN_NEXT_XML_KEY = "wilhelmBertelsmannNextXml";
 	
 	public static final String DETMOLD_XML_KEY = "detmoldeXml";
 	public static final String DETMOLD_NEXT_XML_KEY = "detmoldNextXml"; 

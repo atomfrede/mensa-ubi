@@ -321,9 +321,7 @@ public class WeeklyMealFragment extends SherlockFragment {
 			switch (locationKey) {
 			case Constants.LOC_MENSA:{
 				boolean updateRequired = updateRequired(Constants.MENSA_LAST_UPDATE);
-				Log.d(TAG, "Update Required = "+updateRequired);
 				MealPlan.getInstance().setMensaMenu(Parser.parseMenu(updateRequired, settings.getString(xmlKey, null), settings, url, xmlKey));
-				Log.d(TAG, "Loading done...");
 				settings.edit().putInt(Constants.MENSA_LAST_UPDATE, Util.getWeekOfYear()).commit();
 				break;
 			}case Constants.LOC_MENSA_NEXT_WEEK:{
