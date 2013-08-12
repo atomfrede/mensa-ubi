@@ -3,7 +3,6 @@ package de.atomfrede.android.mensa.ubi.drawer;
 import java.util.List;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.*;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
@@ -90,15 +89,17 @@ public class MenuAdapter extends BaseAdapter {
 			}
 
 			TextView tv = (TextView) v;
+			tv.setId(position);
 			tv.setText(((Item) item).mTitle);
 //			tv.setCompoundDrawablesWithIntrinsicBounds(((Item) item).mIconRes, 0, 0, 0);
 		}
 		
 		v.setTag(R.id.mdActiveViewPosition, position);
 		
-		Log.d("MenuAdapter", "Position = "+position +" AND mActivePosition= "+mActivePosition);
 		if (position == mActivePosition) {
 			mListener.onActiveViewChanged(v);
+			v.setSelected(true);
+			v.setEnabled(true);
 		}
 
 		return v;

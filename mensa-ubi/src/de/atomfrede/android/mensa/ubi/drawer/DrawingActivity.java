@@ -3,6 +3,7 @@ package de.atomfrede.android.mensa.ubi.drawer;
 import java.util.List;
 
 import net.simonvt.menudrawer.*;
+import android.R.attr;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.*;
@@ -53,7 +54,10 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 			mCurrentFragmentTag = savedInstanceState.getString(STATE_CURRENT_FRAGMENT);
 			currentLocation = savedInstanceState.getInt(STATE_CURRENT_POSITION);
 			mOldActivePosition = mActivePosition;
+			
+			
 		}
+		
 	}
 	
 	@Override
@@ -64,7 +68,7 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 	
 	void afterInject() {
 		setupDrawer();
-
+		
 		mFragmentManager = getSupportFragmentManager();
 
 		if (mCurrentFragmentTag == null || (mCurrentFragmentTag != null && "".equals(mCurrentFragmentTag.trim()))) {
@@ -78,6 +82,8 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 			commitTransactions();
 		}
 
+		mList.performItemClick(mList, mActivePosition, mList.getItemIdAtPosition(mActivePosition));
+		
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
 			getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
@@ -101,19 +107,66 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 		
 		maybePeekDrawer();
 		
+		setTitles(null);
+		
+		mList.setSelection(mActivePosition);
+		
 	}
 
 	void setupActionbar(){
 		
 	}
 	
+	void setTitles(String newSubTitle){
+		List<MenuDrawerItem> items = setupListEntries();
+		
+		
+		switch (currentLocation) {
+		case Constants.LOC_MENSA:
+			newSubTitle = ((Item)items.get(0)).mTitle;
+			getSupportActionBar().setTitle(getResources().getString(R.string.drawer_head_uni));
+			break;
+		case Constants.LOC_WESTEND_RESTAURANT:
+			newSubTitle = ((Item)items.get(1)).mTitle;
+			getSupportActionBar().setTitle(getResources().getString(R.string.drawer_head_uni));
+			break;
+		case Constants.LOC_KURT_SCHUHMACHER:
+			newSubTitle = ((Item)items.get(2)).mTitle;
+			getSupportActionBar().setTitle(getResources().getString(R.string.drawer_header_fh_bielefeld));
+			break;
+		case Constants.LOC_WILHELM_BERTELSMANN:
+			newSubTitle = ((Item)items.get(3)).mTitle;
+			getSupportActionBar().setTitle(getResources().getString(R.string.drawer_header_fh_bielefeld));
+			break;
+		case Constants.LOC_DETMOLD:
+			newSubTitle = ((Item)items.get(4)).mTitle;
+			getSupportActionBar().setTitle(getResources().getString(R.string.drawer_header_hs_owl));
+			break;
+		case Constants.LOC_LEMGO:
+			newSubTitle = ((Item)items.get(5)).mTitle;
+			getSupportActionBar().setTitle(getResources().getString(R.string.drawer_header_hs_owl));
+			break;
+		case Constants.LOC_HOEXTER:
+			newSubTitle = ((Item)items.get(6)).mTitle;
+			getSupportActionBar().setTitle(getResources().getString(R.string.drawer_header_hs_owl));
+			break;
+		case Constants.LOC_MUSIC:
+			newSubTitle = ((Item)items.get(7)).mTitle;
+			getSupportActionBar().setTitle(getResources().getString(R.string.drawer_header_musik));
+			break;
+		default:
+			break;
+		}
+		
+		getSupportActionBar().setSubtitle(newSubTitle);
+	}
+	
 	
 	
 	protected void setupDrawer(){
-		mMenuDrawer = DraggableDrawer.attach(this, MenuDrawer.Type.BEHIND, getDrawerPosition(), getDragMode());
+		mMenuDrawer = OverlayDrawer.attach(this, MenuDrawer.Type.OVERLAY, getDrawerPosition(), getDragMode());
 		
 		//		mMenuDrawer.setTouchMode(MenuDrawer.TOUCH_MODE_FULLSCREEN);
-		
 		
 		List<MenuDrawerItem> items = setupListEntries();
 
@@ -124,7 +177,9 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 
 		mList = new ListView(this);
 //		mList.setPadding(0, 53, 0, 0);
-
+		
+		mList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+		
 		mAdapter = new MenuAdapter(this, items);
 		mAdapter.setListener(this);
 		mAdapter.setActivePosition(mActivePosition);
@@ -132,12 +187,15 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 		mList.setAdapter(mAdapter);
 		mList.setOnItemClickListener(mItemClickListener);
 
+		mList.setSelection(mActivePosition);
 		mMenuDrawer.setMenuView(mList);
 
 		// The drawable that replaces the up indicator in the action bar
 		mMenuDrawer.setSlideDrawable(R.drawable.ic_drawer);
 		// Whether the previous drawable should be shown
 		mMenuDrawer.setDrawerIndicatorEnabled(true);
+		
+		
 	}
 	
 	protected void onMenuItemClicked(int position, Item item) {
@@ -148,8 +206,10 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 			mCurrentFragmentTag = item.mTitle;
 			
 		}
+		
 		currentLocation = item.id;
 		mOldActivePosition = position;
+		setTitles(item.mTitle);
 		mMenuDrawer.closeMenu();
 	}
 
@@ -239,7 +299,6 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 
 	@Override
 	public void onActiveViewChanged(View v) {
-		Log.d("MenuAdapter", "onActiveViewChange with postion "+mActivePosition);
 		mMenuDrawer.setActiveView(v, mActivePosition);
 	}
 
