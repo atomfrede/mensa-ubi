@@ -13,7 +13,7 @@
         <item name="android:ellipsize">end</item>
     </style>
 
-    <style name="MenuDrawer" />
+    <style name="MenuDrawer"/>
 
     <style name="MenuDrawer.Widget" />
 

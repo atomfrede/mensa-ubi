@@ -31,6 +31,7 @@ public abstract class AbstractDrawingUbiActivity extends SherlockFragmentActivit
 	protected MenuDrawer mMenuDrawer;
 	protected boolean drawerAtLeastUsedOnce = false;
 	protected SharedPreferences settings;
+	protected boolean useStaticDrawer = false;
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {

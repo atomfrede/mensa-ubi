@@ -2,16 +2,16 @@ package de.atomfrede.android.mensa.ubi.drawer;
 
 import java.util.List;
 
-import net.simonvt.menudrawer.*;
-import android.R.attr;
+import net.simonvt.menudrawer.MenuDrawer;
+import net.simonvt.menudrawer.OverlayDrawer;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.*;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.*;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.googlecode.androidannotations.annotations.*;
 
 import de.atomfrede.android.mensa.ubi.Constants;
@@ -26,8 +26,8 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 	private static final String STATE_CURRENT_FRAGMENT = "net.simonvt.menudrawer.samples.FragmentSample";
 	private static final String STATE_CURRENT_POSITION = "de.atomfrede.android.mensa.ubi.currentPosition";
 
+	SpinnerAdapter mSpinnerAdapter;
 	
-
 	MenuAdapter mAdapter;
 	ListView mList;
 
@@ -54,10 +54,9 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 			mCurrentFragmentTag = savedInstanceState.getString(STATE_CURRENT_FRAGMENT);
 			currentLocation = savedInstanceState.getInt(STATE_CURRENT_POSITION);
 			mOldActivePosition = mActivePosition;
-			
-			
 		}
 		
+		useStaticDrawer = getResources().getString(R.string.use_static_drawer).equals("true");
 	}
 	
 	@Override
@@ -71,20 +70,11 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 		
 		mFragmentManager = getSupportFragmentManager();
 
-		if (mCurrentFragmentTag == null || (mCurrentFragmentTag != null && "".equals(mCurrentFragmentTag.trim()))) {
-			// No fragment yet used, attach a new one
-			mCurrentFragmentTag = ((Item) mAdapter.getItem(1)).mTitle;
-			attachFragment(mMenuDrawer.getContentContainer().getId(), getFragment(mCurrentFragmentTag+"_0", 0, true), mCurrentFragmentTag);
-			commitTransactions();
-		}else{
-			mCurrentFragmentTag = ((Item) mAdapter.getItem(mActivePosition)).mTitle;
-			attachFragment(mMenuDrawer.getContentContainer().getId(), getFragment(mCurrentFragmentTag, currentLocation, true), mCurrentFragmentTag);
-			commitTransactions();
-		}
-
+		exchangeFragment();
+		
 		mList.performItemClick(mList, mActivePosition, mList.getItemIdAtPosition(mActivePosition));
 		
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH && !useStaticDrawer) {
 			getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
 
@@ -105,22 +95,74 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 			}
 		});
 		
-		maybePeekDrawer();
+		if(!useStaticDrawer){
+			maybePeekDrawer();
+		}
 		
 		setTitles(null);
 		
 		mList.setSelection(mActivePosition);
 		
+		setupActionbar();
+		
 	}
 
+	void exchangeFragment(){
+		if (mCurrentFragmentTag == null || (mCurrentFragmentTag != null && "".equals(mCurrentFragmentTag.trim()))) {
+			// No fragment yet used, attach a new one
+			mCurrentFragmentTag = ((Item) mAdapter.getItem(1)).mTitle;
+			attachFragment(mMenuDrawer.getContentContainer().getId(), getFragment(mCurrentFragmentTag+"_0", 0, true), mCurrentFragmentTag);
+			commitTransactions();
+		}else{
+			mCurrentFragmentTag = ((Item) mAdapter.getItem(mActivePosition)).mTitle+"_"+currentLocation;
+			Log.d("Fragment", "Current Fragment Tag "+mCurrentFragmentTag);
+			attachFragment(mMenuDrawer.getContentContainer().getId(), getFragment(mCurrentFragmentTag, currentLocation, true), mCurrentFragmentTag);
+			commitTransactions();
+		}
+	}
+	
 	void setupActionbar(){
+		getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 		
+		mSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.mensa_dropdown,
+		          android.R.layout.simple_spinner_dropdown_item);
+		
+		
+		getSupportActionBar().setListNavigationCallbacks(mSpinnerAdapter, new ActionBar.OnNavigationListener() {
+			
+			@Override
+			public boolean onNavigationItemSelected(int itemPosition, long itemId) {
+				int oldCurrentLocation = currentLocation;
+				if(itemPosition == 0){
+					//normal week
+					//is normal week already selected -> do nothing
+					if(currentLocation<10){
+						return true;
+					}else{
+						currentLocation = currentLocation-10;
+					}
+					
+				}else{
+					//next week selected
+					//is next week already selected -> do nothing
+					if(currentLocation >= 10){
+						return true;
+					}else{
+						currentLocation = currentLocation+10;
+					}
+				}
+				if (mCurrentFragmentTag != null)
+					detachFragment(getFragment(mCurrentFragmentTag, oldCurrentLocation, false));
+				
+				exchangeFragment();
+				return true;
+			}
+		});
+//		getSupportActionBar().setSelectedNavigationItem(currentLocation);
 	}
 	
 	void setTitles(String newSubTitle){
 		List<MenuDrawerItem> items = setupListEntries();
-		
-		
 		switch (currentLocation) {
 		case Constants.LOC_MENSA:
 			newSubTitle = ((Item)items.get(0)).mTitle;
@@ -157,14 +199,17 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 		default:
 			break;
 		}
-		
 		getSupportActionBar().setSubtitle(newSubTitle);
 	}
 	
 	
 	
 	protected void setupDrawer(){
-		mMenuDrawer = OverlayDrawer.attach(this, MenuDrawer.Type.OVERLAY, getDrawerPosition(), getDragMode());
+		if(useStaticDrawer){
+			mMenuDrawer = OverlayDrawer.attach(this, MenuDrawer.Type.STATIC, getDrawerPosition(), getDragMode());
+		}else{
+			mMenuDrawer = OverlayDrawer.attach(this, MenuDrawer.Type.OVERLAY, getDrawerPosition(), getDragMode());
+		}
 		
 		//		mMenuDrawer.setTouchMode(MenuDrawer.TOUCH_MODE_FULLSCREEN);
 		
@@ -204,13 +249,14 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 				detachFragment(getFragment(mCurrentFragmentTag, item.id, false));
 			attachFragment(mMenuDrawer.getContentContainer().getId(), getFragment(item.mTitle+"_"+item.id, item.id, false), item.mTitle);
 			mCurrentFragmentTag = item.mTitle;
-			
 		}
-		
 		currentLocation = item.id;
 		mOldActivePosition = position;
 		setTitles(item.mTitle);
 		mMenuDrawer.closeMenu();
+		if(useStaticDrawer){
+			commitTransactions();
+		}
 	}
 
 	protected FragmentTransaction ensureTransaction() {
@@ -230,6 +276,9 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 			switch (location) {
 			case Constants.LOC_MENSA:
 				f = WeeklyMealFragment_.newInstance(Constants.MENSA_XML_KEY, Constants.mensaUrl, location);
+				break;
+			case Constants.LOC_MENSA_NEXT_WEEK:
+				f = WeeklyMealFragment_.newInstance(Constants.MENSA_NEXT_XML_KEY, Constants.mensaUrlNextWeek, location);
 				break;
 			case Constants.LOC_WESTEND_RESTAURANT:
 				f = WeeklyMealFragment_.newInstance(Constants.WESTEND_RESTAURANT_XML_KEY, Constants.westendRestaurantUrl, location);
