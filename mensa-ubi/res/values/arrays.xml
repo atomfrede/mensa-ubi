@@ -36,8 +36,8 @@
         <item>Fri</item>
     </string-array>
     <string-array name="mensa_dropdown">
-        <item>Aktuelle Woche</item>
-        <item>Nächste Woche</item>
+        <item>Akt. Wo.</item>
+        <item>Näch. Wo.</item>
     </string-array>
     <string-array name="westend_dropdown">
         <item>Westend Restaurant</item>
