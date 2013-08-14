@@ -30,6 +30,7 @@ import de.atomfrede.android.mensa.ubi.data.MealPlan;
 import de.atomfrede.android.mensa.ubi.data.Parser;
 import de.atomfrede.android.mensa.ubi.meal.WeeklyMealFragment;
 
+@Deprecated
 @EActivity
 public class MusicActivity extends AbstractWeeklyMenuActivity {
 

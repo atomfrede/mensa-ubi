@@ -42,7 +42,7 @@ import de.atomfrede.android.mensa.ubi.Constants;
 import de.atomfrede.android.mensa.ubi.R;
 import de.atomfrede.android.mensa.ubi.adapter.WeekdayPagerAdapter;
 import de.atomfrede.android.mensa.ubi.location.LocationSelectionActivity;
-
+@Deprecated
 public abstract class AbstractWeeklyMenuActivity extends SherlockFragmentActivity {
 
 	protected String[] weekdays;

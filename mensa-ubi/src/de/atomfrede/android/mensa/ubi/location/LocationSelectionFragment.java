@@ -36,6 +36,7 @@ import de.atomfrede.android.mensa.ubi.activity.meals.weekly.hs.owl.*;
 import de.atomfrede.android.mensa.ubi.activity.meals.weekly.ubi.MensaActivity_;
 import de.atomfrede.android.mensa.ubi.activity.meals.weekly.ubi.WestendRestaurantActivity_;
 
+@Deprecated
 @EFragment(R.layout.fragment_location_selection)
 public class LocationSelectionFragment extends SherlockFragment {
 

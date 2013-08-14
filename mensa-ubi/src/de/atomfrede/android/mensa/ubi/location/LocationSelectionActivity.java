@@ -33,6 +33,7 @@ import com.googlecode.androidannotations.annotations.*;
 
 import de.atomfrede.android.mensa.ubi.R;
 
+@Deprecated
 @OptionsMenu(R.menu.main)
 @EActivity(R.layout.activity_location_selection)
 public class LocationSelectionActivity extends SherlockFragmentActivity {
