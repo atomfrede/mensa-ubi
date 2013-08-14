@@ -33,6 +33,11 @@ public abstract class AbstractDrawingUbiActivity extends SherlockFragmentActivit
 	protected SharedPreferences settings;
 	protected boolean useStaticDrawer = false;
 	
+	/**
+	 * The Spinner Location
+	 */
+	int selectedSpinnerValue = 0;
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -50,6 +55,14 @@ public abstract class AbstractDrawingUbiActivity extends SherlockFragmentActivit
 
 	protected Position getDrawerPosition() {
 		return Position.LEFT;
+	}
+	
+	protected int computeLocation(int positionClickedOn){
+		if(selectedSpinnerValue == 0){
+			return positionClickedOn;
+		}else{
+			return positionClickedOn + 10;
+		}
 	}
 	
 	protected void drawerUsed() {

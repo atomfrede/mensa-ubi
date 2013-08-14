@@ -25,6 +25,7 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 	private static final String STATE_ACTIVE_POSITION = "net.simonvt.menudrawer.samples.LeftDrawerSample.activePosition";
 	private static final String STATE_CURRENT_FRAGMENT = "net.simonvt.menudrawer.samples.FragmentSample";
 	private static final String STATE_CURRENT_POSITION = "de.atomfrede.android.mensa.ubi.currentPosition";
+	private static final String STATE_SELECT_SPINNER = "de,atomfrede.android.mensa.ubi.selctedSpinner";
 
 	SpinnerAdapter mSpinnerAdapter;
 	
@@ -53,6 +54,7 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 			mActivePosition = savedInstanceState.getInt(STATE_ACTIVE_POSITION);
 			mCurrentFragmentTag = savedInstanceState.getString(STATE_CURRENT_FRAGMENT);
 			currentLocation = savedInstanceState.getInt(STATE_CURRENT_POSITION);
+			selectedSpinnerValue = savedInstanceState.getInt(STATE_SELECT_SPINNER);
 			mOldActivePosition = mActivePosition;
 		}
 		
@@ -70,10 +72,6 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 		
 		mFragmentManager = getSupportFragmentManager();
 
-		exchangeFragment();
-		
-		mList.performItemClick(mList, mActivePosition, mList.getItemIdAtPosition(mActivePosition));
-		
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH && !useStaticDrawer) {
 			getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
@@ -99,11 +97,15 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 			maybePeekDrawer();
 		}
 		
+		setupActionbar();
+		
 		setTitles(null);
 		
 		mList.setSelection(mActivePosition);
 		
-		setupActionbar();
+		mList.performItemClick(mList, mActivePosition, mList.getItemIdAtPosition(mActivePosition));
+		
+		exchangeFragment();
 		
 	}
 
@@ -114,7 +116,7 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 			attachFragment(mMenuDrawer.getContentContainer().getId(), getFragment(mCurrentFragmentTag+"_0", 0, true), mCurrentFragmentTag);
 			commitTransactions();
 		}else{
-			mCurrentFragmentTag = ((Item) mAdapter.getItem(mActivePosition)).mTitle+"_"+currentLocation;
+			mCurrentFragmentTag = ((Item) mAdapter.getItem(mActivePosition)).mTitle+"_"+selectedSpinnerValue;
 			Log.d("Fragment", "Current Fragment Tag "+mCurrentFragmentTag);
 			attachFragment(mMenuDrawer.getContentContainer().getId(), getFragment(mCurrentFragmentTag, currentLocation, true), mCurrentFragmentTag);
 			commitTransactions();
@@ -132,6 +134,7 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 			
 			@Override
 			public boolean onNavigationItemSelected(int itemPosition, long itemId) {
+				selectedSpinnerValue = itemPosition;
 				int oldCurrentLocation = currentLocation;
 				if(itemPosition == 0){
 					//normal week
@@ -158,7 +161,7 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 				return true;
 			}
 		});
-//		getSupportActionBar().setSelectedNavigationItem(currentLocation);
+		getSupportActionBar().setSelectedNavigationItem(selectedSpinnerValue);
 	}
 	
 	void setTitles(String newSubTitle){
@@ -239,18 +242,16 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 		mMenuDrawer.setSlideDrawable(R.drawable.ic_drawer);
 		// Whether the previous drawable should be shown
 		mMenuDrawer.setDrawerIndicatorEnabled(true);
-		
-		
 	}
 	
 	protected void onMenuItemClicked(int position, Item item) {
 		if (position != mOldActivePosition) {
 			if (mCurrentFragmentTag != null)
 				detachFragment(getFragment(mCurrentFragmentTag, item.id, false));
-			attachFragment(mMenuDrawer.getContentContainer().getId(), getFragment(item.mTitle+"_"+item.id, item.id, false), item.mTitle);
+			attachFragment(mMenuDrawer.getContentContainer().getId(), getFragment(item.mTitle+"_"+selectedSpinnerValue, computeLocation(item.id), true), item.mTitle);
 			mCurrentFragmentTag = item.mTitle;
 		}
-		currentLocation = item.id;
+		currentLocation = computeLocation(item.id);
 		mOldActivePosition = position;
 		setTitles(item.mTitle);
 		mMenuDrawer.closeMenu();
@@ -283,23 +284,44 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 			case Constants.LOC_WESTEND_RESTAURANT:
 				f = WeeklyMealFragment_.newInstance(Constants.WESTEND_RESTAURANT_XML_KEY, Constants.westendRestaurantUrl, location);
 				break;
+			case Constants.LOC_WESTEND_RESTAURANT_NEXT_WEEK:
+				f = WeeklyMealFragment_.newInstance(Constants.WESTEND_RESTAURANT_NEXT_XML_KEY, Constants.westendRestaurantUrlNextWeek, location);
+				break;
 			case Constants.LOC_DETMOLD:
 				f = WeeklyMealFragment_.newInstance(Constants.DETMOLD_XML_KEY, Constants.detmoldUrl, location);
+				break;
+			case Constants.LOC_DETMOLD_NEXT_WEEK:
+				f = WeeklyMealFragment_.newInstance(Constants.DETMOLD_NEXT_XML_KEY, Constants.detmoldUrlNextWeek, location);
 				break;
 			case Constants.LOC_HOEXTER:
 				f = WeeklyMealFragment_.newInstance(Constants.HOEXTER_XML_KEY, Constants.hoexterUrl, location);
 				break;
+			case Constants.LOC_HOEXTER_NEXT_WEEK:
+				f = WeeklyMealFragment_.newInstance(Constants.HOEXTER_NEXT_XML_KEY, Constants.hoexterUrlNextWeek, location);
+				break;
 			case Constants.LOC_KURT_SCHUHMACHER:
 				f = WeeklyMealFragment_.newInstance(Constants.KURT_SCHUMACHER_XML_KEY, Constants.fhKurtSchumacherUrl, location);
+				break;
+			case Constants.LOC_KURT_SCHUHMACHER_NEXT_WEEK:
+				f = WeeklyMealFragment_.newInstance(Constants.KURT_SCHUMACHER_NEXT_XML_KEY, Constants.fhKurtSchumacherUrlNextWeek, location);
 				break;
 			case Constants.LOC_LEMGO:
 				f = WeeklyMealFragment_.newInstance(Constants.LEMGO_XML_KEY, Constants.lemgoUrl, location);
 				break;
+			case Constants.LOC_LEMGO_NEXT_WEEK:
+				f = WeeklyMealFragment_.newInstance(Constants.LEMGO_NEXT_XML_KEY, Constants.lemgoUrlNextWeek, location);
+				break;
 			case Constants.LOC_WILHELM_BERTELSMANN:
 				f = WeeklyMealFragment_.newInstance(Constants.WILHELM_BERTELSMANN_XML_KEY, Constants.wilhelmBerterlsmannUrl, location);
 				break;
+			case Constants.LOC_WILHELM_BERTELSMANN_NEXT_WEEK:
+				f = WeeklyMealFragment_.newInstance(Constants.WILHELM_BERTELSMANN_NEXT_XML_KEY, Constants.wilhelmBerterlsmannUrlNextWeek, location);
+				break;
 			case Constants.LOC_MUSIC:
 				f = WeeklyMealFragment_.newInstance(Constants.MUSIC_XML_KEY, Constants.musicUrl, location);
+				break;
+			case Constants.LOC_MUSIC_NEXT_WEEK:
+				f = WeeklyMealFragment_.newInstance(Constants.MUSIC_NEXT_XML_KEY, Constants.musicUrlNextWeek, location);
 				break;
 			default:
 				break;
@@ -373,5 +395,6 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
         outState.putInt(STATE_ACTIVE_POSITION, mActivePosition);
         outState.putString(STATE_CURRENT_FRAGMENT, mCurrentFragmentTag);
         outState.putInt(STATE_CURRENT_POSITION, currentLocation);
+        outState.putInt(STATE_SELECT_SPINNER, selectedSpinnerValue);
     }
 }
