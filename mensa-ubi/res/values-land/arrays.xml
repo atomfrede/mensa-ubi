@@ -30,8 +30,8 @@
         <item>Detmold</item>
     </string-array>
     <string-array name="mensa_dropdown">
-        <item>Akt. Wo.</item>
-        <item>Näch. Wo.</item>
+        <item>Aktuelle Woche</item>
+        <item>Nächste Woche</item>
     </string-array>
     <string-array name="westend_dropdown">
         <item>Westend Restaurant</item>
