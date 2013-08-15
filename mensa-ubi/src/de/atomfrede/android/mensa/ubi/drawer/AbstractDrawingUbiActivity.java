@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
@@ -22,7 +24,7 @@ import com.actionbarsherlock.view.MenuItem;
 
 import de.atomfrede.android.mensa.ubi.Constants;
 import de.atomfrede.android.mensa.ubi.R;
-import de.atomfrede.android.mensa.ubi.location.LocationSelectionActivity;
+import de.atomfrede.android.mensa.ubi.meal.WeeklyMealFragment_;
 
 public abstract class AbstractDrawingUbiActivity extends SherlockFragmentActivity{
 
@@ -33,10 +35,17 @@ public abstract class AbstractDrawingUbiActivity extends SherlockFragmentActivit
 	protected SharedPreferences settings;
 	protected boolean useStaticDrawer = false;
 	
+	FragmentManager mFragmentManager;
+	
 	/**
 	 * The Spinner Location
 	 */
 	int selectedSpinnerValue = 0;
+	
+	/**
+	 * The identifier of the currently display location, according to {@link Constants}
+	 */
+	int currentLocation = 0;
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -73,7 +82,7 @@ public abstract class AbstractDrawingUbiActivity extends SherlockFragmentActivit
 	protected void maybePeekDrawer(){
 		//Peek The Drawer for new Users...
 				//mMenuDrawer.peekDrawer();
-		settings = getSharedPreferences(Constants.MENSA_PREFS, LocationSelectionActivity.MODE_PRIVATE);
+		settings = getSharedPreferences(Constants.MENSA_PREFS, AbstractDrawingUbiActivity.MODE_PRIVATE);
 		drawerAtLeastUsedOnce = settings.getBoolean(Constants.drawerAtLeastUsedOnce, false);
 		if(!drawerAtLeastUsedOnce){
 			mMenuDrawer.peekDrawer();
@@ -145,5 +154,107 @@ public abstract class AbstractDrawingUbiActivity extends SherlockFragmentActivit
 		emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { "atomfrede@gmail.com" });
 
 		startActivity(Intent.createChooser(emailIntent, getResources().getString(R.string.feedback_provide_by)));
+	}
+	
+	protected void setTitles(String newSubTitle){
+		List<MenuDrawerItem> items = setupListEntries();
+		switch (currentLocation) {
+		case Constants.LOC_MENSA:
+			newSubTitle = ((Item)items.get(0)).mTitle;
+			getSupportActionBar().setTitle(getResources().getString(R.string.drawer_head_uni));
+			break;
+		case Constants.LOC_WESTEND_RESTAURANT:
+			newSubTitle = ((Item)items.get(1)).mTitle;
+			getSupportActionBar().setTitle(getResources().getString(R.string.drawer_head_uni));
+			break;
+		case Constants.LOC_KURT_SCHUHMACHER:
+			newSubTitle = ((Item)items.get(2)).mTitle;
+			getSupportActionBar().setTitle(getResources().getString(R.string.drawer_header_fh_bielefeld));
+			break;
+		case Constants.LOC_WILHELM_BERTELSMANN:
+			newSubTitle = ((Item)items.get(3)).mTitle;
+			getSupportActionBar().setTitle(getResources().getString(R.string.drawer_header_fh_bielefeld));
+			break;
+		case Constants.LOC_DETMOLD:
+			newSubTitle = ((Item)items.get(4)).mTitle;
+			getSupportActionBar().setTitle(getResources().getString(R.string.drawer_header_hs_owl));
+			break;
+		case Constants.LOC_LEMGO:
+			newSubTitle = ((Item)items.get(5)).mTitle;
+			getSupportActionBar().setTitle(getResources().getString(R.string.drawer_header_hs_owl));
+			break;
+		case Constants.LOC_HOEXTER:
+			newSubTitle = ((Item)items.get(6)).mTitle;
+			getSupportActionBar().setTitle(getResources().getString(R.string.drawer_header_hs_owl));
+			break;
+		case Constants.LOC_MUSIC:
+			newSubTitle = ((Item)items.get(7)).mTitle;
+			getSupportActionBar().setTitle(getResources().getString(R.string.drawer_header_musik));
+			break;
+		default:
+			break;
+		}
+		getSupportActionBar().setSubtitle(newSubTitle);
+	}
+	
+	protected Fragment getFragment(String tag, int location, boolean force) {
+		Fragment f = mFragmentManager.findFragmentByTag(tag);
+		
+		Log.d("MenuApdater", "Fragment found for tag f "+f+" and requested location "+location);
+		if (f == null || force) {
+			switch (location) {
+			case Constants.LOC_MENSA:
+				f = WeeklyMealFragment_.newInstance(Constants.MENSA_XML_KEY, Constants.mensaUrl, location);
+				break;
+			case Constants.LOC_MENSA_NEXT_WEEK:
+				f = WeeklyMealFragment_.newInstance(Constants.MENSA_NEXT_XML_KEY, Constants.mensaUrlNextWeek, location);
+				break;
+			case Constants.LOC_WESTEND_RESTAURANT:
+				f = WeeklyMealFragment_.newInstance(Constants.WESTEND_RESTAURANT_XML_KEY, Constants.westendRestaurantUrl, location);
+				break;
+			case Constants.LOC_WESTEND_RESTAURANT_NEXT_WEEK:
+				f = WeeklyMealFragment_.newInstance(Constants.WESTEND_RESTAURANT_NEXT_XML_KEY, Constants.westendRestaurantUrlNextWeek, location);
+				break;
+			case Constants.LOC_DETMOLD:
+				f = WeeklyMealFragment_.newInstance(Constants.DETMOLD_XML_KEY, Constants.detmoldUrl, location);
+				break;
+			case Constants.LOC_DETMOLD_NEXT_WEEK:
+				f = WeeklyMealFragment_.newInstance(Constants.DETMOLD_NEXT_XML_KEY, Constants.detmoldUrlNextWeek, location);
+				break;
+			case Constants.LOC_HOEXTER:
+				f = WeeklyMealFragment_.newInstance(Constants.HOEXTER_XML_KEY, Constants.hoexterUrl, location);
+				break;
+			case Constants.LOC_HOEXTER_NEXT_WEEK:
+				f = WeeklyMealFragment_.newInstance(Constants.HOEXTER_NEXT_XML_KEY, Constants.hoexterUrlNextWeek, location);
+				break;
+			case Constants.LOC_KURT_SCHUHMACHER:
+				f = WeeklyMealFragment_.newInstance(Constants.KURT_SCHUMACHER_XML_KEY, Constants.fhKurtSchumacherUrl, location);
+				break;
+			case Constants.LOC_KURT_SCHUHMACHER_NEXT_WEEK:
+				f = WeeklyMealFragment_.newInstance(Constants.KURT_SCHUMACHER_NEXT_XML_KEY, Constants.fhKurtSchumacherUrlNextWeek, location);
+				break;
+			case Constants.LOC_LEMGO:
+				f = WeeklyMealFragment_.newInstance(Constants.LEMGO_XML_KEY, Constants.lemgoUrl, location);
+				break;
+			case Constants.LOC_LEMGO_NEXT_WEEK:
+				f = WeeklyMealFragment_.newInstance(Constants.LEMGO_NEXT_XML_KEY, Constants.lemgoUrlNextWeek, location);
+				break;
+			case Constants.LOC_WILHELM_BERTELSMANN:
+				f = WeeklyMealFragment_.newInstance(Constants.WILHELM_BERTELSMANN_XML_KEY, Constants.wilhelmBerterlsmannUrl, location);
+				break;
+			case Constants.LOC_WILHELM_BERTELSMANN_NEXT_WEEK:
+				f = WeeklyMealFragment_.newInstance(Constants.WILHELM_BERTELSMANN_NEXT_XML_KEY, Constants.wilhelmBerterlsmannUrlNextWeek, location);
+				break;
+			case Constants.LOC_MUSIC:
+				f = WeeklyMealFragment_.newInstance(Constants.MUSIC_XML_KEY, Constants.musicUrl, location);
+				break;
+			case Constants.LOC_MUSIC_NEXT_WEEK:
+				f = WeeklyMealFragment_.newInstance(Constants.MUSIC_NEXT_XML_KEY, Constants.musicUrlNextWeek, location);
+				break;
+			default:
+				break;
+			}
+		}
+		return f;
 	}
 }

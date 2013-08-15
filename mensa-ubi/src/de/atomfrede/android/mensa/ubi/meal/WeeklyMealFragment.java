@@ -1,7 +1,5 @@
 package de.atomfrede.android.mensa.ubi.meal;
 
-
-
 import java.util.Calendar;
 
 import android.content.SharedPreferences;
@@ -22,7 +20,6 @@ import de.atomfrede.android.mensa.ubi.R;
 import de.atomfrede.android.mensa.ubi.adapter.WeekdayPagerAdapter;
 import de.atomfrede.android.mensa.ubi.data.MealPlan;
 import de.atomfrede.android.mensa.ubi.data.Parser;
-import de.atomfrede.android.mensa.ubi.location.LocationSelectionActivity;
 import de.atomfrede.android.mensa.ubi.util.Util;
 
 @EFragment(R.layout.fragment_weekly_meal)
@@ -79,7 +76,7 @@ public class WeeklyMealFragment extends SherlockFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState){
 		super.onActivityCreated(savedInstanceState);
-		settings = getActivity().getSharedPreferences(Constants.MENSA_PREFS, LocationSelectionActivity.MODE_PRIVATE);
+		settings = getActivity().getSharedPreferences(Constants.MENSA_PREFS, getActivity().MODE_PRIVATE);
 	}
 	
 	@AfterViews

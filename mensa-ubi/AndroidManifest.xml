@@ -34,24 +34,5 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".location.LocationSelectionActivity_" >
-            
-        </activity>
-        <activity android:name=".activity.meals.weekly.hs.owl.DetmoldActivity_" >
-        </activity>
-        <activity android:name=".activity.meals.weekly.hs.owl.HoexterActivity_" >
-        </activity>
-        <activity android:name=".activity.meals.weekly.fh.KurtSchumacherActivity_" >
-        </activity>
-        <activity android:name=".activity.meals.weekly.hs.owl.LemgoActivity_" >
-        </activity>
-        <activity android:name=".activity.meals.weekly.ubi.MensaActivity_" >
-        </activity>
-        <activity android:name=".activity.meals.weekly.hs.music.MusicActivity_" >
-        </activity>
-        <activity android:name=".activity.meals.weekly.ubi.WestendRestaurantActivity_" >
-        </activity>
-        <activity android:name=".activity.meals.weekly.fh.WilhelmBertelsmannActivity_" >
-        </activity>
     </application>
 </manifest>
