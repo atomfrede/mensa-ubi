@@ -29,8 +29,7 @@
         <item name="actionModeBackground">@drawable/cab_background_top_ubi</item>
         <item name="actionModeSplitBackground">@drawable/cab_background_bottom_ubi</item>
         <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Ubi</item>
-
-        
+        <item name="menuDrawerStyle">@style/MenuDrawerStyle</item>
     </style>
 
     <style name="ActionBar.Solid.Ubi" parent="@style/Widget.Sherlock.Light.ActionBar.Solid">
@@ -76,5 +75,4 @@
         <item name="popupMenuStyle">@style/PopupMenu.Ubi</item>
         <item name="dropDownListViewStyle">@style/DropDownListView.Ubi</item>
     </style>
-
 </resources>

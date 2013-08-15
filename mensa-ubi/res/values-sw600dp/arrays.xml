@@ -18,6 +18,7 @@
    along with Mensa UBI.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
+
     <string-array name="locations">
         <item>Mensa</item>
         <item>Westend Restaurant</item>
@@ -28,19 +29,21 @@
         <item>Höxter</item>
         <item>Detmold</item>
     </string-array>
-    <string-array name="weekdays_short">
-        <item>Mon</item>
-        <item>Tue</item>
-        <item>Wed</item>
-        <item>Thu</item>
-        <item>Fri</item>
-    </string-array>
     <string-array name="mensa_dropdown">
-        <item>Akt. Wo.</item>
-        <item>Näch. Wo.</item>
+        <item>Aktuelle Woche</item>
+        <item>Nächste Woche</item>
     </string-array>
     <string-array name="westend_dropdown">
         <item>Westend Restaurant</item>
         <item>Westend Restaurant (+1)</item>
     </string-array>
+    <string-array name="detmold_dropdown">
+        <item>Detmold</item>
+        <item>Detmold (+1)</item>
+    </string-array>
+    <string-array name="lemgo_dropdown">
+        <item>Lemgo</item>
+        <item>Lemgo (+1)</item>
+    </string-array>
+
 </resources>

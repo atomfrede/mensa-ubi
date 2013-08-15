@@ -57,14 +57,13 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/vpi_background"
-        android:padding="10dip"
+        android:padding="25dip"
         android:textColor="@color/text_color"
         android:visibility="gone"
         app:footerColor="@color/ubi_orange"
-        app:footerIndicatorHeight="8dp"
-        app:footerLineHeight="3dp"
         app:selectedBold="true"
-        app:selectedColor="@color/vpi_text_active" />
+        app:selectedColor="@color/vpi_text_active" 
+        app:titlePadding="20dp"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/meal_pager"

@@ -27,4 +27,5 @@
     <color name="ubi_white">#FFFFFF</color>
     <color name="vpi_background">#527787</color>
     <color name="vpi_text_active">#f2f2f2</color>
+    <color name="md_ubi_background">#e4e4e4</color>
 </resources>
