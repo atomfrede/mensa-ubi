@@ -250,7 +250,7 @@ public class WeeklyMealFragment extends SherlockFragment {
 			mPager.setAdapter(mAdapter);
 	
 			mIndicator.setViewPager(mPager);
-			mIndicator.setFooterIndicatorStyle(IndicatorStyle.Triangle);
+			mIndicator.setFooterIndicatorStyle(IndicatorStyle.Underline);
 			
 			loadingProgressbar.setVisibility(View.GONE);
 			Log.d(TAG, "Progress gone");
