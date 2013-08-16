@@ -3,7 +3,7 @@ Mensa UBI
 
 Simple application for displaying the meal of the mensa at University of Bielefeld, FH Bielefeld and Hochschule OWL.
 
-** For additional information see http://atomfrede.github.com/mensa-ubi/ **
+For additional information see http://atomfrede.github.com/mensa-ubi/
 
 ![Example Meal Plan Screen][1]
 
