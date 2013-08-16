@@ -18,7 +18,7 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.atomfrede.android.mensa.ubi"
-    android:versionCode="15"
+    android:versionCode="16"
     android:versionName="1.5-SNAPSHOT" >
     <uses-sdk
         android:minSdkVersion="9"
