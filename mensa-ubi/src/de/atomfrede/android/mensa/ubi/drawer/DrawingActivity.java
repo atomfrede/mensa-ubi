@@ -57,8 +57,8 @@ public class DrawingActivity extends AbstractDrawingUbiActivity implements MenuA
 	}
 	
 	@Override
-	public void onResume(){
-		super.onResume();
+	public void onResumeFragments(){
+		super.onResumeFragments();
 		afterInject();
 	}
 	
