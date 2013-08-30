@@ -60,8 +60,8 @@ public class Constants {
 	//TODO add correct urls
 	public static final String hoexterUrlNextWeek = "http://www.studentenwerkbielefeld.de/index.php?id=71&L=0";
 	public static final String musicUrlNextWeek = "http://www.studentenwerkbielefeld.de/index.php?id=72&L=0";
-	public static final String fhKurtSchumacherUrlNextWeek = "http://www.studentenwerkbielefeld.de/index.php?id=63";
-	public static final String wilhelmBerterlsmannUrlNextWeek = "http://www.studentenwerkbielefeld.de/index.php?id=65";
+	public static final String fhKurtSchumacherUrlNextWeek = "http://www.studentenwerkbielefeld.de/index.php?id=63&tx_studentenwerk_pi1[week]=1";
+	public static final String wilhelmBerterlsmannUrlNextWeek = "http://www.studentenwerkbielefeld.de/index.php?id=65&tx_studentenwerk_pi1[week]=1";
 	
 
 	@Deprecated
