@@ -159,34 +159,42 @@ public abstract class AbstractDrawingUbiActivity extends SherlockFragmentActivit
 	protected void setTitles(String newSubTitle){
 		List<MenuDrawerItem> items = setupListEntries();
 		switch (currentLocation) {
+		case Constants.LOC_MENSA_NEXT_WEEK:
 		case Constants.LOC_MENSA:
 			newSubTitle = ((Item)items.get(0)).mTitle;
 			getSupportActionBar().setTitle(getResources().getString(R.string.drawer_head_uni));
 			break;
-		case Constants.LOC_WESTEND_RESTAURANT:
+		case Constants.LOC_WESTEND_RESTAURANT_NEXT_WEEK:
+		case Constants.LOC_WESTEND_RESTAURANT :
 			newSubTitle = ((Item)items.get(1)).mTitle;
 			getSupportActionBar().setTitle(getResources().getString(R.string.drawer_head_uni));
 			break;
+		case Constants.LOC_KURT_SCHUHMACHER_NEXT_WEEK:
 		case Constants.LOC_KURT_SCHUHMACHER:
 			newSubTitle = ((Item)items.get(2)).mTitle;
 			getSupportActionBar().setTitle(getResources().getString(R.string.drawer_header_fh_bielefeld));
 			break;
+		case Constants.LOC_WILHELM_BERTELSMANN_NEXT_WEEK:
 		case Constants.LOC_WILHELM_BERTELSMANN:
 			newSubTitle = ((Item)items.get(3)).mTitle;
 			getSupportActionBar().setTitle(getResources().getString(R.string.drawer_header_fh_bielefeld));
 			break;
+		case Constants.LOC_DETMOLD_NEXT_WEEK:
 		case Constants.LOC_DETMOLD:
 			newSubTitle = ((Item)items.get(4)).mTitle;
 			getSupportActionBar().setTitle(getResources().getString(R.string.drawer_header_hs_owl));
 			break;
+		case Constants.LOC_LEMGO_NEXT_WEEK:
 		case Constants.LOC_LEMGO:
 			newSubTitle = ((Item)items.get(5)).mTitle;
 			getSupportActionBar().setTitle(getResources().getString(R.string.drawer_header_hs_owl));
 			break;
+		case Constants.LOC_HOEXTER_NEXT_WEEK:
 		case Constants.LOC_HOEXTER:
 			newSubTitle = ((Item)items.get(6)).mTitle;
 			getSupportActionBar().setTitle(getResources().getString(R.string.drawer_header_hs_owl));
 			break;
+		case Constants.LOC_MUSIC_NEXT_WEEK:
 		case Constants.LOC_MUSIC:
 			newSubTitle = ((Item)items.get(7)).mTitle;
 			getSupportActionBar().setTitle(getResources().getString(R.string.drawer_header_musik));
