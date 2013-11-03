@@ -57,9 +57,9 @@ public class Constants {
 	public static final String westendRestaurantUrlNextWeek = "http://www.studentenwerkbielefeld.de/index.php?id=60&tx_studentenwerk_pi1%5Bweek%5D=1";
 	public static final String detmoldUrlNextWeek = "http://www.studentenwerkbielefeld.de/index.php?id=69&L=0&tx_studentenwerk_pi1%5Bweek%5D=1";
 	public static final String lemgoUrlNextWeek = "http://www.studentenwerkbielefeld.de/index.php?id=70&tx_studentenwerk_pi1%5Bweek%5D=1";
-	//TODO add correct urls
-	public static final String hoexterUrlNextWeek = "http://www.studentenwerkbielefeld.de/index.php?id=71&L=0";
-	public static final String musicUrlNextWeek = "http://www.studentenwerkbielefeld.de/index.php?id=72&L=0";
+
+	public static final String hoexterUrlNextWeek = "http://www.studentenwerkbielefeld.de/index.php?id=71&tx_studentenwerk_pi1[week]=1";
+	public static final String musicUrlNextWeek = "http://www.studentenwerkbielefeld.de/index.php?id=72&tx_studentenwerk_pi1[week]=1";
 	public static final String fhKurtSchumacherUrlNextWeek = "http://www.studentenwerkbielefeld.de/index.php?id=63&tx_studentenwerk_pi1[week]=1";
 	public static final String wilhelmBerterlsmannUrlNextWeek = "http://www.studentenwerkbielefeld.de/index.php?id=65&tx_studentenwerk_pi1[week]=1";
 	
