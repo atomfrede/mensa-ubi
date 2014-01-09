@@ -18,8 +18,8 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.atomfrede.android.mensa.ubi"
-    android:versionCode="20"
-    android:versionName="1.4.4" >
+    android:versionCode="21"
+    android:versionName="1.4.5-SNAPSHOT" >
     <uses-sdk
         android:minSdkVersion="9"
         android:targetSdkVersion="19" />

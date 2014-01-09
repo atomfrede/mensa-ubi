@@ -24,8 +24,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import android.content.SharedPreferences;
-import android.util.Log;
-import de.atomfrede.android.mensa.ubi.Constants;
 import de.atomfrede.android.mensa.ubi.util.Util;
 
 public class Parser {
