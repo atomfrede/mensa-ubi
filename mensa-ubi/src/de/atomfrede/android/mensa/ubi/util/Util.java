@@ -27,4 +27,17 @@ public class Util {
 		return now.get(Calendar.WEEK_OF_YEAR);
 	}
 	
+	public static int getYear() {
+		Calendar now = Calendar.getInstance();
+		return now.get(Calendar.YEAR);
+	}
+	
+	public static int getCacheKey() {
+		int weekOfYear = getWeekOfYear();
+		int year = getYear();
+		
+		int cacheKey = year + weekOfYear;
+		return cacheKey;
+	}
+	
 }

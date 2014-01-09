@@ -318,30 +318,32 @@ public class WeeklyMealFragment extends SherlockFragment {
 			switch (locationKey) {
 			case Constants.LOC_MENSA:{
 				boolean updateRequired = updateRequired(Constants.MENSA_LAST_UPDATE);
+				Log.d(TAG, "Update Required = "+updateRequired);
 				MealPlan.getInstance().setMensaMenu(Parser.parseMenu(updateRequired, settings.getString(xmlKey, null), settings, url, xmlKey));
-				settings.edit().putInt(Constants.MENSA_LAST_UPDATE, Util.getWeekOfYear()).commit();
+				Log.d(TAG, "Loading done...");
+				settings.edit().putInt(Constants.MENSA_LAST_UPDATE, Util.getCacheKey()).commit();
 				break;
 			}case Constants.LOC_MENSA_NEXT_WEEK:{
 				boolean updateRequired = updateRequired(Constants.MENSA_NEXT_LAST_UPDATE);
 				Log.d(TAG, "Update Required (Next Week) = "+updateRequired);
 				MealPlan.getInstance().setMensaMenuNext(Parser.parseMenu(updateRequired, settings.getString(xmlKey, null), settings, url, xmlKey));
 				Log.d(TAG, "Loading done... (Next Week)");
-				settings.edit().putInt(Constants.MENSA_NEXT_LAST_UPDATE, Util.getWeekOfYear()).commit();
+				settings.edit().putInt(Constants.MENSA_NEXT_LAST_UPDATE, Util.getCacheKey()).commit();
 				break;
 			}case Constants.LOC_WESTEND_RESTAURANT:{
 				boolean updateRequired = updateRequired(Constants.WESTEND_LAST_UDPATE);
 				MealPlan.getInstance().setWestendRestauranMenu(Parser.parseMenu(updateRequired, settings.getString(xmlKey, null), settings, url, xmlKey));
-				settings.edit().putInt(Constants.WESTEND_LAST_UDPATE, Util.getWeekOfYear()).commit();
+				settings.edit().putInt(Constants.WESTEND_LAST_UDPATE, Util.getCacheKey()).commit();
 				break;
 			}case Constants.LOC_WESTEND_RESTAURANT_NEXT_WEEK:{
 				boolean updateRequired = updateRequired(Constants.WESTEND_NEXT_LAST_UPDATE);
 				MealPlan.getInstance().setWestendMenuNext(Parser.parseMenu(updateRequired, settings.getString(xmlKey, null), settings, url, xmlKey));
-				settings.edit().putInt(Constants.WESTEND_NEXT_LAST_UPDATE, Util.getWeekOfYear()).commit();
+				settings.edit().putInt(Constants.WESTEND_NEXT_LAST_UPDATE, Util.getCacheKey()).commit();
 				break;
 			}case Constants.LOC_DETMOLD:{
 				boolean updateRequired = updateRequired(Constants.DETMOLD_LAST_UPDATE);
 				MealPlan.getInstance().setDetmoldMenu(Parser.parseMenu(updateRequired, settings.getString(xmlKey, null), settings, url, xmlKey));
-				settings.edit().putInt(Constants.DETMOLD_LAST_UPDATE, Util.getWeekOfYear()).commit();
+				settings.edit().putInt(Constants.DETMOLD_LAST_UPDATE, Util.getCacheKey()).commit();
 				break;
 			}case Constants.LOC_HOEXTER:{
 				boolean updateRequired = updateRequired(Constants.HOEXTER_LAST_UPDATE);
@@ -351,17 +353,17 @@ public class WeeklyMealFragment extends SherlockFragment {
 			}case Constants.LOC_KURT_SCHUHMACHER:{
 				boolean updateRequired = updateRequired(Constants.KURT_SCHUHMACHER_LAST_UPDATE);
 				MealPlan.getInstance().setKurtSchuhmacherMenu(Parser.parseMenu(updateRequired, settings.getString(xmlKey, null), settings, url, xmlKey));
-				settings.edit().putInt(Constants.KURT_SCHUHMACHER_LAST_UPDATE, Util.getWeekOfYear()).commit();
+				settings.edit().putInt(Constants.KURT_SCHUHMACHER_LAST_UPDATE, Util.getCacheKey()).commit();
 				break;
 			}case Constants.LOC_LEMGO:{
 				boolean updateRequired = updateRequired(Constants.LEMGO_LAST_UPDATE);
 				MealPlan.getInstance().setLemgoMenu(Parser.parseMenu(updateRequired, settings.getString(xmlKey, null), settings, url, xmlKey));
-				settings.edit().putInt(Constants.LEMGO_LAST_UPDATE, Util.getWeekOfYear()).commit();
+				settings.edit().putInt(Constants.LEMGO_LAST_UPDATE, Util.getCacheKey()).commit();
 				break;
 			}case Constants.LOC_MUSIC:{
 				boolean updateRequired = updateRequired(Constants.MUSIK_LAST_UPDATE);
 				MealPlan.getInstance().setMusicMenu(Parser.parseMenu(updateRequired, settings.getString(xmlKey, null), settings, url, xmlKey));
-				settings.edit().putInt(Constants.MUSIK_LAST_UPDATE, Util.getWeekOfYear()).commit();
+				settings.edit().putInt(Constants.MUSIK_LAST_UPDATE, Util.getCacheKey()).commit();
 				break;
 			}case Constants.LOC_WILHELM_BERTELSMANN:{
 				boolean updateRequired = updateRequired(Constants.BERTELSMANN_LAST_UPDATE);
@@ -371,32 +373,32 @@ public class WeeklyMealFragment extends SherlockFragment {
 			}case Constants.LOC_DETMOLD_NEXT_WEEK:{
 				boolean updateRequired = updateRequired(Constants.DETMOLD_NEXT_LAST_UPDATE);
 				MealPlan.getInstance().setDetmoldMenuNext(Parser.parseMenu(updateRequired, settings.getString(xmlKey, null), settings, url, xmlKey));
-				settings.edit().putInt(Constants.DETMOLD_NEXT_LAST_UPDATE, Util.getWeekOfYear()).commit();
+				settings.edit().putInt(Constants.DETMOLD_NEXT_LAST_UPDATE, Util.getCacheKey()).commit();
 				break;
 			}case Constants.LOC_HOEXTER_NEXT_WEEK:{
 				boolean updateRequired = updateRequired(Constants.HOEXTER_NEXT_LAST_UDAPTE);
 				MealPlan.getInstance().setHoexterMenuNext(Parser.parseMenu(updateRequired, settings.getString(xmlKey, null), settings, url, xmlKey));
-				settings.edit().putInt(Constants.HOEXTER_NEXT_LAST_UDAPTE, Util.getWeekOfYear()).commit();
+				settings.edit().putInt(Constants.HOEXTER_NEXT_LAST_UDAPTE, Util.getCacheKey()).commit();
 				break;
 			}case Constants.LOC_KURT_SCHUHMACHER_NEXT_WEEK:{
 				boolean updateRequired = updateRequired(Constants.KURT_SCHUMACHER_NEXT_LAST_UPDATE);
 				MealPlan.getInstance().setKurtSchuhmacherMenuNext(Parser.parseMenu(updateRequired, settings.getString(xmlKey, null), settings, url, xmlKey));
-				settings.edit().putInt(Constants.KURT_SCHUMACHER_NEXT_LAST_UPDATE, Util.getWeekOfYear()).commit();
+				settings.edit().putInt(Constants.KURT_SCHUMACHER_NEXT_LAST_UPDATE, Util.getCacheKey()).commit();
 				break;
 			}case Constants.LOC_LEMGO_NEXT_WEEK:{
 				boolean updateRequired = updateRequired(Constants.LEMGO_NEXT_LAST_UPDATE);
 				MealPlan.getInstance().setLemgoMenuNext(Parser.parseMenu(updateRequired, settings.getString(xmlKey, null), settings, url, xmlKey));
-				settings.edit().putInt(Constants.LEMGO_NEXT_LAST_UPDATE, Util.getWeekOfYear()).commit();
+				settings.edit().putInt(Constants.LEMGO_NEXT_LAST_UPDATE, Util.getCacheKey()).commit();
 				break;
 			}case Constants.LOC_MUSIC_NEXT_WEEK:{
 				boolean updateRequired = updateRequired(Constants.MUSIK_NEXT_LAST_UPDATE);
 				MealPlan.getInstance().setMusicMenuNext(Parser.parseMenu(updateRequired, settings.getString(xmlKey, null), settings, url, xmlKey));
-				settings.edit().putInt(Constants.MUSIK_NEXT_LAST_UPDATE, Util.getWeekOfYear()).commit();
+				settings.edit().putInt(Constants.MUSIK_NEXT_LAST_UPDATE, Util.getCacheKey()).commit();
 				break;
 			}case Constants.LOC_WILHELM_BERTELSMANN_NEXT_WEEK:{
 				boolean updateRequired = updateRequired(Constants.BERTELSMANN_NEXT_LAST_UPDATE);
 				MealPlan.getInstance().setWilhemBertelsmannMenuNext(Parser.parseMenu(updateRequired, settings.getString(xmlKey, null), settings, url, xmlKey));
-				settings.edit().putInt(Constants.BERTELSMANN_NEXT_LAST_UPDATE, Util.getWeekOfYear()).commit();
+				settings.edit().putInt(Constants.BERTELSMANN_NEXT_LAST_UPDATE, Util.getCacheKey()).commit();
 				break;
 			}
 			
@@ -416,7 +418,7 @@ public class WeeklyMealFragment extends SherlockFragment {
 		}
 		
 		int lastUpdate = settings.getInt(lastUpdateKey, -1);
-		if(Util.getWeekOfYear() > lastUpdate){
+		if(Util.getCacheKey() > lastUpdate){
 			return true;
 		}
 

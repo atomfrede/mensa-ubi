@@ -140,6 +140,7 @@
         android:text="@string/about_menu_drawer"
         android:textSize="12dp" />
 
+
     <Button
         android:id="@+id/feedbackButton"
         style="?android:attr/buttonStyleSmall"

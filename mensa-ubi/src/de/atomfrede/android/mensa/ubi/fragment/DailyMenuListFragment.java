@@ -44,6 +44,7 @@ public class DailyMenuListFragment extends SherlockListFragment {
 		if (savedInstanceState != null && menu == null) {
 			menu = (DailyMenu) savedInstanceState.getSerializable("menu");
 		}
+		
 	}
 	
 	@Override

@@ -75,7 +75,4 @@
         <item name="popupMenuStyle">@style/PopupMenu.Ubi</item>
         <item name="dropDownListViewStyle">@style/DropDownListView.Ubi</item>
     </style>
-    
-     
-
 </resources>

@@ -81,7 +81,26 @@ public class WeekdayPagerAdapter extends FragmentStatePagerAdapter {
 
 	@Override
 	public int getCount() {
-		return weekdays.length;
+		switch (location) {
+		case Constants.LOC_MENSA:
+			return MealPlan.getInstance().getMensaMenu().getDailyMenues().size();
+		case Constants.LOC_WESTEND_RESTAURANT:
+			return MealPlan.getInstance().getWestendRestauranMenu().getDailyMenues().size();
+		case Constants.LOC_KURT_SCHUHMACHER:
+			return MealPlan.getInstance().getKurtSchuhmacherMenu().getDailyMenues().size();
+		case Constants.LOC_WILHELM_BERTELSMANN:
+			return MealPlan.getInstance().getWilhemBertelsmannMenu().getDailyMenues().size();
+		case Constants.LOC_DETMOLD:
+			return MealPlan.getInstance().getDetmoldMenu().getDailyMenues().size();
+		case Constants.LOC_HOEXTER:
+			return MealPlan.getInstance().getHoexterMenu().getDailyMenues().size();
+		case Constants.LOC_LEMGO:
+			return MealPlan.getInstance().getLemgoMenu().getDailyMenues().size();
+		case Constants.LOC_MUSIC:
+			return MealPlan.getInstance().getMusicMenu().getDailyMenues().size();
+		default:
+			return weekdays.length;
+		}
 	}
 
 	@Override

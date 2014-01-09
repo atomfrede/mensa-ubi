@@ -116,7 +116,6 @@ public class Constants {
 	
 	public static final String MUSIK_LAST_UPDATE = "musikLastUpdate";
 	public static final String MUSIK_NEXT_LAST_UPDATE = "musikNextLastUpdate";
-	
+
 	public static final String drawerAtLeastUsedOnce = "drawerAtLeastUsedOnce";
-	
 }
