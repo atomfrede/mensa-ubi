@@ -289,7 +289,7 @@ public class WeeklyMealFragment extends SherlockFragment {
 		}case Constants.LOC_MENSA_NEXT_WEEK:{
 			return MealPlan.getInstance().getMensaMenuNext().getDailyMenues().size() != 0;
 		}case Constants.LOC_WESTEND_RESTAURANT_NEXT_WEEK:{
-			return MealPlan.getInstance().getMensaMenuNext().getDailyMenues().size() != 0;
+			return MealPlan.getInstance().getWestendMenuNext().getDailyMenues().size() != 0;
 		}case Constants.LOC_HOEXTER_NEXT_WEEK:{
 			return MealPlan.getInstance().getHoexterMenuNext().getDailyMenues().size() != 0;
 		}case Constants.LOC_KURT_SCHUHMACHER_NEXT_WEEK:{
