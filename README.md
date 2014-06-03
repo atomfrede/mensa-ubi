@@ -5,8 +5,6 @@ Simple application for displaying the meal of the mensa at University of Bielefe
 
 For additional information see http://atomfrede.github.com/mensa-ubi/
 
-![Example Meal Plan Screen][1]
-
 License
 ========
 
