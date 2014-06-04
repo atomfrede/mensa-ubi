@@ -43,7 +43,7 @@ echo y | android update sdk --filter platform-tools,build-tools-$ANDROID_BUILD_T
 
 # Compile app
 #./gradlew --daemon assembleDebug
-mvn clean install
+mvn -f /mensa-ubi/pom.xml clean install
 # Run lint
 #./gradlew --daemon lintDebug
 
