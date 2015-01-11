@@ -36,8 +36,9 @@ public class Util {
 		int weekOfYear = getWeekOfYear();
 		int year = getYear();
 		
-		int cacheKey = year + weekOfYear;
+		int cacheKey = year + weekOfYear + weekOfYear;
 		return cacheKey;
 	}
+	
 	
 }
