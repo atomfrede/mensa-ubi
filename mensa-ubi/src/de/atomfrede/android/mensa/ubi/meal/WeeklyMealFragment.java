@@ -418,6 +418,11 @@ public class WeeklyMealFragment extends SherlockFragment {
 		}
 		
 		int lastUpdate = settings.getInt(lastUpdateKey, -1);
+		
+		if (lastUpdate > 2000) {
+			return true;
+		}
+		
 		if(Util.getCacheKey() > lastUpdate){
 			return true;
 		}

@@ -36,7 +36,7 @@ public class Parser {
 		if (data != null && !data.equals("") && !reload) {
 			doc = Jsoup.parse(data);
 		} else {
-			doc = Jsoup.connect(url).get();
+			doc = Jsoup.connect(url).timeout(10000).get();
 			String xmlData = doc.toString();
 			settings.edit().putString(xmlKey, xmlData).commit();
 		}
